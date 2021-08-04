@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nuwai_app/theme.dart';
+import 'package:nuwai_app/widget/card_job.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Widget? header() {
@@ -103,6 +109,70 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget? listPekerjaan() {
+      return Container(
+        margin: EdgeInsets.only(top: 30),
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              SizedBox(
+                width: defaultMargin,
+              ),
+              CardJob(
+                title: "Admin IG",
+                city: "Pringsewu",
+                image: "assets/image_beranda1.png",
+              ),
+              CardJob(
+                title: "Asisten Rumah Tangga",
+                city: "Bandar Lampung",
+                image: "assets/image_beranda2.png",
+              ),
+              CardJob(
+                title: "Transleter",
+                city: "Sukarame",
+                image: "assets/image_beranda3.png",
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    Widget? categoryPerorangan() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 20,
+          left: defaultMargin,
+          right: defaultMargin,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Perorangan",
+              style: poppinsMedium.copyWith(
+                fontSize: 20,
+                color: blackGrayColor,
+              ),
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            Text(
+              "Pekerjaan yang berbasis personal",
+              style: poppinsRegular.copyWith(
+                fontSize: 12,
+                color: grayColor,
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -111,6 +181,8 @@ class HomePage extends StatelessWidget {
             header()!,
             decorationImage()!,
             categoryPerusahaan()!,
+            listPekerjaan()!,
+            categoryPerorangan()!,
           ],
         ),
       ),
