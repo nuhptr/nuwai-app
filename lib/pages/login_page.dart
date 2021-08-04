@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:nuwai_app/theme.dart';
 
 class LoginPage extends StatefulWidget {
@@ -198,7 +199,9 @@ class _LoginPageState extends State<LoginPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               )),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, "/main");
+          },
           child: Text(
             "Masuk",
             style: poppinsMedium.copyWith(fontSize: 18),
@@ -220,7 +223,9 @@ class _LoginPageState extends State<LoginPage> {
               width: 4,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, "/register");
+              },
               child: Text(
                 "Daftar",
                 style: poppinsMedium.copyWith(color: orangeColor),
@@ -234,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
     Widget? footer() {
       return Container(
         width: double.infinity,
-        height: 200,
+        height: 220,
         child: Image.asset(
           "assets/register_image.png",
           fit: BoxFit.cover,
@@ -243,19 +248,20 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            header()!,
-            usernameInput()!,
-            passwordInput()!,
-            buttonLogin()!,
-            registerText()!,
-            Spacer(),
-            footer()!,
-          ],
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              header()!,
+              usernameInput()!,
+              passwordInput()!,
+              buttonLogin()!,
+              registerText()!,
+              footer()!,
+            ],
+          ),
         ),
       ),
     );

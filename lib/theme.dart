@@ -5,6 +5,7 @@ Color orangeColor = Color(0xffF07B3F);
 Color yellowColor = Color(0xffFFD460);
 Color grayColor = Color(0xffABAAAA);
 Color blackGrayColor = Color(0xff505050);
+Color bottomNavColor = Color(0xffF8F8F8);
 
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
