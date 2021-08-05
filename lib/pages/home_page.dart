@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuwai_app/theme.dart';
-import 'package:nuwai_app/widget/card_job.dart';
+import 'package:nuwai_app/widget/card_job_perorangan.dart';
+import 'package:nuwai_app/widget/card_job_perusahaan.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -120,17 +121,17 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 width: defaultMargin,
               ),
-              CardJob(
+              CardJobPerusahaan(
                 title: "Admin IG",
                 city: "Pringsewu",
                 image: "assets/image_beranda1.png",
               ),
-              CardJob(
+              CardJobPerusahaan(
                 title: "Asisten Rumah Tangga",
                 city: "Bandar Lampung",
                 image: "assets/image_beranda2.png",
               ),
-              CardJob(
+              CardJobPerusahaan(
                 title: "Transleter",
                 city: "Sukarame",
                 image: "assets/image_beranda3.png",
@@ -173,6 +174,31 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+    Widget? listPekerjaanPerorangan() {
+      return Container(
+        margin: EdgeInsets.only(top: 30),
+        child: Column(
+          children: [
+            CardJobPerorangan(
+              name: "Staff Toko Bangunan",
+              city: "Tanjung Karang",
+              time: DateTime.now(),
+            ),
+            CardJobPerorangan(
+              name: "Kasir Indomaret",
+              city: "Gadingrejo",
+              time: DateTime.now(),
+            ),
+            CardJobPerorangan(
+              name: "Admin IG Toko Online",
+              city: "Tanggamus",
+              time: DateTime.now(),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -183,6 +209,7 @@ class _HomePageState extends State<HomePage> {
             categoryPerusahaan()!,
             listPekerjaan()!,
             categoryPerorangan()!,
+            listPekerjaanPerorangan()!,
           ],
         ),
       ),

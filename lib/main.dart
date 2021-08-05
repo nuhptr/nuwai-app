@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nuwai_app/provider/page_provider.dart';
 import 'package:provider/provider.dart';
 
+import 'pages/profile_page.dart';
+import 'provider/page_provider.dart';
+import 'pages/guide_page.dart';
 import 'pages/login_page.dart';
 import 'pages/main_page.dart';
 import 'pages/register_page.dart';
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
           "/login": (context) => LoginPage(),
           "/register": (context) => RegisterPage(),
           "/main": (context) => MainPage(),
+          "/guide": (context) => GuidePage(),
+          "/profile": (context) => ProfilePage(),
         },
       ),
     );

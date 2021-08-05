@@ -212,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
 
     Widget? registerText() {
       return Container(
-        margin: EdgeInsets.only(top: 25, left: defaultMargin),
+        margin: EdgeInsets.only(top: 25, left: defaultMargin, bottom: 15),
         child: Row(
           children: [
             Text(

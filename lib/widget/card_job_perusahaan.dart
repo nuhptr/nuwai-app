@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nuwai_app/theme.dart';
 
-class CardJob extends StatelessWidget {
+class CardJobPerusahaan extends StatelessWidget {
   final String? title;
   final String? city;
   final String? image;
 
-  CardJob({this.title, this.city, this.image});
+  CardJobPerusahaan({this.title, this.city, this.image});
 
   @override
   Widget build(BuildContext context) {
