@@ -231,6 +231,7 @@ class _RegisterPageState extends State<RegisterPage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),

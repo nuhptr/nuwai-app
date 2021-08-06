@@ -33,7 +33,7 @@ class ContentProfile extends StatelessWidget {
               text!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: poppinsSemiBold.copyWith(fontSize: 16, color: orangeColor),
+              style: poppinsMedium.copyWith(fontSize: 16, color: orangeColor),
             ),
             IconButton(
               onPressed: (ontap != null) ? ontap! : null,

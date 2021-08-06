@@ -97,6 +97,7 @@ class _MainPageState extends State<MainPage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: body()!,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(

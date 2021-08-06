@@ -22,7 +22,7 @@ class GuidePage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "/profile");
+                      Navigator.pushNamed(context, "/main");
                     },
                     icon: Icon(
                       Icons.arrow_back_ios,
@@ -49,7 +49,7 @@ class GuidePage extends StatelessWidget {
               ),
               Text(
                 "1. Hubungi No Wa 089674135843 hal ini bertujuan untuk menghindari pembukaan lowongan yang bersifat menipu",
-                style: poppinsRegular.copyWith(
+                style: poppinsMedium.copyWith(
                   color: orangeColor,
                   fontSize: 16,
                   height: 1.6,
@@ -61,7 +61,7 @@ class GuidePage extends StatelessWidget {
               ),
               Text(
                 "2. Sertakan KTP dan data-data pekerjaan yang bisa dilihat di halaman detail pekerjaan",
-                style: poppinsRegular.copyWith(
+                style: poppinsMedium.copyWith(
                   color: orangeColor,
                   fontSize: 16,
                   height: 1.6,
@@ -73,7 +73,7 @@ class GuidePage extends StatelessWidget {
               ),
               Text(
                 "3. Untuk gaji boleh dicantumkan / tidak",
-                style: poppinsRegular.copyWith(
+                style: poppinsMedium.copyWith(
                   color: orangeColor,
                   fontSize: 16,
                   height: 1.6,
@@ -85,7 +85,7 @@ class GuidePage extends StatelessWidget {
               ),
               Text(
                 "4. Pekerjaan bersifat halal dan tidak terpaku dengan bulanan / tetap, contoh : Pencuci Piring untuk 2 jam ",
-                style: poppinsRegular.copyWith(
+                style: poppinsMedium.copyWith(
                   color: orangeColor,
                   fontSize: 16,
                   height: 1.6,
@@ -97,7 +97,7 @@ class GuidePage extends StatelessWidget {
               ),
               Text(
                 "5. Dengan membaca point 1-4 anda menyetujui persyaratan dan persetujuan kami",
-                style: poppinsRegular.copyWith(
+                style: poppinsMedium.copyWith(
                   color: orangeColor,
                   fontSize: 16,
                   height: 1.6,
@@ -123,6 +123,7 @@ class GuidePage extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: body(),
     );
   }
