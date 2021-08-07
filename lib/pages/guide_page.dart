@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:nuwai_app/theme.dart';
 
@@ -10,7 +11,7 @@ class GuidePage extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         child: Container(
           margin: EdgeInsets.only(
-            top: 50,
+            top: 60,
             left: defaultMargin,
             right: defaultMargin,
           ),
@@ -20,11 +21,11 @@ class GuidePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/main");
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed("/main");
                     },
-                    icon: Icon(
+                    child: Icon(
                       Icons.arrow_back_ios,
                       color: grayColor,
                       size: 23,

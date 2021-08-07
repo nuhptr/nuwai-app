@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:nuwai_app/theme.dart';
 import 'package:nuwai_app/widget/content_profile.dart';
@@ -90,13 +91,15 @@ class ProfilePage extends StatelessWidget {
               ContentProfile(
                 text: "Edit Profile",
                 icon: Icon(Icons.arrow_right_rounded),
-                ontap: () {},
+                ontap: () {
+                  Get.toNamed("/edit");
+                },
               ),
               ContentProfile(
                 text: "Cara Membuka Lowongan",
                 icon: Icon(Icons.arrow_right_rounded),
                 ontap: () {
-                  Navigator.pushNamed(context, "/guide");
+                  Get.toNamed("/guide");
                 },
               ),
               ContentProfile(

@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 
 import 'package:nuwai_app/theme.dart';
 
-class RegisterPage extends StatefulWidget {
+class EditProfile extends StatefulWidget {
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _EditProfileState createState() => _EditProfileState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _EditProfileState extends State<EditProfile> {
   var nameController = TextEditingController(text: "");
   var usernameController = TextEditingController(text: "");
   var passwordController = TextEditingController(text: "");
@@ -16,46 +16,52 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget? header() {
-      return Align(
-        alignment: Alignment.centerLeft,
-        child: Container(
-          margin: EdgeInsets.only(
-            top: 40,
-            bottom: 35,
-          ),
-          height: 36,
-          width: 66,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage("assets/logo.png"),
-          )),
-        ),
-      );
-    }
-
-    Widget? textTitle() {
-      return Align(
-        alignment: Alignment.centerLeft,
-        child: Text(
-          "Buat Akun",
-          style: poppinsMedium.copyWith(fontSize: 35, color: orangeColor),
-        ),
-      );
-    }
-
-    Widget? inputName() {
+    Widget header() {
       return Container(
-        margin: EdgeInsets.only(bottom: 20, top: 15),
+          margin: EdgeInsets.only(
+            top: 50,
+            bottom: 25,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 24,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  // TODO: save data ke database lewat API, efek loading
+                },
+                child: Icon(
+                  Icons.check,
+                  size: 28,
+                  color: orangeColor,
+                ),
+              )
+            ],
+          ));
+    }
+
+    Widget namaLengkap() {
+      return Container(
+        margin: EdgeInsets.only(
+          bottom: 20,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Nama Lengkap",
-              style: poppinsRegular.copyWith(fontSize: 16, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
             ),
             SizedBox(
-              height: 10,
+              height: 12,
             ),
             Container(
               height: 50,
@@ -85,18 +91,20 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     }
 
-    Widget? inputUserName() {
+    Widget username() {
       return Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: EdgeInsets.only(
+          bottom: 20,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Username",
-              style: poppinsRegular.copyWith(fontSize: 16, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
             ),
             SizedBox(
-              height: 10,
+              height: 12,
             ),
             Container(
               height: 50,
@@ -126,18 +134,20 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     }
 
-    Widget? inputPassword() {
+    Widget password() {
       return Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: EdgeInsets.only(
+          bottom: 20,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Password",
-              style: poppinsRegular.copyWith(fontSize: 16, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
             ),
             SizedBox(
-              height: 10,
+              height: 12,
             ),
             Container(
               height: 50,
@@ -154,7 +164,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'Password minimal 8 Character',
+                    hintText: 'Masukan Password',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
                       fontSize: 14,
@@ -168,18 +178,20 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     }
 
-    Widget? inputEmail() {
+    Widget email() {
       return Container(
-        margin: EdgeInsets.only(bottom: 65),
+        margin: EdgeInsets.only(
+          bottom: 20,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Email",
-              style: poppinsRegular.copyWith(fontSize: 16, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
             ),
             SizedBox(
-              height: 10,
+              height: 12,
             ),
             Container(
               height: 50,
@@ -192,11 +204,10 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               child: Center(
                 child: TextFormField(
-                  keyboardType: TextInputType.emailAddress,
                   style: poppinsRegular.copyWith(color: Colors.white),
                   controller: emailController,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'Masukan email',
+                    hintText: 'Masukan Email',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
                       fontSize: 14,
@@ -210,41 +221,18 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     }
 
-    Widget? buttonRegister() {
-      return Container(
-        padding: EdgeInsets.symmetric(horizontal: 80),
-        height: 50,
-        child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: orangeColor,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
-                )),
-            onPressed: () {
-              Get.toNamed("/main");
-            },
-            child: Text(
-              "Masuk",
-              style: poppinsMedium.copyWith(fontSize: 16),
-            )),
-      );
-    }
-
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-          physics: BouncingScrollPhysics(),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            header()!,
-            textTitle()!,
-            inputName()!,
-            inputUserName()!,
-            inputPassword()!,
-            inputEmail()!,
-            buttonRegister()!,
+            header(),
+            namaLengkap(),
+            username(),
+            password(),
+            email(),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:nuwai_app/theme.dart';
 
@@ -200,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                 borderRadius: BorderRadius.circular(8),
               )),
           onPressed: () {
-            Navigator.pushNamed(context, "/main");
+            Get.toNamed("/main");
           },
           child: Text(
             "Masuk",
@@ -224,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, "/register");
+                Get.toNamed("/register");
               },
               child: Text(
                 "Daftar",

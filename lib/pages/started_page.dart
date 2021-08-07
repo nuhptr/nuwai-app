@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nuwai_app/pages/login_page.dart';
 
 import 'package:nuwai_app/theme.dart';
@@ -68,11 +69,8 @@ class StartedPage extends StatelessWidget {
                 fontSize: 17,
               )),
           onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              "/login",
-              (route) => false,
-            );
+            // TODO: Route ke login Page
+            Get.toNamed("/login");
           },
           style: ElevatedButton.styleFrom(
               elevation: 0,

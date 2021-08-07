@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:nuwai_app/pages/started_page.dart';
 
@@ -18,11 +19,8 @@ class _SplashPageState extends State<SplashPage> {
   startSplashScreen() async {
     var duration = const Duration(seconds: 3);
     return Timer(duration, () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => StartedPage(),
-          ));
+      // TODO: pindah ke page started
+      Get.off(StartedPage());
     });
   }
 
