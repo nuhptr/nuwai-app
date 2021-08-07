@@ -13,6 +13,7 @@ class _EditProfileState extends State<EditProfile> {
   var usernameController = TextEditingController(text: "");
   var passwordController = TextEditingController(text: "");
   var emailController = TextEditingController(text: "");
+  var alamatController = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class _EditProfileState extends State<EditProfile> {
             children: [
               GestureDetector(
                 onTap: () {
-                  Get.back();
+                  Get.toNamed("/main");
                 },
                 child: Icon(
                   Icons.arrow_back_ios,
@@ -221,19 +222,68 @@ class _EditProfileState extends State<EditProfile> {
       );
     }
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+    Widget address() {
+      return Container(
+        margin: EdgeInsets.only(
+          bottom: 20,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            header(),
-            namaLengkap(),
-            username(),
-            password(),
-            email(),
+            Text(
+              "Alamat",
+              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 50,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              decoration: BoxDecoration(
+                color: orangeColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: TextFormField(
+                  style: poppinsRegular.copyWith(color: Colors.white),
+                  controller: alamatController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Masukan alamat',
+                    hintStyle: poppinsLight.copyWith(
+                      color: Colors.white38,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
+        ),
+      );
+    }
+
+    return WillPopScope(
+      onWillPop: () async {
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              header(),
+              namaLengkap(),
+              username(),
+              password(),
+              email(),
+              address(),
+            ],
+          ),
         ),
       ),
     );

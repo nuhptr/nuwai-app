@@ -225,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             GestureDetector(
               onTap: () {
-                Get.toNamed("/register");
+                Get.offNamed("/register");
               },
               child: Text(
                 "Daftar",

@@ -105,7 +105,9 @@ class ProfilePage extends StatelessWidget {
               ContentProfile(
                 text: "Rating App",
                 icon: Icon(Icons.arrow_right_rounded),
-                ontap: () {},
+                ontap: () {
+                  // TODO: Launcher URL to playstore if the app ready
+                },
               )
             ],
           ),

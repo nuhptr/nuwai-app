@@ -123,9 +123,14 @@ class GuidePage extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: body(),
+    return WillPopScope(
+      onWillPop: () async {
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: body(),
+      ),
     );
   }
 }
