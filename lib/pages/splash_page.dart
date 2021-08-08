@@ -20,7 +20,7 @@ class _SplashPageState extends State<SplashPage> {
     var duration = const Duration(seconds: 3);
     return Timer(duration, () {
       // TODO: pindah ke page started
-      Get.off(StartedPage());
+      Get.off(() => StartedPage());
     });
   }
 
