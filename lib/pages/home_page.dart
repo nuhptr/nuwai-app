@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nuwai_app/theme.dart';
-import 'package:nuwai_app/widget/card_job_perorangan.dart';
-import 'package:nuwai_app/widget/card_job_perusahaan.dart';
+import 'package:lottie/lottie.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '/theme.dart';
+import '/widget/card_job_perorangan.dart';
+import '/widget/card_job_perusahaan.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,7 +32,7 @@ class _HomePageState extends State<HomePage> {
                     "Adi Nugraha Putra",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: poppinsSemiBold.copyWith(fontSize: 20),
+                    style: poppinsSemiBold.copyWith(fontSize: 20.sp),
                   ),
                   SizedBox(
                     height: 2,
@@ -39,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: poppinsRegular.copyWith(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       color: Colors.black54,
                     ),
                   )
@@ -49,8 +52,8 @@ class _HomePageState extends State<HomePage> {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                width: 58,
-                height: 58,
+                width: 55.w,
+                height: 55.h,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                   image: AssetImage("assets/people_model.png"),
@@ -70,11 +73,46 @@ class _HomePageState extends State<HomePage> {
           left: defaultMargin,
           right: defaultMargin,
         ),
-        child: Image.asset(
-          "assets/home_image.png",
-          fit: BoxFit.cover,
-          width: double.infinity,
-          height: 185,
+        child: Stack(
+          children: [
+            Image.asset(
+              "assets/home_bg.png",
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: 160.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    width: 130.w,
+                    height: 130.h,
+                    child: Lottie.asset(
+                      "assets/lottie/work.json",
+                      fit: BoxFit.cover,
+                      repeat: true,
+                      animate: true,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 10,
+                    right: 18,
+                  ),
+                  child: Text(
+                    "Cari\nPekerjaanmu\nHari Ini~",
+                    style: poppinsSemiBold.copyWith(
+                      fontSize: 18.sp,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
         ),
       );
     }
@@ -92,7 +130,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               "Perusahaan",
               style: poppinsMedium.copyWith(
-                fontSize: 20,
+                fontSize: 20.sp,
                 color: blackGrayColor,
               ),
             ),
@@ -102,7 +140,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               "Pekerjaan yang berbasis corporate",
               style: poppinsRegular.copyWith(
-                fontSize: 12,
+                fontSize: 12.sp,
                 color: grayColor,
               ),
             )
@@ -120,7 +158,7 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             children: [
               SizedBox(
-                width: defaultMargin,
+                width: defaultMargin.w,
               ),
               CardJobPerusahaan(
                 title: "Admin IG",
@@ -159,7 +197,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               "Perorangan",
               style: poppinsMedium.copyWith(
-                fontSize: 20,
+                fontSize: 20.sp,
                 color: blackGrayColor,
               ),
             ),
@@ -169,7 +207,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               "Pekerjaan yang berbasis personal",
               style: poppinsRegular.copyWith(
-                fontSize: 12,
+                fontSize: 12.sp,
                 color: grayColor,
               ),
             )
@@ -180,7 +218,7 @@ class _HomePageState extends State<HomePage> {
 
     Widget listPekerjaanPerorangan() {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: EdgeInsets.only(top: 30, bottom: 30),
         child: Column(
           children: [
             CardJobPerorangan(

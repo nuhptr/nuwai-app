@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nuwai_app/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:nuwai_app/pages/home_page.dart';
-import 'package:nuwai_app/pages/profile_page.dart';
-import 'package:nuwai_app/pages/search_page.dart';
-import 'package:nuwai_app/provider/page_provider.dart';
+import '/pages/home_page.dart';
+import '/pages/profile_page.dart';
+import '/pages/search_page.dart';
+import '/provider/page_provider.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -51,11 +52,11 @@ class _MainPageState extends State<MainPage> {
                   child: pageProvider.currentIndex == 0
                       ? Image.asset(
                           "assets/home_orange.png",
-                          width: 24,
+                          width: 24.w,
                         )
                       : Image.asset(
                           "assets/home_gray.png",
-                          width: 24,
+                          width: 24.w,
                         ),
                 ),
                 label: "",
@@ -66,11 +67,11 @@ class _MainPageState extends State<MainPage> {
                   child: pageProvider.currentIndex == 1
                       ? Image.asset(
                           "assets/search_orange.png",
-                          width: 24,
+                          width: 24.w,
                         )
                       : Image.asset(
                           "assets/search_gray.png",
-                          width: 24,
+                          width: 24.w,
                         ),
                 ),
                 label: "",
@@ -81,11 +82,11 @@ class _MainPageState extends State<MainPage> {
                   child: pageProvider.currentIndex == 2
                       ? Image.asset(
                           "assets/people_orange.png",
-                          width: 24,
+                          width: 24.w,
                         )
                       : Image.asset(
                           "assets/people_gray.png",
-                          width: 24,
+                          width: 24.w,
                         ),
                 ),
                 label: "",

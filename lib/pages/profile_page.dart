@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:nuwai_app/theme.dart';
-import 'package:nuwai_app/widget/content_profile.dart';
+import '/theme.dart';
+import '/widget/content_profile.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -14,8 +15,8 @@ class ProfilePage extends StatelessWidget {
             alignment: Alignment.center,
             child: Container(
               margin: EdgeInsets.only(top: 40),
-              width: 160,
-              height: 160,
+              width: 140.w,
+              height: 140.h,
               // margin: ,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
@@ -29,7 +30,7 @@ class ProfilePage extends StatelessWidget {
                   },
                   child: Image.asset(
                     "assets/btn_add.png",
-                    width: 35,
+                    width: 35.w,
                   ),
                 ),
                 alignment: Alignment.bottomRight,
@@ -46,7 +47,7 @@ class ProfilePage extends StatelessWidget {
         child: Text(
           "Adi Nugraha Putra",
           style: poppinsMedium.copyWith(
-            fontSize: 24,
+            fontSize: 24.sp,
             color: blackGrayColor,
           ),
           overflow: TextOverflow.ellipsis,
@@ -65,7 +66,7 @@ class ProfilePage extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: poppinsRegular.copyWith(
-            fontSize: 16,
+            fontSize: 16.sp,
             color: grayColor,
           ),
         ),

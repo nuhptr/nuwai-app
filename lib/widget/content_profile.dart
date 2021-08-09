@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nuwai_app/theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '/theme.dart';
 
 class ContentProfile extends StatelessWidget {
   final String? text;
@@ -12,7 +14,7 @@ class ContentProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 30),
-      height: 60,
+      height: 50.h,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -33,7 +35,10 @@ class ContentProfile extends StatelessWidget {
               text!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: poppinsMedium.copyWith(fontSize: 16, color: orangeColor),
+              style: poppinsMedium.copyWith(
+                fontSize: 16.sp,
+                color: orangeColor,
+              ),
             ),
             IconButton(
               onPressed: (ontap != null) ? ontap! : null,

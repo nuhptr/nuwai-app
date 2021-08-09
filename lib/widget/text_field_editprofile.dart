@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nuwai_app/theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '/theme.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String? name;
@@ -21,21 +23,21 @@ class TextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        bottom: 20,
-        top: top != null ? 30 : 0,
+        bottom: 18,
+        top: top != null ? 20 : 0,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             name!,
-            style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
+            style: poppinsRegular.copyWith(fontSize: 15.sp, color: grayColor),
           ),
           SizedBox(
-            height: 12,
+            height: 10.h,
           ),
           Container(
-            height: 50,
+            height: 45.h,
             padding: EdgeInsets.symmetric(
               horizontal: 16,
             ),
@@ -53,7 +55,7 @@ class TextFieldWidget extends StatelessWidget {
                   hintText: hintText != null ? hintText : "",
                   hintStyle: poppinsLight.copyWith(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: 14.sp,
                   ),
                 ),
               ),

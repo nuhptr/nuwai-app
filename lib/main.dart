@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
@@ -27,24 +28,26 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => PageProvider()),
-      ],
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute: "/",
-        getPages: [
-          GetPage(name: "/", page: () => SplashPage()),
-          GetPage(name: "/login", page: () => LoginPage()),
-          GetPage(name: "/register", page: () => RegisterPage()),
-          GetPage(name: "/main", page: () => MainPage()),
-          GetPage(name: "/guide", page: () => GuidePage()),
-          GetPage(name: "/profile", page: () => ProfilePage()),
-          GetPage(name: "/edit", page: () => EditProfile()),
-          GetPage(name: "/detail", page: () => DetailPage()),
-          GetPage(name: "/success", page: () => SuccessPage())
+    return ScreenUtilInit(
+      builder: () => MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => PageProvider()),
         ],
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          initialRoute: "/",
+          getPages: [
+            GetPage(name: "/", page: () => SplashPage()),
+            GetPage(name: "/login", page: () => LoginPage()),
+            GetPage(name: "/register", page: () => RegisterPage()),
+            GetPage(name: "/main", page: () => MainPage()),
+            GetPage(name: "/guide", page: () => GuidePage()),
+            GetPage(name: "/profile", page: () => ProfilePage()),
+            GetPage(name: "/edit", page: () => EditProfile()),
+            GetPage(name: "/detail", page: () => DetailPage()),
+            GetPage(name: "/success", page: () => SuccessPage())
+          ],
+        ),
       ),
     );
   }

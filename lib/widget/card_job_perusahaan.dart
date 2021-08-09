@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nuwai_app/theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '/theme.dart';
 
 class CardJobPerusahaan extends StatelessWidget {
   final String? title;
@@ -22,8 +24,8 @@ class CardJobPerusahaan extends StatelessWidget {
         margin: EdgeInsets.only(
           right: 16,
         ),
-        height: 163,
-        width: 125,
+        height: 140.h,
+        width: 125.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Colors.white,
@@ -46,12 +48,12 @@ class CardJobPerusahaan extends StatelessWidget {
               child: Image.asset(
                 image!,
                 fit: BoxFit.cover,
-                width: 130,
-                height: 90,
+                width: double.infinity,
+                height: 80.h,
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 10.h,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 2),
@@ -60,8 +62,8 @@ class CardJobPerusahaan extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style:
-                    poppinsSemiBold.copyWith(fontSize: 16, color: orangeColor),
+                style: poppinsSemiBold.copyWith(
+                    fontSize: 16.sp, color: orangeColor),
               ),
             ),
             Text(
@@ -69,7 +71,7 @@ class CardJobPerusahaan extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              style: poppinsLight.copyWith(fontSize: 14, color: grayColor),
+              style: poppinsLight.copyWith(fontSize: 14.sp, color: grayColor),
             )
           ],
         ),

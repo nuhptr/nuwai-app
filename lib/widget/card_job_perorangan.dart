@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuwai_app/theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '/theme.dart';
 
 class CardJobPerorangan extends StatelessWidget {
   final String? name;
@@ -12,7 +14,7 @@ class CardJobPerorangan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 70.h,
       width: double.infinity,
       margin: EdgeInsets.only(
         bottom: 20,
@@ -42,19 +44,19 @@ class CardJobPerorangan extends StatelessWidget {
                   Text(
                     name!,
                     style: poppinsMedium.copyWith(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       color: orangeColor,
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
                   SizedBox(
-                    height: 2,
+                    height: 2.h,
                   ),
                   Text(
                     city!,
                     style: poppinsLight.copyWith(
-                      fontSize: 13,
+                      fontSize: 13.sp,
                       color: grayColor,
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -65,7 +67,8 @@ class CardJobPerorangan extends StatelessWidget {
             ),
             Text(
               DateFormat("dd/MM/yyyy").format(time!),
-              style: poppinsRegular.copyWith(fontSize: 13, color: orangeColor),
+              style:
+                  poppinsRegular.copyWith(fontSize: 13.sp, color: orangeColor),
             )
           ],
         ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nuwai_app/theme.dart';
-import 'package:nuwai_app/widget/card_job_perorangan.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '/theme.dart';
+import '/widget/card_job_perorangan.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -14,7 +16,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     Widget header() {
       return Container(
-        height: 50,
+        height: 45.h,
         width: double.infinity,
         margin: EdgeInsets.only(
           top: 40,
@@ -40,12 +42,12 @@ class _SearchPageState extends State<SearchPage> {
                     });
                   },
                   style: poppinsRegular.copyWith(
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     color: blackGrayColor,
                   ),
                   decoration: InputDecoration.collapsed(
                     hintText: "Cari pekerjaan",
-                    hintStyle: poppinsRegular.copyWith(fontSize: 14),
+                    hintStyle: poppinsRegular.copyWith(fontSize: 14.sp),
                   ),
                 ),
               )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:nuwai_app/theme.dart';
 
@@ -9,8 +10,8 @@ class StartedPage extends StatelessWidget {
     Widget? header() {
       return Container(
         margin: EdgeInsets.only(top: 40, left: defaultMargin),
-        width: 66,
-        height: 38,
+        width: 66.w,
+        height: 38.h,
         decoration: BoxDecoration(
             image: DecorationImage(
           image: AssetImage("assets/logo.png"),
@@ -28,7 +29,7 @@ class StartedPage extends StatelessWidget {
         child: Text(
           "Temukan Gawai\nDi Provinsi\nLampung",
           style: poppinsSemiBold.copyWith(
-            fontSize: 31,
+            fontSize: 31.sp,
             color: orangeColor,
             height: 1.4,
           ),
@@ -46,7 +47,7 @@ class StartedPage extends StatelessWidget {
         child: Text(
           "Mencari pekerjaan yang tentunya\nhalal",
           style: poppinsLight.copyWith(
-            fontSize: 16,
+            fontSize: 16.sp,
             color: grayColor,
           ),
         ),
@@ -60,12 +61,12 @@ class StartedPage extends StatelessWidget {
           left: defaultMargin,
           right: defaultMargin,
         ),
-        width: 200,
-        height: 50,
+        width: 200.w,
+        height: 45.h,
         child: ElevatedButton(
           child: Text("Lanjutkan",
               style: poppinsMedium.copyWith(
-                fontSize: 17,
+                fontSize: 17.sp,
               )),
           onPressed: () {
             // TODO: Route ke login Page
@@ -84,7 +85,7 @@ class StartedPage extends StatelessWidget {
     Widget? imageBottom() {
       return Container(
         width: double.infinity,
-        height: 280,
+        height: 250.h,
         child: Image.asset(
           "assets/splash_image.png",
           fit: BoxFit.cover,

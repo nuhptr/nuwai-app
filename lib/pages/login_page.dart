@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:nuwai_app/theme.dart';
+import '/theme.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -23,15 +24,15 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Container(
             margin: EdgeInsets.only(top: 40, left: defaultMargin),
-            width: 66,
-            height: 38,
+            width: 60.w,
+            height: 35.h,
             decoration: BoxDecoration(
                 image: DecorationImage(
               image: AssetImage("assets/logo.png"),
             )),
           ),
           SizedBox(
-            height: 26,
+            height: 20.h,
           ),
 
           // TODO: Title Text
@@ -39,11 +40,14 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: Text(
               "Login",
-              style: poppinsMedium.copyWith(fontSize: 24, color: yellowColor),
+              style: poppinsMedium.copyWith(
+                fontSize: 24.sp,
+                color: yellowColor,
+              ),
             ),
           ),
           SizedBox(
-            height: 2,
+            height: 2.h,
           ),
 
           // TODO: subtitle text
@@ -51,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: Text(
               "NUWAI",
-              style: poppinsBold.copyWith(fontSize: 40, color: yellowColor),
+              style: poppinsBold.copyWith(fontSize: 40.sp, color: yellowColor),
             ),
           )
         ],
@@ -71,15 +75,15 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               'Username',
               style: poppinsLight.copyWith(
-                fontSize: 18,
+                fontSize: 18.sp,
                 color: grayColor,
               ),
             ),
             SizedBox(
-              height: 12,
+              height: 10.h,
             ),
             Container(
-              height: 50,
+              height: 45.h,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
               ),
@@ -95,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Masukan Username',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ),
@@ -119,15 +123,15 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               'Password',
               style: poppinsLight.copyWith(
-                fontSize: 18,
+                fontSize: 18.sp,
                 color: grayColor,
               ),
             ),
             SizedBox(
-              height: 12,
+              height: 10.h,
             ),
             Container(
-              height: 50,
+              height: 45.h,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
               ),
@@ -147,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                           hintText: 'Password minimal 8 character',
                           hintStyle: poppinsLight.copyWith(
                             color: Colors.white38,
-                            fontSize: 14,
+                            fontSize: 14.sp,
                           ),
                         ),
                       ),
@@ -191,8 +195,8 @@ class _LoginPageState extends State<LoginPage> {
           left: defaultMargin,
           right: defaultMargin,
         ),
-        width: 156,
-        height: 50,
+        width: 155.w,
+        height: 45.h,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               elevation: 0,
@@ -205,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
           },
           child: Text(
             "Masuk",
-            style: poppinsMedium.copyWith(fontSize: 18),
+            style: poppinsMedium.copyWith(fontSize: 18.sp),
           ),
         ),
       );
@@ -221,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
               style: poppinsLight.copyWith(color: grayColor),
             ),
             SizedBox(
-              width: 4,
+              width: 4.w,
             ),
             GestureDetector(
               onTap: () {
@@ -240,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
     Widget? footer() {
       return Container(
         width: double.infinity,
-        height: 220,
+        height: 180.h,
         child: Image.asset(
           "assets/register_image.png",
           fit: BoxFit.cover,

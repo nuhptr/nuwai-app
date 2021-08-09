@@ -9,14 +9,16 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
   flutter_launcher_icons: ^0.9.1
+  flutter_screenutil: ^5.0.0+2
   get: ^4.3.4
   google_fonts: ^2.1.0
   http: ^0.13.3
   intl: ^0.17.0
+  lottie: ^1.1.0
   provider: ^5.0.0
 
 dev_dependencies:
@@ -33,6 +35,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/lottie/
   # fonts:
   #   - family: Schyler
   #     fonts:

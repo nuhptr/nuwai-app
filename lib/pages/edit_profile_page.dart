@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:nuwai_app/theme.dart';
-import 'package:nuwai_app/widget/text_field_editprofile.dart';
+import '/theme.dart';
+import '/widget/text_field_editprofile.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -33,7 +34,7 @@ class _EditProfileState extends State<EditProfile> {
       return Container(
           margin: EdgeInsets.only(
             top: 50,
-            bottom: 25,
+            bottom: 5,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,13 +119,13 @@ class _EditProfileState extends State<EditProfile> {
           children: [
             Text(
               "Kewarganegaraan",
-              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 15.sp, color: grayColor),
             ),
             SizedBox(
-              height: 12,
+              height: 10.h,
             ),
             Container(
-              height: 50,
+              height: 45.h,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
               ),
@@ -144,7 +145,7 @@ class _EditProfileState extends State<EditProfile> {
                           "pilih kewarganegaraan",
                           style: poppinsRegular.copyWith(
                             color: Colors.white,
-                            fontSize: 14,
+                            fontSize: 14.sp,
                           ),
                         ),
                       ),
@@ -197,13 +198,13 @@ class _EditProfileState extends State<EditProfile> {
           children: [
             Text(
               "Pendidikan",
-              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 15.sp, color: grayColor),
             ),
             SizedBox(
-              height: 12,
+              height: 10.h,
             ),
             Container(
-              height: 50,
+              height: 45.h,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
               ),
@@ -223,7 +224,7 @@ class _EditProfileState extends State<EditProfile> {
                           "pilih pendidikan",
                           style: poppinsRegular.copyWith(
                             color: Colors.white,
-                            fontSize: 14,
+                            fontSize: 14.sp,
                           ),
                         ),
                       ),

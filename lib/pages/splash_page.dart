@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:nuwai_app/pages/started_page.dart';
@@ -30,8 +31,8 @@ class _SplashPageState extends State<SplashPage> {
         backgroundColor: Colors.white,
         body: Center(
           child: Container(
-            width: 130,
-            height: 150,
+            width: 130.w,
+            height: 150.h,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/logo.png"),

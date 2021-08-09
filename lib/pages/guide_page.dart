@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:nuwai_app/theme.dart';
+import '/theme.dart';
 
 class GuidePage extends StatelessWidget {
   @override
@@ -33,68 +34,68 @@ class GuidePage extends StatelessWidget {
                   ),
                   Image.asset(
                     "assets/logo.png",
-                    width: 35,
+                    width: 35.w,
                   )
                 ],
               ),
               SizedBox(
-                height: 30,
+                height: 25.h,
               ),
               Text("Cara Membuka\nLowongan",
                   style: poppinsSemiBold.copyWith(
-                    fontSize: 25,
+                    fontSize: 25.sp,
                     color: grayColor,
                   )),
               SizedBox(
-                height: 30,
+                height: 25.h,
               ),
               Text(
                 "1. Hubungi No Wa 089674135843 hal ini bertujuan untuk menghindari pembukaan lowongan yang bersifat menipu",
                 style: poppinsMedium.copyWith(
                   color: orangeColor,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   height: 1.6,
                 ),
                 textAlign: TextAlign.start,
               ),
               SizedBox(
-                height: 20,
+                height: 15.h,
               ),
               Text(
                 "2. Sertakan KTP dan data-data pekerjaan yang bisa dilihat di halaman detail pekerjaan",
                 style: poppinsMedium.copyWith(
                   color: orangeColor,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   height: 1.6,
                 ),
                 textAlign: TextAlign.start,
               ),
               SizedBox(
-                height: 20,
+                height: 15.h,
               ),
               Text(
                 "3. Untuk gaji boleh dicantumkan / tidak",
                 style: poppinsMedium.copyWith(
                   color: orangeColor,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   height: 1.6,
                 ),
                 textAlign: TextAlign.start,
               ),
               SizedBox(
-                height: 20,
+                height: 15.h,
               ),
               Text(
                 "4. Pekerjaan bersifat halal dan tidak terpaku dengan bulanan / tetap, contoh : Pencuci Piring untuk 2 jam ",
                 style: poppinsMedium.copyWith(
                   color: orangeColor,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   height: 1.6,
                 ),
                 textAlign: TextAlign.start,
               ),
               SizedBox(
-                height: 20,
+                height: 15.h,
               ),
               Text(
                 "5. Dengan membaca point 1-4 anda menyetujui persyaratan dan persetujuan kami",
@@ -106,13 +107,13 @@ class GuidePage extends StatelessWidget {
                 textAlign: TextAlign.start,
               ),
               SizedBox(
-                height: 20,
+                height: 15.h,
               ),
               Text(
                 "Selamat Mencari Jasa~",
                 style: poppinsMedium.copyWith(
                   color: orangeColor,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   height: 1.6,
                 ),
                 textAlign: TextAlign.start,

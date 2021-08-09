@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:nuwai_app/theme.dart';
+import '/theme.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -24,8 +25,8 @@ class _RegisterPageState extends State<RegisterPage> {
             top: 40,
             bottom: 35,
           ),
-          height: 36,
-          width: 66,
+          height: 35.h,
+          width: 60.w,
           decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage("assets/logo.png"),
@@ -39,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
         alignment: Alignment.centerLeft,
         child: Text(
           "Buat Akun",
-          style: poppinsMedium.copyWith(fontSize: 35, color: orangeColor),
+          style: poppinsMedium.copyWith(fontSize: 35.sp, color: orangeColor),
         ),
       );
     }
@@ -52,13 +53,13 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             Text(
               "Nama Lengkap",
-              style: poppinsRegular.copyWith(fontSize: 16, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 16.sp, color: grayColor),
             ),
             SizedBox(
-              height: 10,
+              height: 8.h,
             ),
             Container(
-              height: 50,
+              height: 45.h,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
               ),
@@ -74,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: 'Masukan Nama Lengkap',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
-                      fontSize: 14,
+                      fontSize: 14..sp,
                     ),
                   ),
                 ),
@@ -93,13 +94,13 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             Text(
               "Username",
-              style: poppinsRegular.copyWith(fontSize: 16, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 16.sp, color: grayColor),
             ),
             SizedBox(
-              height: 10,
+              height: 8.h,
             ),
             Container(
-              height: 50,
+              height: 45.h,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
               ),
@@ -115,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: 'Masukan Username',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ),
@@ -134,13 +135,13 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             Text(
               "Password",
-              style: poppinsRegular.copyWith(fontSize: 16, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 16.sp, color: grayColor),
             ),
             SizedBox(
-              height: 10,
+              height: 8.h,
             ),
             Container(
-              height: 50,
+              height: 45.h,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
               ),
@@ -157,7 +158,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: 'Password minimal 8 Character',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ),
@@ -176,13 +177,13 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             Text(
               "Email",
-              style: poppinsRegular.copyWith(fontSize: 16, color: grayColor),
+              style: poppinsRegular.copyWith(fontSize: 16.sp, color: grayColor),
             ),
             SizedBox(
-              height: 10,
+              height: 8.h,
             ),
             Container(
-              height: 50,
+              height: 45.h,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
               ),
@@ -199,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: 'Masukan email',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ),
@@ -213,20 +214,20 @@ class _RegisterPageState extends State<RegisterPage> {
     Widget? buttonRegister() {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 80),
-        height: 50,
+        height: 45.h,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
                 primary: orangeColor,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.circular(10),
                 )),
             onPressed: () {
               Get.toNamed("/main");
             },
             child: Text(
               "Masuk",
-              style: poppinsMedium.copyWith(fontSize: 16),
+              style: poppinsMedium.copyWith(fontSize: 16.sp),
             )),
       );
     }

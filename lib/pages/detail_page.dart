@@ -76,7 +76,7 @@ class DetailPage extends StatelessWidget {
                   width: 13,
                 )),
             Image.asset(
-              "assets/logo.png",
+              "assets/logo_perusahaan.png",
               width: 50,
               fit: BoxFit.cover,
             )
