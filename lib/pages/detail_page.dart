@@ -7,6 +7,44 @@ import 'package:nuwai_app/theme.dart';
 class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // TODO: function show dialog
+    Future<void> showConfirmation() async {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(
+                'Konfirmasi',
+                style: poppinsMedium,
+              ),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: [
+                    Text(
+                      'Apakah kamu ingin melamar pekerjaan ini?',
+                      style: poppinsRegular.copyWith(color: blackGrayColor),
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Batal'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed("/success");
+                  },
+                  child: Text('Iya'),
+                )
+              ],
+            );
+          });
+    }
+
     Widget header() {
       return Container(
         width: double.infinity,
@@ -205,8 +243,9 @@ class DetailPage extends StatelessWidget {
                                 elevation: 0,
                                 primary: orangeColor,
                               ),
-                              onPressed: () {
+                              onPressed: () async {
                                 // TODO: return dialog
+                                await showConfirmation();
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -248,8 +287,8 @@ class DetailPage extends StatelessWidget {
         child: Stack(
           children: [
             header(),
-            logo(),
             content(),
+            logo(),
           ],
         ),
       ),

@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Container(
-              margin: EdgeInsets.only(top: 60),
+              margin: EdgeInsets.only(top: 40),
               width: 160,
               height: 160,
               // margin: ,
@@ -108,7 +108,14 @@ class ProfilePage extends StatelessWidget {
                 ontap: () {
                   // TODO: Launcher URL to playstore if the app ready
                 },
-              )
+              ),
+              ContentProfile(
+                text: "Log Out",
+                icon: Icon(Icons.arrow_right_rounded),
+                ontap: () {
+                  // TODO: destroy token and log out
+                },
+              ),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
+import 'pages/success_page.dart';
 import 'pages/detail_page.dart';
 import 'pages/edit_profile_page.dart';
 import 'pages/profile_page.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           GetPage(name: "/profile", page: () => ProfilePage()),
           GetPage(name: "/edit", page: () => EditProfile()),
           GetPage(name: "/detail", page: () => DetailPage()),
+          GetPage(name: "/success", page: () => SuccessPage())
         ],
       ),
     );
