@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    Widget? header() {
+    Widget header() {
       return Container(
         margin: EdgeInsets.only(
           left: defaultMargin,
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget? decorationImage() {
+    Widget decorationImage() {
       return Container(
         margin: EdgeInsets.only(
           top: 40,
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget? categoryPerusahaan() {
+    Widget categoryPerusahaan() {
       return Container(
         margin: EdgeInsets.only(
           top: 20,
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget? listPekerjaan() {
+    Widget listPekerjaan() {
       return Container(
         margin: EdgeInsets.only(top: 30),
         child: SingleChildScrollView(
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget? categoryPerorangan() {
+    Widget categoryPerorangan() {
       return Container(
         margin: EdgeInsets.only(
           top: 20,
@@ -178,7 +178,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget? listPekerjaanPerorangan() {
+    Widget listPekerjaanPerorangan() {
       return Container(
         margin: EdgeInsets.only(top: 30),
         child: Column(
@@ -209,12 +209,12 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: [
-            header()!,
-            decorationImage()!,
-            categoryPerusahaan()!,
-            listPekerjaan()!,
-            categoryPerorangan()!,
-            listPekerjaanPerorangan()!,
+            header(),
+            decorationImage(),
+            categoryPerusahaan(),
+            listPekerjaan(),
+            categoryPerorangan(),
+            listPekerjaanPerorangan(),
           ],
         ),
       ),
