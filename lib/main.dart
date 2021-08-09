@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nuwai_app/pages/edit_profile_page.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
+import 'pages/detail_page.dart';
+import 'pages/edit_profile_page.dart';
 import 'pages/profile_page.dart';
 import 'provider/page_provider.dart';
 import 'pages/guide_page.dart';
@@ -13,7 +14,7 @@ import 'pages/register_page.dart';
 import 'pages/splash_page.dart';
 
 void main() {
-  // TODO: Lock device device orientation
+  // TODO: Lock device orientation
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
           GetPage(name: "/guide", page: () => GuidePage()),
           GetPage(name: "/profile", page: () => ProfilePage()),
           GetPage(name: "/edit", page: () => EditProfile()),
+          GetPage(name: "/detail", page: () => DetailPage()),
         ],
       ),
     );

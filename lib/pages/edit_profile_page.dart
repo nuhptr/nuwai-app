@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:nuwai_app/theme.dart';
+import 'package:nuwai_app/widget/text_field_editprofile.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -14,6 +15,11 @@ class _EditProfileState extends State<EditProfile> {
   var passwordController = TextEditingController(text: "");
   var emailController = TextEditingController(text: "");
   var alamatController = TextEditingController(text: "");
+  var skillController = TextEditingController(text: "");
+  var prestasiController = TextEditingController(text: "");
+  var posisiTerakhirController = TextEditingController(text: "");
+  var lamaTerakhirBekerjaController = TextEditingController(text: "");
+  var tempatTerakhirBekerjaController = TextEditingController(text: "");
 
   List<String> statusWarga = ["Indonesia", "Non-Indonesia"];
   String? valWarga;
@@ -56,219 +62,48 @@ class _EditProfileState extends State<EditProfile> {
     }
 
     Widget namaLengkap() {
-      return Container(
-        margin: EdgeInsets.only(
-          bottom: 20,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Nama Lengkap",
-              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: orangeColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: TextFormField(
-                  style: poppinsRegular.copyWith(color: Colors.white),
-                  controller: nameController,
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Masukan Nama Lengkap',
-                    hintStyle: poppinsLight.copyWith(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      return TextFieldWidget(
+        top: 30,
+        name: "Nama",
+        hintText: "Masukan namamu",
+        textEditingController: nameController,
+        inputType: TextInputType.name,
       );
     }
 
     Widget username() {
-      return Container(
-        margin: EdgeInsets.only(
-          bottom: 20,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Username",
-              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: orangeColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: TextFormField(
-                  style: poppinsRegular.copyWith(color: Colors.white),
-                  controller: usernameController,
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Masukan Username',
-                    hintStyle: poppinsLight.copyWith(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      return TextFieldWidget(
+        name: "Username",
+        hintText: "Masukan username",
+        textEditingController: usernameController,
+        inputType: TextInputType.text,
       );
     }
 
     Widget password() {
-      return Container(
-        margin: EdgeInsets.only(
-          bottom: 20,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Password",
-              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: orangeColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: TextFormField(
-                  style: poppinsRegular.copyWith(color: Colors.white),
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Masukan Password',
-                    hintStyle: poppinsLight.copyWith(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      return TextFieldWidget(
+        name: "Password",
+        hintText: "Masukan Password",
+        textEditingController: passwordController,
+        obsecureText: true,
       );
     }
 
     Widget email() {
-      return Container(
-        margin: EdgeInsets.only(
-          bottom: 20,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Email",
-              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: orangeColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: TextFormField(
-                  style: poppinsRegular.copyWith(color: Colors.white),
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Masukan Email',
-                    hintStyle: poppinsLight.copyWith(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      return TextFieldWidget(
+        name: "Email",
+        hintText: "Masukan Email",
+        textEditingController: emailController,
+        inputType: TextInputType.emailAddress,
       );
     }
 
     Widget address() {
-      return Container(
-        margin: EdgeInsets.only(
-          bottom: 20,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Alamat",
-              style: poppinsRegular.copyWith(fontSize: 15, color: grayColor),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: orangeColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: TextFormField(
-                  style: poppinsRegular.copyWith(color: Colors.white),
-                  controller: alamatController,
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Masukan alamat',
-                    hintStyle: poppinsLight.copyWith(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      return TextFieldWidget(
+        name: "Alamat",
+        hintText: "Masukan Alamat",
+        textEditingController: alamatController,
+        inputType: TextInputType.text,
       );
     }
 
@@ -430,6 +265,46 @@ class _EditProfileState extends State<EditProfile> {
       );
     }
 
+    Widget skill() {
+      return TextFieldWidget(
+        name: "Keahlian",
+        hintText: "Masukan Keahlianmu (optional)",
+        textEditingController: skillController,
+      );
+    }
+
+    Widget prestasi() {
+      return TextFieldWidget(
+        name: "Prestasi",
+        hintText: "Prestasi yang pernah dicapai",
+        textEditingController: prestasiController,
+      );
+    }
+
+    Widget posisiTerakhir() {
+      return TextFieldWidget(
+        name: "Posisi Terakhir",
+        hintText: "Posisi terakhirmu (optional)",
+        textEditingController: posisiTerakhirController,
+      );
+    }
+
+    Widget lamaTerakhirBekerja() {
+      return TextFieldWidget(
+        name: "Lama Terakhir Bekerja",
+        hintText: "Masukan durasi terakhir bekerja (optional)",
+        textEditingController: lamaTerakhirBekerjaController,
+      );
+    }
+
+    Widget tempatTerakhirBekerja() {
+      return TextFieldWidget(
+        name: "Tempat Terakhir Bekerja",
+        hintText: "Masukan Tempat terakhir bekerja (optional)",
+        textEditingController: tempatTerakhirBekerjaController,
+      );
+    }
+
     return WillPopScope(
       onWillPop: () async {
         return true;
@@ -451,6 +326,11 @@ class _EditProfileState extends State<EditProfile> {
                 address(),
                 kewarganegaraan(),
                 pendidikan(),
+                skill(),
+                prestasi(),
+                posisiTerakhir(),
+                lamaTerakhirBekerja(),
+                tempatTerakhirBekerja(),
               ],
             ),
           ),
