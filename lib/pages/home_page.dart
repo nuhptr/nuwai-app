@@ -73,46 +73,11 @@ class _HomePageState extends State<HomePage> {
           left: defaultMargin,
           right: defaultMargin,
         ),
-        child: Stack(
-          children: [
-            Image.asset(
-              "assets/home_bg.png",
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 160.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: SizedBox(
-                    width: 130.w,
-                    height: 130.h,
-                    child: Lottie.asset(
-                      "assets/lottie/work.json",
-                      fit: BoxFit.cover,
-                      repeat: true,
-                      animate: true,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 10,
-                    right: 18,
-                  ),
-                  child: Text(
-                    "Cari\nPekerjaanmu\nHari Ini~",
-                    style: poppinsSemiBold.copyWith(
-                      fontSize: 18.sp,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ],
+        child: Image.asset(
+          "assets/home_image.png",
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: 160.h,
         ),
       );
     }
@@ -218,7 +183,7 @@ class _HomePageState extends State<HomePage> {
 
     Widget listPekerjaanPerorangan() {
       return Container(
-        margin: EdgeInsets.only(top: 30, bottom: 30),
+        margin: EdgeInsets.only(top: 20, bottom: 30),
         child: Column(
           children: [
             CardJobPerorangan(
