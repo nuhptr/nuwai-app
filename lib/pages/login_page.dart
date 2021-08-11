@@ -10,7 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  var usernameController = TextEditingController(text: "");
+  var emailController = TextEditingController(text: "");
   var passwordController = TextEditingController(text: "");
 
   bool? isHide = true;
@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Username',
+              'Email',
               style: poppinsLight.copyWith(
                 fontSize: 18.sp,
                 color: grayColor,
@@ -94,9 +94,10 @@ class _LoginPageState extends State<LoginPage> {
               child: Center(
                 child: TextFormField(
                   style: poppinsRegular.copyWith(color: Colors.white),
-                  controller: usernameController,
+                  keyboardType: TextInputType.emailAddress,
+                  controller: emailController,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'Masukan Username',
+                    hintText: 'Masukan email',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
                       fontSize: 14.sp,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '/theme.dart';
@@ -38,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                     height: 2,
                   ),
                   Text(
-                    "nuhptr_",
+                    "nugrahaadi733@gmail.com",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: poppinsRegular.copyWith(

@@ -12,7 +12,6 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   var nameController = TextEditingController(text: "");
-  var usernameController = TextEditingController(text: "");
   var passwordController = TextEditingController(text: "");
   var emailController = TextEditingController(text: "");
   var alamatController = TextEditingController(text: "");
@@ -69,15 +68,6 @@ class _EditProfileState extends State<EditProfile> {
         hintText: "Masukan namamu",
         textEditingController: nameController,
         inputType: TextInputType.name,
-      );
-    }
-
-    Widget username() {
-      return TextFieldWidget(
-        name: "Username",
-        hintText: "Masukan username",
-        textEditingController: usernameController,
-        inputType: TextInputType.text,
       );
     }
 
@@ -321,7 +311,6 @@ class _EditProfileState extends State<EditProfile> {
               children: [
                 header(),
                 namaLengkap(),
-                username(),
                 password(),
                 email(),
                 address(),

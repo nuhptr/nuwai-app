@@ -11,8 +11,8 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   var nameController = TextEditingController(text: "");
-  var usernameController = TextEditingController(text: "");
   var passwordController = TextEditingController(text: "");
+  var confirmPasswordController = TextEditingController(text: "");
   var emailController = TextEditingController(text: "");
 
   @override
@@ -86,14 +86,14 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     }
 
-    Widget? inputUserName() {
+    Widget? inputConfirmPassword() {
       return Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: EdgeInsets.only(bottom: 65),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Username",
+              "Konfirmasi Password",
               style: poppinsRegular.copyWith(fontSize: 16.sp, color: grayColor),
             ),
             SizedBox(
@@ -111,9 +111,9 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Center(
                 child: TextFormField(
                   style: poppinsRegular.copyWith(color: Colors.white),
-                  controller: usernameController,
+                  controller: confirmPasswordController,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'Masukan Username',
+                    hintText: 'Masukan ulang password',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
                       fontSize: 14.sp,
@@ -171,7 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
     Widget? inputEmail() {
       return Container(
-        margin: EdgeInsets.only(bottom: 65),
+        margin: EdgeInsets.only(bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -242,9 +242,9 @@ class _RegisterPageState extends State<RegisterPage> {
             header()!,
             textTitle()!,
             inputName()!,
-            inputUserName()!,
-            inputPassword()!,
             inputEmail()!,
+            inputPassword()!,
+            inputConfirmPassword()!,
             buttonRegister()!,
           ],
         ),
