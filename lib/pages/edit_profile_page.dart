@@ -221,7 +221,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                     isExpanded: true,
                     style: poppinsRegular.copyWith(
-                      color: Colors.orange,
+                      color: Colors.orange
                     ),
                     value: valPendidikan,
                     onChanged: (value) {
