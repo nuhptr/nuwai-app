@@ -15,6 +15,7 @@ class UserModel {
   String? photoProfile;
   DateTime? createdAt;
   DateTime? updatedAt;
+  String? token;
 
   UserModel({
     this.id,
@@ -33,6 +34,7 @@ class UserModel {
     this.photoProfile,
     this.createdAt,
     this.updatedAt,
+    this.token,
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -48,9 +50,11 @@ class UserModel {
     kewarganegaraan = json['kewarganegaraan'];
     alamat = json['alamat'];
     roles = json['roles'];
-    photoProfile = json['photoProfile'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
+    photoProfile = json['profile_photo_url'];
+    // TODO: biasakan parse jika bukan string
+    createdAt = DateTime.parse(json['created_at']);
+    updatedAt = DateTime.parse(json['updated_at']);
+    token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
@@ -61,10 +65,16 @@ class UserModel {
       'lama_terakhir_bekerja': lamaTerakhirBekerja,
       'tempat_terakhir_bekerja': tempatTerakhirBekerja,
       'posisi_terakhir_bekerja': posisiTerakhirBekerja,
-      'prestasi' : prestasi,
-      'skill' : skill,
-      'pendidikan' : pendidikan,
-      'kewarganegaraan' : kewarganegaraan,
+      'prestasi': prestasi,
+      'skill': skill,
+      'pendidikan': pendidikan,
+      'kewarganegaraan': kewarganegaraan,
+      'alamat': alamat,
+      'roles': roles,
+      'profile_photo_url': photoProfile,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+      'token': token,
     };
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '/theme.dart';
@@ -24,7 +23,7 @@ class GuidePage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed("/main");
+                      Navigator.pushNamed(context, '/main');
                     },
                     child: Icon(
                       Icons.arrow_back_ios,

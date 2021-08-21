@@ -1,6 +1,11 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '/properties.dart';
+import '/provider/user_provider.dart';
+import '/widget/loading_button.dart';
 
 import '/theme.dart';
 
@@ -15,9 +20,36 @@ class _LoginPageState extends State<LoginPage> {
 
   bool? isHide = true;
   bool? obsecureText = true;
+  bool? isLoading = false;
+  bool? isEmailValid = false;
 
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+
+    handleSignIn() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await userProvider.login(
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/main',
+          (route) => false,
+        );
+      } else {
+        showError('Gagal Login', context);
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     Widget? header() {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
 
-    Widget? usernameInput() {
+    Widget? emailInput() {
       return Container(
         margin: EdgeInsets.only(
           top: 35,
@@ -96,6 +128,11 @@ class _LoginPageState extends State<LoginPage> {
                   style: poppinsRegular.copyWith(color: Colors.white),
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
+                  onChanged: (value) {
+                    setState(() {
+                      isEmailValid = EmailValidator.validate(value);
+                    });
+                  },
                   decoration: InputDecoration.collapsed(
                     hintText: 'Masukan email',
                     hintStyle: poppinsLight.copyWith(
@@ -147,6 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: TextFormField(
                         style: poppinsRegular.copyWith(color: Colors.white),
                         obscureText: obsecureText!,
+                        obscuringCharacter: '*',
                         controller: passwordController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Password minimal 8 character',
@@ -205,9 +243,7 @@ class _LoginPageState extends State<LoginPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               )),
-          onPressed: () {
-            Get.toNamed("/main");
-          },
+          onPressed: handleSignIn,
           child: Text(
             "Masuk",
             style: poppinsMedium.copyWith(fontSize: 18.sp),
@@ -230,7 +266,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             GestureDetector(
               onTap: () {
-                Get.offNamed("/register");
+                Navigator.pushNamed(context, '/register');
               },
               child: Text(
                 "Daftar",
@@ -245,11 +281,12 @@ class _LoginPageState extends State<LoginPage> {
     Widget? footer() {
       return Container(
         width: double.infinity,
-        height: 180.h,
-        child: Image.asset(
-          "assets/register_image.png",
+        height: 190.h,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage("assets/register_image.png"),
           fit: BoxFit.cover,
-        ),
+        )),
       );
     }
 
@@ -262,9 +299,9 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               header()!,
-              usernameInput()!,
+              emailInput()!,
               passwordInput()!,
-              buttonLogin()!,
+              isLoading! ? LoadingButton() : buttonLogin()!,
               registerText()!,
               footer()!,
             ],

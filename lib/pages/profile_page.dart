@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '/theme.dart';
@@ -93,14 +92,14 @@ class ProfilePage extends StatelessWidget {
                 text: "Edit Profile",
                 icon: Icon(Icons.arrow_right_rounded),
                 ontap: () {
-                  Get.toNamed("/edit");
+                  Navigator.pushNamed(context, "/edit");
                 },
               ),
               ContentProfile(
                 text: "Cara Membuka Lowongan",
                 icon: Icon(Icons.arrow_right_rounded),
                 ontap: () {
-                  Get.toNamed("/guide");
+                  Navigator.pushNamed(context, "/guide");
                 },
               ),
               ContentProfile(

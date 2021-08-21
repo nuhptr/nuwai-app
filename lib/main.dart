@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/provider/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:get/get.dart';
 
 import 'pages/success_page.dart';
 import 'pages/detail_page.dart';
@@ -31,22 +31,23 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: () => MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => PageProvider()),
+          ChangeNotifierProvider(create: (context) => PageProvider()),
+          ChangeNotifierProvider(create: (context) => UserProvider()),
         ],
-        child: GetMaterialApp(
+        child: MaterialApp(
           debugShowCheckedModeBanner: false,
           initialRoute: "/",
-          getPages: [
-            GetPage(name: "/", page: () => SplashPage()),
-            GetPage(name: "/login", page: () => LoginPage()),
-            GetPage(name: "/register", page: () => RegisterPage()),
-            GetPage(name: "/main", page: () => MainPage()),
-            GetPage(name: "/guide", page: () => GuidePage()),
-            GetPage(name: "/profile", page: () => ProfilePage()),
-            GetPage(name: "/edit", page: () => EditProfile()),
-            GetPage(name: "/detail", page: () => DetailPage()),
-            GetPage(name: "/success", page: () => SuccessPage())
-          ],
+          routes: {
+            "/": (context) => SplashPage(),
+            "/login": (context) => LoginPage(),
+            "/register": (context) => RegisterPage(),
+            "/main": (context) => MainPage(),
+            "/guide": (context) => GuidePage(),
+            "/profile": (context) => ProfilePage(),
+            "/edit": (context) => EditProfile(),
+            "/detail": (context) => DetailPage(),
+            "/success": (context) => SuccessPage(),
+          },
         ),
       ),
     );

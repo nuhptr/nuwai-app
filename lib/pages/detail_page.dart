@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'package:nuwai_app/theme.dart';
@@ -36,7 +35,7 @@ class DetailPage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.toNamed("/success");
+                    Navigator.pushNamed(context, '/success');
                   },
                   child: Text('Iya'),
                 )
@@ -69,7 +68,7 @@ class DetailPage extends StatelessWidget {
           children: [
             GestureDetector(
                 onTap: () {
-                  Get.back();
+                  Navigator.pop(context);
                 },
                 child: Image.asset(
                   "assets/icon_arrow_left.png",

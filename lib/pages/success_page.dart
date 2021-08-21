@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,7 +9,11 @@ class SuccessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.offNamed("/main");
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          "/main",
+          (route) => false,
+        );
       },
       child: Scaffold(
         body: SafeArea(

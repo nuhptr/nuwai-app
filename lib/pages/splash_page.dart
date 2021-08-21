@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 import 'package:nuwai_app/pages/started_page.dart';
 
@@ -21,7 +20,11 @@ class _SplashPageState extends State<SplashPage> {
     var duration = const Duration(seconds: 3);
     return Timer(duration, () {
       // TODO: pindah ke page started
-      Get.off(() => StartedPage());
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => StartedPage()),
+        (route) => false,
+      );
     });
   }
 

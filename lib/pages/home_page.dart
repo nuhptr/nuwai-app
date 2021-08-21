@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '/theme.dart';
@@ -129,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                 city: "Pringsewu",
                 image: "assets/image_beranda1.png",
                 ontap: () {
-                  Get.toNamed("/detail");
+                  Navigator.pushNamed(context, '/detail');
                 },
               ),
               CardJobPerusahaan(

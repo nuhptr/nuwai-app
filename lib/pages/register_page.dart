@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/properties.dart';
+import 'package:nuwai_app/provider/user_provider.dart';
+import 'package:nuwai_app/widget/loading_button.dart';
+import 'package:provider/provider.dart';
 
 import '/theme.dart';
 
@@ -15,8 +18,45 @@ class _RegisterPageState extends State<RegisterPage> {
   var confirmPasswordController = TextEditingController(text: "");
   var emailController = TextEditingController(text: "");
 
+  bool? isLoading = false;
+
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+
+    handleSignUp() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (nameController.text.trim() == '' &&
+          emailController.text.trim() == '' &&
+          passwordController.text.trim() == '' &&
+          confirmPasswordController.text.trim() == '') {
+        showError('Field Harus Diisi Semua', context);
+      } else if (passwordController.text != confirmPasswordController.text) {
+        showError('Password tidak sama', context);
+      } else if (passwordController.text.length < 8) {
+        showError('Password harus lebih dari 8', context);
+      } else {
+        await userProvider.register(
+          name: nameController.text,
+          email: emailController.text,
+          password: passwordController.text,
+        );
+
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/main',
+          (route) => false,
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     Widget? header() {
       return Align(
         alignment: Alignment.centerLeft,
@@ -86,89 +126,6 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     }
 
-    Widget? inputConfirmPassword() {
-      return Container(
-        margin: EdgeInsets.only(bottom: 65),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Konfirmasi Password",
-              style: poppinsRegular.copyWith(fontSize: 16.sp, color: grayColor),
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Container(
-              height: 45.h,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: orangeColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: TextFormField(
-                  style: poppinsRegular.copyWith(color: Colors.white),
-                  controller: confirmPasswordController,
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Masukan ulang password',
-                    hintStyle: poppinsLight.copyWith(
-                      color: Colors.white38,
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    Widget? inputPassword() {
-      return Container(
-        margin: EdgeInsets.only(bottom: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Password",
-              style: poppinsRegular.copyWith(fontSize: 16.sp, color: grayColor),
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Container(
-              height: 45.h,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: orangeColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: TextFormField(
-                  style: poppinsRegular.copyWith(color: Colors.white),
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Password minimal 8 Character',
-                    hintStyle: poppinsLight.copyWith(
-                      color: Colors.white38,
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
     Widget? inputEmail() {
       return Container(
         margin: EdgeInsets.only(bottom: 20),
@@ -211,6 +168,92 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     }
 
+    Widget? inputPassword() {
+      return Container(
+        margin: EdgeInsets.only(bottom: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Password",
+              style: poppinsRegular.copyWith(fontSize: 16.sp, color: grayColor),
+            ),
+            SizedBox(
+              height: 8.h,
+            ),
+            Container(
+              height: 45.h,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              decoration: BoxDecoration(
+                color: orangeColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: TextFormField(
+                  style: poppinsRegular.copyWith(color: Colors.white),
+                  controller: passwordController,
+                  obscureText: true,
+                  obscuringCharacter: '*',
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Password minimal 8 Character',
+                    hintStyle: poppinsLight.copyWith(
+                      color: Colors.white38,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget? inputConfirmPassword() {
+      return Container(
+        margin: EdgeInsets.only(bottom: 65),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Konfirmasi Password",
+              style: poppinsRegular.copyWith(fontSize: 16.sp, color: grayColor),
+            ),
+            SizedBox(
+              height: 8.h,
+            ),
+            Container(
+              height: 45.h,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              decoration: BoxDecoration(
+                color: orangeColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: TextFormField(
+                  style: poppinsRegular.copyWith(color: Colors.white),
+                  controller: confirmPasswordController,
+                  obscureText: true,
+                  obscuringCharacter: '*',
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Masukan ulang password',
+                    hintStyle: poppinsLight.copyWith(
+                      color: Colors.white38,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     Widget? buttonRegister() {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 80),
@@ -222,9 +265,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),
-            onPressed: () {
-              Get.toNamed("/main");
-            },
+            onPressed: handleSignUp,
             child: Text(
               "Masuk",
               style: poppinsMedium.copyWith(fontSize: 16.sp),
@@ -245,7 +286,7 @@ class _RegisterPageState extends State<RegisterPage> {
             inputEmail()!,
             inputPassword()!,
             inputConfirmPassword()!,
-            buttonRegister()!,
+            isLoading! ? LoadingButton() : buttonRegister()!,
           ],
         ),
       ),
