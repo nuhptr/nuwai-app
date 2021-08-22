@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/pages/home/main_page.dart';
+import 'package:nuwai_app/pages/main_page.dart';
 
 import 'package:nuwai_app/pages/started_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';

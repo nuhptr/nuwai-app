@@ -7,11 +7,11 @@ import 'package:provider/provider.dart';
 import 'pages/success_page.dart';
 import 'pages/detail_page.dart';
 import 'pages/edit_profile_page.dart';
-import 'pages/home/profile_page.dart';
+import 'pages/profile_page.dart';
 import 'provider/page_provider.dart';
 import 'pages/guide_page.dart';
 import 'pages/login_page.dart';
-import 'pages/home/main_page.dart';
+import 'pages/main_page.dart';
 import 'pages/register_page.dart';
 import 'pages/splash_page.dart';
 
