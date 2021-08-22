@@ -1,7 +1,7 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:nuwai_app/model/user_model.dart';
+
+import '/model/user_model.dart';
 
 class UserServices {
   String baseUrl = 'http://192.168.43.108:8000/api';

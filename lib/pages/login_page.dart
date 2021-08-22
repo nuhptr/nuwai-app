@@ -1,9 +1,10 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '/properties.dart';
+import '/provider/page_provider.dart';
 import '/provider/user_provider.dart';
 import '/widget/loading_button.dart';
 
@@ -25,9 +26,12 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    var pageProvider = Provider.of<PageProvider>(context);
     var userProvider = Provider.of<UserProvider>(context);
 
     handleSignIn() async {
+      var pref = await SharedPreferences.getInstance();
+
       setState(() {
         isLoading = true;
       });
@@ -36,6 +40,8 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text,
         password: passwordController.text,
       )) {
+        // TODO: set preference from token user
+        pref.setString('token', userProvider.user.token!);
         Navigator.pushNamedAndRemoveUntil(
           context,
           '/main',
@@ -47,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
 
       setState(() {
         isLoading = false;
+        pageProvider.currentIndex = 0;
       });
     }
 
@@ -128,11 +135,6 @@ class _LoginPageState extends State<LoginPage> {
                   style: poppinsRegular.copyWith(color: Colors.white),
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
-                  onChanged: (value) {
-                    setState(() {
-                      isEmailValid = EmailValidator.validate(value);
-                    });
-                  },
                   decoration: InputDecoration.collapsed(
                     hintText: 'Masukan email',
                     hintStyle: poppinsLight.copyWith(
@@ -301,7 +303,13 @@ class _LoginPageState extends State<LoginPage> {
               header()!,
               emailInput()!,
               passwordInput()!,
-              isLoading! ? LoadingButton() : buttonLogin()!,
+              isLoading!
+                  ? LoadingButton(
+                      top: 40,
+                      height: 45,
+                      width: 155,
+                    )
+                  : buttonLogin()!,
               registerText()!,
               footer()!,
             ],

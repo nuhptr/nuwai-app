@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/pages/home/main_page.dart';
 
 import 'package:nuwai_app/pages/started_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -12,8 +14,18 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    startSplashScreen();
     super.initState();
+    checkPrefPage();
+  }
+
+  // TODO: conditional pref to started or main screen
+  checkPrefPage() async {
+    var pref = await SharedPreferences.getInstance();
+    if (pref.getString('token') != null) {
+      startMainScreen();
+    } else {
+      startSplashScreen();
+    }
   }
 
   startSplashScreen() async {
@@ -23,6 +35,18 @@ class _SplashPageState extends State<SplashPage> {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => StartedPage()),
+        (route) => false,
+      );
+    });
+  }
+
+  startMainScreen() async {
+    var duration = const Duration(seconds: 3);
+    return Timer(duration, () {
+      // TODO: pindah ke main screen
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => MainPage()),
         (route) => false,
       );
     });

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:nuwai_app/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '/pages/home_page.dart';
-import '/pages/profile_page.dart';
-import '/pages/search_page.dart';
+import 'home_page.dart';
+import 'profile_page.dart';
+import 'search_page.dart';
 import '/provider/page_provider.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,6 +15,11 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);

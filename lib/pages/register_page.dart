@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nuwai_app/properties.dart';
+import 'package:nuwai_app/provider/page_provider.dart';
 import 'package:nuwai_app/provider/user_provider.dart';
 import 'package:nuwai_app/widget/loading_button.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '/theme.dart';
 
@@ -15,16 +17,19 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   var nameController = TextEditingController(text: "");
   var passwordController = TextEditingController(text: "");
-  var confirmPasswordController = TextEditingController(text: "");
   var emailController = TextEditingController(text: "");
+  var confirmPasswordController = TextEditingController(text: "");
 
   bool? isLoading = false;
 
   @override
   Widget build(BuildContext context) {
+    var pageProvider = Provider.of<PageProvider>(context);
     var userProvider = Provider.of<UserProvider>(context);
 
     handleSignUp() async {
+      var pref = await SharedPreferences.getInstance();
+
       setState(() {
         isLoading = true;
       });
@@ -45,6 +50,8 @@ class _RegisterPageState extends State<RegisterPage> {
           password: passwordController.text,
         );
 
+        // TODO: set preference from token user
+        pref.setString('token', userProvider.user.token!);
         Navigator.pushNamedAndRemoveUntil(
           context,
           '/main',
@@ -54,6 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       setState(() {
         isLoading = false;
+        pageProvider.currentIndex = 0;
       });
     }
 
@@ -286,7 +294,13 @@ class _RegisterPageState extends State<RegisterPage> {
             inputEmail()!,
             inputPassword()!,
             inputConfirmPassword()!,
-            isLoading! ? LoadingButton() : buttonRegister()!,
+            isLoading!
+                ? LoadingButton(
+                    top: 0,
+                    height: 45,
+                    width: 0,
+                  )
+                : buttonRegister()!,
           ],
         ),
       ),

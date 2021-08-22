@@ -3,13 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme.dart';
 
 class LoadingButton extends StatelessWidget {
+  final double? top;
+  final double? height;
+  final double? width;
+
+  LoadingButton({this.top, this.height, this.width});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45.h,
-      width: 155.w,
+      height: height!.h,
+      width: width!.w,
       margin: EdgeInsets.only(
-        top: 40,
+        top: top!,
         left: defaultMargin,
         right: defaultMargin,
       ),

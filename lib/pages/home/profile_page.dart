@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '/theme.dart';
 import '/widget/content_profile.dart';
@@ -7,6 +8,18 @@ import '/widget/content_profile.dart';
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // TODO: function destroy token api
+    destroyPrefToken() async {
+      var pref = await SharedPreferences.getInstance();
+      pref.clear();
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/login',
+        (route) => false,
+      );
+      
+    }
+
     Widget header() {
       return Stack(
         children: [
@@ -112,9 +125,8 @@ class ProfilePage extends StatelessWidget {
               ContentProfile(
                 text: "Log Out",
                 icon: Icon(Icons.arrow_right_rounded),
-                ontap: () {
-                  // TODO: destroy token and log out
-                },
+                // TODO: destroy token and log out
+                ontap: destroyPrefToken,
               ),
             ],
           ),
