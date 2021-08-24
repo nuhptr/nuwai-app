@@ -36,7 +36,7 @@ class UserModel {
     this.updatedAt,
     this.token,
   });
-
+  
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];

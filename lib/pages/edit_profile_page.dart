@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
+import '/provider/user_provider.dart';
 import '/theme.dart';
 import '/widget/text_field_editprofile.dart';
 
@@ -28,6 +30,8 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+
     Widget header() {
       return Container(
           margin: EdgeInsets.only(
@@ -39,7 +43,7 @@ class _EditProfileState extends State<EditProfile> {
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context , "/main");
+                  Navigator.pushNamed(context, "/main");
                 },
                 child: Icon(
                   Icons.arrow_back_ios,
@@ -64,7 +68,9 @@ class _EditProfileState extends State<EditProfile> {
       return TextFieldWidget(
         top: 30,
         name: "Nama",
-        hintText: "Masukan namamu",
+        hintText: userProvider.user.name != null
+            ? userProvider.user.name
+            : "Masukan namamu",
         textEditingController: nameController,
         inputType: TextInputType.name,
       );
@@ -73,7 +79,9 @@ class _EditProfileState extends State<EditProfile> {
     Widget password() {
       return TextFieldWidget(
         name: "Password",
-        hintText: "Masukan Password",
+        hintText: userProvider.user.password != null
+            ? userProvider.user.password
+            : "Masukan Password",
         textEditingController: passwordController,
         obsecureText: true,
       );
@@ -82,7 +90,9 @@ class _EditProfileState extends State<EditProfile> {
     Widget email() {
       return TextFieldWidget(
         name: "Email",
-        hintText: "Masukan Email",
+        hintText: userProvider.user.email != null
+            ? userProvider.user.email
+            : "Masukan Email",
         textEditingController: emailController,
         inputType: TextInputType.emailAddress,
       );
@@ -91,7 +101,9 @@ class _EditProfileState extends State<EditProfile> {
     Widget address() {
       return TextFieldWidget(
         name: "Alamat",
-        hintText: "Masukan Alamat",
+        hintText: userProvider.user.alamat != null
+            ? userProvider.user.alamat
+            : "Masukan Alamat",
         textEditingController: alamatController,
         inputType: TextInputType.text,
       );
@@ -219,9 +231,7 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                     isExpanded: true,
-                    style: poppinsRegular.copyWith(
-                      color: Colors.orange
-                    ),
+                    style: poppinsRegular.copyWith(color: Colors.orange),
                     value: valPendidikan,
                     onChanged: (value) {
                       setState(() {

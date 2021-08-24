@@ -296,7 +296,9 @@ class _RegisterPageState extends State<RegisterPage> {
             inputConfirmPassword()!,
             isLoading!
                 ? LoadingButton(
-                    top: 0,
+                    marginLeft: 80,
+                    marginRight: 80,
+                    marginTop: 0,
                     height: 45,
                     width: 0,
                   )

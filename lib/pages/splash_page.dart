@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/pages/main_page.dart';
+import 'package:nuwai_app/pages/main/main_page.dart';
 
 import 'package:nuwai_app/pages/started_page.dart';
+import 'package:nuwai_app/provider/job_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
@@ -21,6 +23,11 @@ class _SplashPageState extends State<SplashPage> {
   // TODO: conditional pref to started or main screen
   checkPrefPage() async {
     var pref = await SharedPreferences.getInstance();
+    await Provider.of<JobProvider>(context, listen: false).getAllJobs();
+    await Provider.of<JobProvider>(context, listen: false)
+        .getJobByCategory('Perorangan');
+    await Provider.of<JobProvider>(context, listen: false)
+        .getJobByCategory('Perusahaan');
     if (pref.getString('token') != null) {
       startMainScreen();
     } else {

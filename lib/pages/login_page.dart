@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '/properties.dart';
 import '/provider/page_provider.dart';
@@ -30,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
     var userProvider = Provider.of<UserProvider>(context);
 
     handleSignIn() async {
-      var pref = await SharedPreferences.getInstance();
+      // var pref = await SharedPreferences.getInstance();
 
       setState(() {
         isLoading = true;
@@ -40,8 +39,9 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text,
         password: passwordController.text,
       )) {
-        // TODO: set preference from token user
-        pref.setString('token', userProvider.user.token!);
+        // TODO: set preference from user
+        // pref.setString('token', userProvider.user.token!);
+
         Navigator.pushNamedAndRemoveUntil(
           context,
           '/main',
@@ -305,7 +305,9 @@ class _LoginPageState extends State<LoginPage> {
               passwordInput()!,
               isLoading!
                   ? LoadingButton(
-                      top: 40,
+                      marginLeft: defaultMargin,
+                      marginRight: defaultMargin,
+                      marginTop: 40,
                       height: 45,
                       width: 155,
                     )

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/model/job_model.dart';
+import 'package:nuwai_app/provider/job_provider.dart';
+import 'package:provider/provider.dart';
 
 import '/theme.dart';
 import '/widget/card_job_perorangan.dart';
@@ -14,6 +17,8 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    var jobProvider = Provider.of<JobProvider>(context);
+
     Widget header() {
       return Container(
         height: 45.h,
@@ -61,20 +66,23 @@ class _SearchPageState extends State<SearchPage> {
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
       floatingActionButton: header(),
-      body: ListView(
-        padding: EdgeInsets.only(top: 145),
-        children: [
-          CardJobPerorangan(
-            name: "Admin IG",
-            city: "Pringsewu",
-            time: DateTime.now(),
-          ),
-          CardJobPerorangan(
-            name: "Menjahit",
-            city: "Natar",
-            time: DateTime.now(),
-          )
-        ],
+      body: FutureBuilder<List<JobModel>?>(
+        future: jobProvider.getAllJobs(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return ListView(
+              physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.only(top: 145),
+              children: snapshot.data!
+                  .map((job) => CardJobPerorangan(job: job))
+                  .toList(),
+            );
+          }
+
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }

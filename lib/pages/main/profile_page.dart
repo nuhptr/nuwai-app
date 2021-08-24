@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:nuwai_app/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 import '/theme.dart';
 import '/widget/content_profile.dart';
@@ -8,16 +9,17 @@ import '/widget/content_profile.dart';
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+
     // TODO: function destroy token api
     destroyPrefToken() async {
-      var pref = await SharedPreferences.getInstance();
-      pref.clear();
+      // var pref = await SharedPreferences.getInstance();
+      // pref.clear();
       Navigator.pushNamedAndRemoveUntil(
         context,
         '/login',
         (route) => false,
       );
-      
     }
 
     Widget header() {
@@ -33,7 +35,8 @@ class ProfilePage extends StatelessWidget {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: AssetImage("assets/people_model.png"),
+                    image: NetworkImage(userProvider.user.photoProfile!),
+                    fit: BoxFit.cover,
                   )),
               child: Align(
                 child: GestureDetector(
@@ -57,7 +60,7 @@ class ProfilePage extends StatelessWidget {
       return Container(
         margin: EdgeInsets.only(top: 30),
         child: Text(
-          "Adi Nugraha Putra",
+          userProvider.user.name!,
           style: poppinsMedium.copyWith(
             fontSize: 24.sp,
             color: blackGrayColor,
@@ -73,7 +76,9 @@ class ProfilePage extends StatelessWidget {
       return Container(
         margin: EdgeInsets.only(top: 2),
         child: Text(
-          "Flutter Mobile Developer",
+          userProvider.user.skill != null
+              ? userProvider.user.skill!
+              : "Belum Ada Skill",
           textAlign: TextAlign.center,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,

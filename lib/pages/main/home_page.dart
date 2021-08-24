@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/model/job_model.dart';
+import 'package:nuwai_app/provider/job_provider.dart';
+import 'package:nuwai_app/provider/user_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '/theme.dart';
 import '/widget/card_job_perorangan.dart';
@@ -12,7 +17,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // loginStatus();
+  }
+
+  loginStatus() async {
+    var pref = await SharedPreferences.getInstance();
+    if (pref.getString('token') == null) {
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+    var jobProvider = Provider.of<JobProvider>(context);
+
     Widget header() {
       return Container(
         margin: EdgeInsets.only(
@@ -27,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Adi Nugraha Putra",
+                    userProvider.user.name!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: poppinsSemiBold.copyWith(fontSize: 20.sp),
@@ -36,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                     height: 2,
                   ),
                   Text(
-                    "nugrahaadi733@gmail.com",
+                    userProvider.user.email!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: poppinsRegular.copyWith(
@@ -54,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                 height: 55.h,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                  image: AssetImage("assets/people_model.png"),
+                  image: NetworkImage(userProvider.user.photoProfile!),
                   fit: BoxFit.cover,
                 )),
               ),
@@ -113,38 +135,35 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget listPekerjaan() {
-      return Container(
-        margin: EdgeInsets.only(top: 30),
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              SizedBox(
-                width: defaultMargin.w,
-              ),
-              CardJobPerusahaan(
-                title: "Admin IG",
-                city: "Pringsewu",
-                image: "assets/image_beranda1.png",
-                ontap: () {
-                  Navigator.pushNamed(context, '/detail');
-                },
-              ),
-              CardJobPerusahaan(
-                title: "Asisten Rumah Tangga",
-                city: "Bandar Lampung",
-                image: "assets/image_beranda2.png",
-              ),
-              CardJobPerusahaan(
-                title: "Transleter",
-                city: "Sukarame",
-                image: "assets/image_beranda3.png",
-              ),
-            ],
-          ),
-        ),
-      );
+      return FutureBuilder<List<JobModel>?>(
+          future: jobProvider.getJobByCategory('Perusahaan'),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Container(
+                margin: EdgeInsets.only(top: 30),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: defaultMargin.w,
+                      ),
+                      Row(
+                        children: snapshot.data!
+                            .map((job) => CardJobPerusahaan(job: job))
+                            .toList(),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          });
     }
 
     Widget categoryPerorangan() {
@@ -180,28 +199,24 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget listPekerjaanPerorangan() {
-      return Container(
-        margin: EdgeInsets.only(top: 20, bottom: 30),
-        child: Column(
-          children: [
-            CardJobPerorangan(
-              name: "Staff Toko Bangunan",
-              city: "Tanjung Karang",
-              time: DateTime.now(),
-            ),
-            CardJobPerorangan(
-              name: "Kasir Indomaret",
-              city: "Gadingrejo",
-              time: DateTime.now(),
-            ),
-            CardJobPerorangan(
-              name: "Admin IG Toko Online",
-              city: "Tanggamus",
-              time: DateTime.now(),
-            ),
-          ],
-        ),
-      );
+      return FutureBuilder<List<JobModel>?>(
+          future: jobProvider.getJobByCategory('Perorangan'),
+          builder: (BuildContext context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Container(
+                margin: EdgeInsets.only(top: 20, bottom: 30),
+                child: Column(
+                  children: snapshot.data!
+                      .map((job) => CardJobPerorangan(job: job))
+                      .toList(),
+                ),
+              );
+            }
+
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          });
     }
 
     return Scaffold(

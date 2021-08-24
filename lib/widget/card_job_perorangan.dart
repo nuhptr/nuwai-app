@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/model/job_model.dart';
 
 import '/theme.dart';
 
 class CardJobPerorangan extends StatelessWidget {
-  final String? name;
-  final String? city;
-  final DateTime? time;
+  final JobModel? job;
 
-  CardJobPerorangan({this.name, this.city, this.time});
+  CardJobPerorangan({this.job});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,7 @@ class CardJobPerorangan extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    name!,
+                    job!.namaPekerjaan!,
                     style: poppinsMedium.copyWith(
                       fontSize: 16.sp,
                       color: orangeColor,
@@ -54,7 +53,7 @@ class CardJobPerorangan extends StatelessWidget {
                     height: 2.h,
                   ),
                   Text(
-                    city!,
+                    job!.lokasiPekerjaan!,
                     style: poppinsLight.copyWith(
                       fontSize: 13.sp,
                       color: grayColor,
@@ -66,7 +65,7 @@ class CardJobPerorangan extends StatelessWidget {
               ),
             ),
             Text(
-              DateFormat("dd/MM/yyyy").format(time!),
+              DateFormat("dd/MM/yyyy").format(job!.createdAt!),
               style:
                   poppinsRegular.copyWith(fontSize: 13.sp, color: orangeColor),
             )

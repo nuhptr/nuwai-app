@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // TODO: kumpulan function global
 showError(String text, BuildContext context) async {

@@ -3,11 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme.dart';
 
 class LoadingButton extends StatelessWidget {
-  final double? top;
+  final double? marginTop;
   final double? height;
   final double? width;
+  final double? marginLeft;
+  final double? marginRight;
 
-  LoadingButton({this.top, this.height, this.width});
+  LoadingButton({
+    this.height,
+    this.width,
+    this.marginTop,
+    this.marginLeft,
+    this.marginRight,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +23,9 @@ class LoadingButton extends StatelessWidget {
       height: height!.h,
       width: width!.w,
       margin: EdgeInsets.only(
-        top: top!,
-        left: defaultMargin,
-        right: defaultMargin,
+        top: marginTop!,
+        left: marginLeft!,
+        right: marginRight!,
       ),
       child: TextButton(
         onPressed: () {},
