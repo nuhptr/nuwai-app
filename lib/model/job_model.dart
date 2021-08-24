@@ -3,7 +3,7 @@ class JobModel {
   String? namaPekerjaan;
   String? deskripsi;
   String? namaPerusahaan;
-  double? gaji;
+  num? gaji;
   String? logoPerusahaanPath;
   String? fotoLowongan;
   String? tentangPembukaLowongan;
@@ -12,7 +12,6 @@ class JobModel {
   String? kategori;
   DateTime? createdAt;
   DateTime? updatedAt;
-  DateTime? deletedAt;
 
   JobModel({
     this.id,
@@ -28,7 +27,6 @@ class JobModel {
     this.kategori,
     this.createdAt,
     this.updatedAt,
-    this.deletedAt,
   });
 
   JobModel.fromJson(Map<String, dynamic> json) {
@@ -45,7 +43,6 @@ class JobModel {
     kategori = json['kategori'];
     createdAt = DateTime.parse(json['created_at']);
     updatedAt = DateTime.parse(json['updated_at']);
-    deletedAt = json['deleted_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -62,7 +59,6 @@ class JobModel {
       'kategori': kategori,
       'created_at': createdAt,
       'updated_at': updatedAt,
-      'deleted_at': deletedAt,
     };
   }
 }

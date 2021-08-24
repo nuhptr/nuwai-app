@@ -34,7 +34,7 @@ class JobServices {
   }
 
   // TODO: get job by category
-  Future<List<JobModel>?> getJobByCategory(String? category) async {
+  Future<List<JobModel>> getJobByCategory(String category) async {
     var url = '$baseUrl/jobs?kategori=$category';
     var headers = {'Content-Type': 'application/json'};
 
@@ -43,7 +43,7 @@ class JobServices {
 
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data']['data'];
-      List<JobModel>? job = [];
+      List<JobModel> job = [];
 
       for (var item in data) {
         job.add(JobModel.fromJson(item));

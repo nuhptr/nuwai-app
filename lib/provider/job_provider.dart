@@ -11,21 +11,27 @@ class JobProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<JobModel>?> getAllJobs() async {
+  Future<List<JobModel>> getAllJobs() async {
     try {
       List<JobModel>? job = await JobServices().getJobs();
-      _job = job!;
+      _job = job;
+
+      return job as List<JobModel>;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
-  Future<List<JobModel>?> getJobByCategory(String? category) async {
+  Future<List<JobModel>> getJobByCategory(String category) async {
     try {
-      List<JobModel>? job = await JobServices().getJobByCategory(category!);
-      _job = job!;
+      List<JobModel>? job = await JobServices().getJobByCategory(category);
+      _job = job;
+
+      return job;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 }

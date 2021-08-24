@@ -76,17 +76,6 @@ class _EditProfileState extends State<EditProfile> {
       );
     }
 
-    Widget password() {
-      return TextFieldWidget(
-        name: "Password",
-        hintText: userProvider.user.password != null
-            ? userProvider.user.password
-            : "Masukan Password",
-        textEditingController: passwordController,
-        obsecureText: true,
-      );
-    }
-
     Widget email() {
       return TextFieldWidget(
         name: "Email",
@@ -320,7 +309,7 @@ class _EditProfileState extends State<EditProfile> {
               children: [
                 header(),
                 namaLengkap(),
-                password(),
+                
                 email(),
                 address(),
                 kewarganegaraan(),

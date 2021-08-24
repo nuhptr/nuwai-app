@@ -152,6 +152,7 @@ class _HomePageState extends State<HomePage> {
                       Row(
                         children: snapshot.data!
                             .map((job) => CardJobPerusahaan(job: job))
+                            .take(4)
                             .toList(),
                       )
                     ],
@@ -160,8 +161,11 @@ class _HomePageState extends State<HomePage> {
               );
             }
 
-            return Center(
-              child: CircularProgressIndicator(),
+            return Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 30),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           });
     }
@@ -204,17 +208,21 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return Container(
-                margin: EdgeInsets.only(top: 20, bottom: 30),
+                margin: EdgeInsets.only(top: 20, bottom: 70),
                 child: Column(
                   children: snapshot.data!
                       .map((job) => CardJobPerorangan(job: job))
+                      .take(4)
                       .toList(),
                 ),
               );
             }
 
-            return Center(
-              child: CircularProgressIndicator(),
+            return Padding(
+              padding: EdgeInsets.only(top: 30, bottom: 30),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           });
     }
