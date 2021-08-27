@@ -221,7 +221,15 @@ class _HomePageState extends State<HomePage> {
                 margin: EdgeInsets.only(top: 20, bottom: 70),
                 child: Column(
                   children: snapshot.data!
-                      .map((job) => CardJobPerorangan(job: job))
+                      .map((job) => CardJobPerorangan(
+                            job: job,
+                            ontap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetailPage(job)));
+                            },
+                          ))
                       .take(4)
                       .toList(),
                 ),
