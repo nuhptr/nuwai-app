@@ -6,9 +6,9 @@ import 'package:nuwai_app/model/job_model.dart';
 import '/theme.dart';
 
 class CardJobPerorangan extends StatelessWidget {
-  final JobModel? job;
-
   CardJobPerorangan({this.job});
+
+  final JobModel? job;
 
   @override
   Widget build(BuildContext context) {

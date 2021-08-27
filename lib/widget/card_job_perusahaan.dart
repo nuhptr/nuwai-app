@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/model/job_model.dart';
 
+import '/model/job_model.dart';
 import '/theme.dart';
 
 class CardJobPerusahaan extends StatelessWidget {
-  final JobModel? job;
-  final Function()? ontap;
-
   CardJobPerusahaan({
     this.job,
     this.ontap,
   });
+
+  final JobModel? job;
+  final Function()? ontap;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,9 @@ class CardJobPerusahaan extends StatelessWidget {
                 topRight: Radius.circular(8),
               ),
               child: Image.network(
-                job!.fotoLowongan!,
+                job!.fotoLowongan == null
+                    ? 'https://www.betterteam.com/i/job-descriptions-960x480-20171117.png'
+                    : job!.fotoLowongan!,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 80.h,
@@ -55,6 +57,7 @@ class CardJobPerusahaan extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 2),
               child: Text(
+                // TODO: non null
                 job!.namaPekerjaan!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -64,6 +67,7 @@ class CardJobPerusahaan extends StatelessWidget {
               ),
             ),
             Text(
+              // TODO: non null
               job!.lokasiPekerjaan!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

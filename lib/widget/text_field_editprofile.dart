@@ -4,13 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/theme.dart';
 
 class TextFieldWidget extends StatelessWidget {
-  final String? name;
-  final TextEditingController? textEditingController;
-  final String? hintText;
-  final bool? obsecureText;
-  final double? top;
-  final TextInputType? inputType;
-
   TextFieldWidget(
       {this.name,
       this.textEditingController,
@@ -18,6 +11,13 @@ class TextFieldWidget extends StatelessWidget {
       this.obsecureText,
       this.top,
       this.inputType});
+
+  final String? name;
+  final TextEditingController? textEditingController;
+  final String? hintText;
+  final bool? obsecureText;
+  final double? top;
+  final TextInputType? inputType;
 
   @override
   Widget build(BuildContext context) {

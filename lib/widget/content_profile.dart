@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/theme.dart';
 
 class ContentProfile extends StatelessWidget {
+  ContentProfile({this.text, this.icon, this.ontap});
+
   final String? text;
   final Icon? icon;
   final Function()? ontap;
-
-  ContentProfile({this.text, this.icon, this.ontap});
 
   @override
   Widget build(BuildContext context) {

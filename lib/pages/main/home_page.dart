@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nuwai_app/model/job_model.dart';
+import 'package:nuwai_app/pages/detail_page.dart';
 import 'package:nuwai_app/provider/job_provider.dart';
 import 'package:nuwai_app/provider/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -151,7 +152,16 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Row(
                         children: snapshot.data!
-                            .map((job) => CardJobPerusahaan(job: job))
+                            .map((job) => CardJobPerusahaan(
+                                  job: job,
+                                  ontap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => DetailPage(job),
+                                        ));
+                                  },
+                                ))
                             .take(4)
                             .toList(),
                       )

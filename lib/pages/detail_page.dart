@@ -1,11 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nuwai_app/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
-import 'package:nuwai_app/theme.dart';
+import '/model/job_model.dart';
+import '/provider/work_provider.dart';
+import '/theme.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
+  DetailPage(this.jobModel);
+
+  final JobModel? jobModel;
+
+  @override
+  _DetailPageState createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  bool? isLoading;
+
   @override
   Widget build(BuildContext context) {
+    WorkProvider workProvider = Provider.of<WorkProvider>(context);
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+
+    handleSubmit() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      // TODO: handle submit
+      if (await workProvider.submitLamaran(
+        id: workProvider.workModel.idPekerjaan,
+        userToken: userProvider.user.token,
+      )) {}
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     // TODO: function show dialog
     Future<void> showConfirmation() async {
       return showDialog(
@@ -34,9 +68,8 @@ class DetailPage extends StatelessWidget {
                   child: Text('Batal'),
                 ),
                 TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/success');
-                  },
+                  // TODO: Jika tombol ditekan panggil function handleSubmit
+                  onPressed: handleSubmit,
                   child: Text('Iya'),
                 )
               ],
@@ -50,7 +83,11 @@ class DetailPage extends StatelessWidget {
         height: 370,
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage("assets/detail_image.png"),
+          image: NetworkImage(
+            widget.jobModel!.fotoLowongan == null
+                ? 'https://www.betterteam.com/i/job-descriptions-960x480-20171117.png'
+                : widget.jobModel!.fotoLowongan!,
+          ),
           fit: BoxFit.cover,
         )),
       );
@@ -74,10 +111,18 @@ class DetailPage extends StatelessWidget {
                   "assets/icon_arrow_left.png",
                   width: 13,
                 )),
-            Image.asset(
-              "assets/logo_perusahaan.png",
-              width: 50,
-              fit: BoxFit.cover,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child:
+                  // TODO: conditional if image null
+                  Image.network(
+                widget.jobModel!.logoPerusahaanPath == null
+                    ? 'https://images.template.net/wp-content/uploads/2017/04/Logo-Design1.jpg?width=584'
+                    : widget.jobModel!.logoPerusahaanPath!,
+                width: 50,
+                height: 40,
+                fit: BoxFit.cover,
+              ),
             )
           ],
         ),
@@ -123,7 +168,7 @@ class DetailPage extends StatelessWidget {
                                 width: 12,
                               ),
                               Text(
-                                "Bank Bni",
+                                widget.jobModel!.namaPerusahaan!,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: poppinsMedium.copyWith(
@@ -133,7 +178,7 @@ class DetailPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Pringsewu",
+                          widget.jobModel!.lokasiPekerjaan!,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: poppinsMedium.copyWith(
@@ -151,7 +196,7 @@ class DetailPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Admin IG",
+                            widget.jobModel!.namaPekerjaan!,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: poppinsSemiBold.copyWith(
@@ -172,7 +217,11 @@ class DetailPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Gaji Rp. 300.000",
+                            NumberFormat.currency(
+                                    locale: "id_ID",
+                                    decimalDigits: 0,
+                                    symbol: "IDR ")
+                                .format(widget.jobModel!.gaji!),
                             style: poppinsRegular.copyWith(
                               color: orangeColor,
                               fontSize: 15,
@@ -180,8 +229,9 @@ class DetailPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                            DateFormat("MM/dd/y")
-                                .format(DateTime.now())
+                            DateFormat("dd/MM/y")
+                                .format(
+                                    widget.jobModel!.tenggangWaktuPekerjaan!)
                                 .toString(),
                             style: poppinsSemiBold.copyWith(
                               fontSize: 14,
@@ -206,7 +256,8 @@ class DetailPage extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          "Anda disini ditugaskan menjadi admin instagram bank BNI. Bisa kerja dari rumah maupun di kantor, setiap pekerjaan akan kami awasi kinerjanya.\n\n- Requirement :\n1.  Mengerti tentang Teknologi terutama sosmed\n2. fast respon\n3. Menjawab setiap keluhan yang nasabah\najukan ke akun instagram",
+                          // TODO: non null
+                          widget.jobModel!.deskripsi!,
                           style: poppinsRegular.copyWith(
                               color: blackGrayColor, height: 1.5),
                           textAlign: TextAlign.justify,
@@ -225,7 +276,9 @@ class DetailPage extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          "Bank Negara Indonesia atau BNI adalah sebuah institusi bank milik pemerintah, dalam hal ini adalah perusahaan BUMN, di Indonesia. Dalam struktur manajemen organisasinya, Bank Negara Indonesia, dipimpin oleh seorang Direktur Utama yang saat ini dijabat oleh Royke Tumilar.",
+                          widget.jobModel!.tentangPembukaLowongan == null
+                              ? 'Tidak Ada Tentang Perusahaan'
+                              : widget.jobModel!.tentangPembukaLowongan!,
                           style: poppinsRegular.copyWith(
                               color: blackGrayColor, height: 1.5),
                           textAlign: TextAlign.justify,

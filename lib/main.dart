@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nuwai_app/provider/job_provider.dart';
 import 'package:nuwai_app/provider/user_provider.dart';
+import 'package:nuwai_app/provider/work_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'pages/success_page.dart';
-import 'pages/detail_page.dart';
 import 'pages/edit_profile_page.dart';
 import 'provider/page_provider.dart';
 import 'pages/guide_page.dart';
@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => PageProvider()),
           ChangeNotifierProvider(create: (context) => UserProvider()),
           ChangeNotifierProvider(create: (context) => JobProvider()),
+          ChangeNotifierProvider(create: (context) => WorkProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -47,7 +48,6 @@ class MyApp extends StatelessWidget {
             "/guide": (context) => GuidePage(),
             "/profile": (context) => ProfilePage(),
             "/edit": (context) => EditProfile(),
-            "/detail": (context) => DetailPage(),
             "/success": (context) => SuccessPage(),
           },
         ),
