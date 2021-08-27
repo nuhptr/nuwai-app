@@ -14,8 +14,8 @@ class WorkModel {
   WorkModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     idPekerjaan = json['id_pekerjaan'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    createdAt = DateTime.parse(json['created_at']);
+    updatedAt = DateTime.parse(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {

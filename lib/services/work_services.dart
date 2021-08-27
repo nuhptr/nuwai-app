@@ -8,7 +8,7 @@ class WorkServices {
 
   // TODO: Post the id of jobs with users id
   Future<WorkModel> submitJobs({int? idPekerjaan, String? userToken}) async {
-    var url = '$baseUrl/lamaran';
+    var url = '$baseUrl/lamaran?id_pekerjaan=$idPekerjaan';
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

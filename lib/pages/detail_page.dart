@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuwai_app/provider/user_provider.dart';
+import 'package:nuwai_app/provider/job_provider.dart';
 import 'package:provider/provider.dart';
 
+import '/provider/user_provider.dart';
 import '/model/job_model.dart';
 import '/provider/work_provider.dart';
 import '/theme.dart';
@@ -17,11 +18,12 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  bool? isLoading;
+  bool? isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     WorkProvider workProvider = Provider.of<WorkProvider>(context);
+    JobProvider jobProvider = Provider.of<JobProvider>(context);
     UserProvider userProvider = Provider.of<UserProvider>(context);
 
     handleSubmit() async {
@@ -31,9 +33,11 @@ class _DetailPageState extends State<DetailPage> {
 
       // TODO: handle submit
       if (await workProvider.submitLamaran(
-        id: workProvider.workModel.idPekerjaan,
+        idPekerjaan: jobProvider.jobs[0].id,
         userToken: userProvider.user.token,
-      )) {}
+      )) {
+        Navigator.pushNamed(context, '/success');
+      }
 
       setState(() {
         isLoading = false;
@@ -51,14 +55,17 @@ class _DetailPageState extends State<DetailPage> {
                 style: poppinsMedium,
               ),
               content: SingleChildScrollView(
-                child: ListBody(
-                  children: [
-                    Text(
-                      'Apakah kamu ingin melamar pekerjaan ini?',
-                      style: poppinsRegular.copyWith(color: blackGrayColor),
-                    ),
-                  ],
-                ),
+                child: isLoading!
+                    ? CircularProgressIndicator()
+                    : ListBody(
+                        children: [
+                          Text(
+                            'Apakah kamu ingin melamar pekerjaan ini?',
+                            style:
+                                poppinsRegular.copyWith(color: blackGrayColor),
+                          ),
+                        ],
+                      ),
               ),
               actions: [
                 TextButton(
@@ -312,7 +319,7 @@ class _DetailPageState extends State<DetailPage> {
                                     width: 15,
                                   ),
                                   Image.asset(
-                                    "assets/icon_arrow_right.png",
+                                    "assets/icon_arrow_right_white.png",
                                     width: 8,
                                   )
                                 ],

@@ -11,10 +11,10 @@ class WorkProvider with ChangeNotifier {
     _workModel = newValue;
   }
 
-  Future<bool> submitLamaran({int? id, String? userToken}) async {
+  Future<bool> submitLamaran({int? idPekerjaan, String? userToken}) async {
     try {
       WorkModel workModel = await WorkServices().submitJobs(
-        idPekerjaan: id,
+        idPekerjaan: idPekerjaan,
         userToken: userToken,
       );
 
