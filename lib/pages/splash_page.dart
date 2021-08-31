@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/pages/main/main_page.dart';
+import 'package:nuwai_app/pages/login_page.dart';
 
+import '/pages/main/main_page.dart';
 import 'package:nuwai_app/pages/started_page.dart';
 import 'package:nuwai_app/provider/job_provider.dart';
 import 'package:provider/provider.dart';
@@ -23,13 +24,23 @@ class _SplashPageState extends State<SplashPage> {
   // TODO: conditional pref to started or main screen
   checkPrefPage() async {
     var pref = await SharedPreferences.getInstance();
-    await Provider.of<JobProvider>(context, listen: false).getAllJobs();
+
     await Provider.of<JobProvider>(context, listen: false)
         .getJobByCategory('Perorangan');
     await Provider.of<JobProvider>(context, listen: false)
         .getJobByCategory('Perusahaan');
+    checkStartedPage();
     if (pref.getString('token') != null) {
       startMainScreen();
+    } else {
+      startSplashScreen();
+    }
+  }
+
+  checkStartedPage() async {
+    var pref = await SharedPreferences.getInstance();
+    if (pref.getBool('start') != null) {
+      startLoginScreen();
     } else {
       startSplashScreen();
     }
@@ -54,6 +65,18 @@ class _SplashPageState extends State<SplashPage> {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => MainPage()),
+        (route) => false,
+      );
+    });
+  }
+
+  startLoginScreen() async {
+    var duration = const Duration(seconds: 3);
+    return Timer(duration, () {
+      // TODO: pindah ke login screen
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
         (route) => false,
       );
     });

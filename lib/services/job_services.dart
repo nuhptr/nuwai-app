@@ -54,4 +54,26 @@ class JobServices {
       throw Exception('Gagal get kategori pekerjaan');
     }
   }
+
+  // TODO: search job by name [Search Page]
+  Future<List<JobModel>> searchJob(String? nameJobs) async {
+    var url = '$baseUrl/jobs?nama_pekerjaan=$nameJobs';
+    var headers = {'Content-Type': 'application/json'};
+
+    var response = await http.get(Uri.parse(url), headers: headers);
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      List data = jsonDecode(response.body)['data']['data'];
+      List<JobModel> job = [];
+
+      for (var item in data) {
+        job.add(JobModel.fromJson(item));
+      }
+
+      return job;
+    } else {
+      throw Exception('Data tidak ditemukan');
+    }
+  }
 }

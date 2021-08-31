@@ -70,10 +70,7 @@ class UserServices {
 
   // TODO: user melakukan update profile
   Future<UserModel> updateProfile({
-    String? name,
-    String? email,
-    String? password,
-    double? lamaTerakhirBekerja,
+    num? lamaTerakhirBekerja,
     String? tempatTerakhirBekerja,
     String? posisiTerakhirBekerja,
     String? prestasi,
@@ -82,17 +79,14 @@ class UserServices {
     String? kewarganegaraan,
     String? alamat,
     String? photoProfile,
-    UserModel? user,
+    String? userToken,
   }) async {
     var url = '$baseUrl/user';
     var headers = {
       'Content-Type': 'application/json',
-      'Authorization': user!.token!,
+      'Authorization': userToken!,
     };
     var body = jsonEncode({
-      'name': name,
-      'email': email,
-      'password': password,
       'lama_terakhir_bekerja': lamaTerakhirBekerja,
       'tempat_terakhir_bekerja': tempatTerakhirBekerja,
       'posisi_terakhir_bekerja': posisiTerakhirBekerja,
@@ -101,7 +95,7 @@ class UserServices {
       'pendidikan': pendidikan,
       "kewarganegaraan": kewarganegaraan,
       'alamat': alamat,
-      'profile_photo_url': photoProfile,
+      'profile_photo_url': photoProfile!,
     });
 
     var response = await http.put(

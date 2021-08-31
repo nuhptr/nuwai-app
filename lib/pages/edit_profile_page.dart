@@ -1,5 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:nuwai_app/properties.dart';
 import 'package:provider/provider.dart';
 
 import '/provider/user_provider.dart';
@@ -12,31 +15,47 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  var nameController = TextEditingController(text: "");
-  var passwordController = TextEditingController(text: "");
-  var emailController = TextEditingController(text: "");
-  var alamatController = TextEditingController(text: "");
-  var skillController = TextEditingController(text: "");
-  var prestasiController = TextEditingController(text: "");
-  var posisiTerakhirController = TextEditingController(text: "");
-  var lamaTerakhirBekerjaController = TextEditingController(text: "");
-  var tempatTerakhirBekerjaController = TextEditingController(text: "");
-
   List<String> statusWarga = ["Indonesia", "Non-Indonesia"];
   String? valWarga;
 
   List<String> pendidikanWarga = ["SD", "SMP", "SMA", "D3", "S1", "S2", "S3"];
   String? valPendidikan;
 
+  bool? isLoading = false;
+  String? imageFile;
+
   @override
   Widget build(BuildContext context) {
     var userProvider = Provider.of<UserProvider>(context);
+
+    var nameController = TextEditingController(text: "");
+    var emailController = TextEditingController(text: "");
+    var alamatController =
+        TextEditingController(text: userProvider.user.alamat);
+    var skillController = TextEditingController(text: userProvider.user.skill);
+    var prestasiController =
+        TextEditingController(text: userProvider.user.prestasi);
+    var posisiTerakhirController =
+        TextEditingController(text: userProvider.user.posisiTerakhirBekerja);
+    var lamaTerakhirBekerjaController = TextEditingController();
+    var tempatTerakhirBekerjaController =
+        TextEditingController(text: userProvider.user.tempatTerakhirBekerja);
+
+    // TODO: get image from gallery
+    getImageFromGallery() async {
+      var image = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50,
+      );
+      setState(() {
+        imageFile = image!.path;
+      });
+    }
 
     Widget header() {
       return Container(
           margin: EdgeInsets.only(
             top: 50,
-            bottom: 5,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,23 +70,95 @@ class _EditProfileState extends State<EditProfile> {
                 ),
               ),
               GestureDetector(
-                onTap: () {
+                onTap: () async {
                   // TODO: save data ke database lewat API, efek loading
+                  setState(() {
+                    isLoading = true;
+                  });
+
+                  if (alamatController.text.trim() == '' &&
+                      skillController.text.trim() == '' &&
+                      prestasiController.text.trim() == '' &&
+                      valWarga!.trim() == '' &&
+                      valPendidikan!.trim() == '') {
+                    showError('Isi Field Yang tidak ada Optional', context);
+                  } else if (lamaTerakhirBekerjaController.text.trim() == '') {
+                    showError(
+                        'masukan lama terakhir bekerja sekali lagi', context);
+                  } else {
+                    await userProvider.updateProfile(
+                      lamaTerakhirBekerja:
+                          num.parse(lamaTerakhirBekerjaController.text),
+                      tempatTerakhirBekerja:
+                          tempatTerakhirBekerjaController.text,
+                      posisiTerakhirBekerja: posisiTerakhirController.text,
+                      prestasi: prestasiController.text,
+                      skill: skillController.text,
+                      pendidikan: valPendidikan,
+                      kewarganegaraan: valWarga,
+                      alamat: alamatController.text,
+                      photoProfile: imageFile!,
+                      userToken: userProvider.user.token,
+                    );
+
+                    showSuccess('Updated Profile', context);
+                  }
+
+                  setState(() {
+                    isLoading = false;
+                  });
                 },
-                child: Icon(
-                  Icons.check,
-                  size: 28,
-                  color: orangeColor,
-                ),
+                child: isLoading!
+                    ? CircularProgressIndicator()
+                    : Icon(
+                        Icons.check,
+                        size: 28,
+                        color: orangeColor,
+                      ),
               )
             ],
           ));
+    }
+
+    Widget fotoProfileEdited() {
+      return Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              width: 140.w,
+              height: 140.h,
+              // margin: ,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: imageFile == null
+                        ? AssetImage('assets/icon_upload.png')
+                        : FileImage(File(imageFile!)) as ImageProvider,
+                    fit: BoxFit.cover,
+                  )),
+              child: Align(
+                child: GestureDetector(
+                  onTap: () {
+                    // TODO: button add photo from gallery
+                    getImageFromGallery();
+                  },
+                  child: Image.asset("assets/btn_add.png", width: 35.w),
+                ),
+                alignment: Alignment.bottomRight,
+              ),
+            ),
+          ),
+        ],
+      );
     }
 
     Widget namaLengkap() {
       return TextFieldWidget(
         top: 30,
         name: "Nama",
+        enabled: false,
         hintText: userProvider.user.name != null
             ? userProvider.user.name
             : "Masukan namamu",
@@ -79,6 +170,7 @@ class _EditProfileState extends State<EditProfile> {
     Widget email() {
       return TextFieldWidget(
         name: "Email",
+        enabled: false,
         hintText: userProvider.user.email != null
             ? userProvider.user.email
             : "Masukan Email",
@@ -132,7 +224,9 @@ class _EditProfileState extends State<EditProfile> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "pilih kewarganegaraan",
+                          userProvider.user.kewarganegaraan != null
+                              ? userProvider.user.kewarganegaraan!
+                              : "pilih kewarganegaraan",
                           style: poppinsRegular.copyWith(
                             color: Colors.white,
                             fontSize: 14.sp,
@@ -211,7 +305,9 @@ class _EditProfileState extends State<EditProfile> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "pilih pendidikan",
+                          userProvider.user.pendidikan != null
+                              ? userProvider.user.pendidikan!
+                              : "pilih pendidikan",
                           style: poppinsRegular.copyWith(
                             color: Colors.white,
                             fontSize: 14.sp,
@@ -257,7 +353,9 @@ class _EditProfileState extends State<EditProfile> {
     Widget skill() {
       return TextFieldWidget(
         name: "Keahlian",
-        hintText: "Masukan Keahlianmu (optional)",
+        hintText: userProvider.user.skill != null
+            ? userProvider.user.skill!
+            : "Masukan Keahlianmu",
         textEditingController: skillController,
       );
     }
@@ -265,7 +363,9 @@ class _EditProfileState extends State<EditProfile> {
     Widget prestasi() {
       return TextFieldWidget(
         name: "Prestasi",
-        hintText: "Prestasi yang pernah dicapai",
+        hintText: userProvider.user.prestasi != null
+            ? userProvider.user.prestasi!
+            : "Prestasi yang pernah dicapai",
         textEditingController: prestasiController,
       );
     }
@@ -273,7 +373,9 @@ class _EditProfileState extends State<EditProfile> {
     Widget posisiTerakhir() {
       return TextFieldWidget(
         name: "Posisi Terakhir",
-        hintText: "Posisi terakhirmu (optional)",
+        hintText: userProvider.user.posisiTerakhirBekerja != null
+            ? userProvider.user.posisiTerakhirBekerja!
+            : "Posisi terakhirmu (optional)",
         textEditingController: posisiTerakhirController,
       );
     }
@@ -281,7 +383,9 @@ class _EditProfileState extends State<EditProfile> {
     Widget lamaTerakhirBekerja() {
       return TextFieldWidget(
         name: "Lama Terakhir Bekerja",
-        hintText: "Masukan durasi terakhir bekerja (optional)",
+        hintText: userProvider.user.lamaTerakhirBekerja != null
+            ? userProvider.user.lamaTerakhirBekerja!.toString()
+            : "Masukan durasi dalam tahun (ex: 2.5)",
         textEditingController: lamaTerakhirBekerjaController,
       );
     }
@@ -289,7 +393,9 @@ class _EditProfileState extends State<EditProfile> {
     Widget tempatTerakhirBekerja() {
       return TextFieldWidget(
         name: "Tempat Terakhir Bekerja",
-        hintText: "Masukan Tempat terakhir bekerja (optional)",
+        hintText: userProvider.user.tempatTerakhirBekerja != null
+            ? userProvider.user.tempatTerakhirBekerja!
+            : "Masukan Tempat terakhir bekerja (optional)",
         textEditingController: tempatTerakhirBekerjaController,
       );
     }
@@ -308,8 +414,8 @@ class _EditProfileState extends State<EditProfile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 header(),
+                fotoProfileEdited(),
                 namaLengkap(),
-                
                 email(),
                 address(),
                 kewarganegaraan(),

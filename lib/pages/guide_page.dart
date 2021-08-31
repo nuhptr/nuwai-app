@@ -49,13 +49,13 @@ class GuidePage extends StatelessWidget {
                 height: 25.h,
               ),
               Text(
-                "1. Hubungi No Wa 089674135843 hal ini bertujuan untuk menghindari pembukaan lowongan yang bersifat menipu",
+                "1. Hubungi nomor whatsapp 089674135843 untuk konfirmasi pembukaan pekerjaan. hal ini bertujuan untuk menghindari pembukaan lowongan yang bersifat menipu",
                 style: poppinsMedium.copyWith(
                   color: orangeColor,
                   fontSize: 16.sp,
                   height: 1.6,
                 ),
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.justify,
               ),
               SizedBox(
                 height: 15.h,
@@ -67,7 +67,7 @@ class GuidePage extends StatelessWidget {
                   fontSize: 16.sp,
                   height: 1.6,
                 ),
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.justify,
               ),
               SizedBox(
                 height: 15.h,
@@ -79,7 +79,7 @@ class GuidePage extends StatelessWidget {
                   fontSize: 16.sp,
                   height: 1.6,
                 ),
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.justify,
               ),
               SizedBox(
                 height: 15.h,
@@ -91,7 +91,7 @@ class GuidePage extends StatelessWidget {
                   fontSize: 16.sp,
                   height: 1.6,
                 ),
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.justify,
               ),
               SizedBox(
                 height: 15.h,
@@ -103,19 +103,19 @@ class GuidePage extends StatelessWidget {
                   fontSize: 16,
                   height: 1.6,
                 ),
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.justify,
               ),
               SizedBox(
                 height: 15.h,
               ),
               Text(
-                "Selamat Mencari Jasa~",
+                "Selamat Mencari Pekerja~",
                 style: poppinsMedium.copyWith(
                   color: orangeColor,
                   fontSize: 16.sp,
                   height: 1.6,
                 ),
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.justify,
               )
             ],
           ),

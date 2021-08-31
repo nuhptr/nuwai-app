@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/properties.dart';
-import 'package:nuwai_app/provider/page_provider.dart';
-import 'package:nuwai_app/provider/user_provider.dart';
-import 'package:nuwai_app/widget/loading_button.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '/properties.dart';
+import '/provider/page_provider.dart';
+import '/provider/user_provider.dart';
+import '/widget/loading_button.dart';
 import '/theme.dart';
 
 class RegisterPage extends StatefulWidget {

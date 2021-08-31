@@ -48,10 +48,7 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<bool> updateProfile({
-    String? name,
-    String? email,
-    String? password,
-    double? lamaTerakhirBekerja,
+    num? lamaTerakhirBekerja,
     String? tempatTerakhirBekerja,
     String? posisiTerakhirBekerja,
     String? prestasi,
@@ -60,13 +57,10 @@ class UserProvider with ChangeNotifier {
     String? kewarganegaraan,
     String? alamat,
     String? photoProfile,
-    UserModel? userModel,
+    String? userToken,
   }) async {
     try {
       UserModel user = await UserServices().updateProfile(
-        name: name,
-        email: email,
-        password: password,
         lamaTerakhirBekerja: lamaTerakhirBekerja,
         tempatTerakhirBekerja: tempatTerakhirBekerja,
         posisiTerakhirBekerja: posisiTerakhirBekerja,
@@ -75,7 +69,8 @@ class UserProvider with ChangeNotifier {
         pendidikan: pendidikan,
         kewarganegaraan: kewarganegaraan,
         alamat: alamat,
-        user: userModel,
+        photoProfile: photoProfile,
+        userToken: userToken!,
       );
 
       _user = user;

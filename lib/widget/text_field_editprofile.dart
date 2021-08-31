@@ -8,14 +8,14 @@ class TextFieldWidget extends StatelessWidget {
       {this.name,
       this.textEditingController,
       this.hintText,
-      this.obsecureText,
       this.top,
-      this.inputType});
+      this.inputType,
+      this.enabled});
 
   final String? name;
   final TextEditingController? textEditingController;
   final String? hintText;
-  final bool? obsecureText;
+  final bool? enabled;
   final double? top;
   final TextInputType? inputType;
 
@@ -49,12 +49,12 @@ class TextFieldWidget extends StatelessWidget {
               child: TextFormField(
                 style: poppinsRegular.copyWith(color: Colors.white),
                 controller: textEditingController!,
-                obscureText: obsecureText != null ? obsecureText! : false,
                 keyboardType: inputType != null ? inputType : null,
+                enabled: enabled != null ? enabled : true,
                 decoration: InputDecoration.collapsed(
                   hintText: hintText != null ? hintText : "",
                   hintStyle: poppinsLight.copyWith(
-                    color: Colors.white,
+                    color: enabled != null ? Colors.grey[300] : Colors.white,
                     fontSize: 14.sp,
                   ),
                 ),

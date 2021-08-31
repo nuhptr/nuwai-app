@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/model/job_model.dart';
-import 'package:nuwai_app/pages/detail_page.dart';
-import 'package:nuwai_app/provider/job_provider.dart';
-import 'package:nuwai_app/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '/model/job_model.dart';
+import '/pages/detail_page.dart';
+import '/provider/job_provider.dart';
+import '/provider/user_provider.dart';
 import '/theme.dart';
 import '/widget/card_job_perorangan.dart';
 import '/widget/card_job_perusahaan.dart';
@@ -77,7 +77,10 @@ class _HomePageState extends State<HomePage> {
                 height: 55.h,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                  image: NetworkImage(userProvider.user.photoProfile!),
+                  image: userProvider.user.photoProfile != null
+                      ? NetworkImage(userProvider.user.photoProfile!)
+                      : NetworkImage(
+                          'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80'),
                   fit: BoxFit.cover,
                 )),
               ),

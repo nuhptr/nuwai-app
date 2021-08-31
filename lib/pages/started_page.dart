@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:nuwai_app/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class StartedPage extends StatelessWidget {
   @override
@@ -67,8 +68,11 @@ class StartedPage extends StatelessWidget {
               style: poppinsMedium.copyWith(
                 fontSize: 17.sp,
               )),
-          onPressed: () {
+          onPressed: () async {
             // TODO: Route ke login Page
+            var sharedPref = await SharedPreferences.getInstance();
+
+            sharedPref.setBool('start', true);
             Navigator.pushNamed(context, "/login");
           },
           style: ElevatedButton.styleFrom(

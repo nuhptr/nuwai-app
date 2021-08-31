@@ -23,42 +23,31 @@ class ProfilePage extends StatelessWidget {
     }
 
     Widget header() {
-      return Stack(
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              margin: EdgeInsets.only(top: 40),
-              width: 140.w,
-              height: 140.h,
-              // margin: ,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: NetworkImage(userProvider.user.photoProfile!),
-                    fit: BoxFit.cover,
-                  )),
-              child: Align(
-                child: GestureDetector(
-                  onTap: () {
-                    // TODO: button add photo from gallery
-                  },
-                  child: Image.asset(
-                    "assets/btn_add.png",
-                    width: 35.w,
-                  ),
-                ),
-                alignment: Alignment.bottomRight,
-              ),
-            ),
+      return Stack(children: [
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+            margin: EdgeInsets.only(top: 40),
+            width: 140.w,
+            height: 140.h,
+            // margin: ,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: userProvider.user.photoProfile != null
+                      ? NetworkImage(userProvider.user.photoProfile!)
+                      : NetworkImage(
+                          'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80'),
+                  fit: BoxFit.cover,
+                )),
           ),
-        ],
-      );
+        ),
+      ]);
     }
 
     Widget name() {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: EdgeInsets.only(top: 15),
         child: Text(
           userProvider.user.name!,
           style: poppinsMedium.copyWith(
