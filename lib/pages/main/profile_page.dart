@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/provider/user_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '/provider/user_provider.dart';
 import '/theme.dart';
 import '/widget/content_profile.dart';
 
@@ -13,8 +14,10 @@ class ProfilePage extends StatelessWidget {
 
     // TODO: function destroy token api
     destroyPrefToken() async {
-      // var pref = await SharedPreferences.getInstance();
-      // pref.clear();
+      var pref = await SharedPreferences.getInstance();
+      pref.clear();
+
+      userProvider.logout(userProvider.user.token);
       Navigator.pushNamedAndRemoveUntil(
         context,
         '/login',
@@ -114,6 +117,10 @@ class ProfilePage extends StatelessWidget {
                 icon: Icon(Icons.arrow_right_rounded),
                 ontap: () {
                   // TODO: Launcher URL to playstore if the app ready
+                  Navigator.pushNamed(
+                    context,
+                    "/notfound",
+                  );
                 },
               ),
               ContentProfile(

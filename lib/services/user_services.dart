@@ -114,4 +114,15 @@ class UserServices {
       throw Exception('gagal update data');
     }
   }
+
+  Future<void> logout({String? token}) async {
+    var url = '$baseUrl/logout';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token!,
+    };
+
+    var response = await http.get(Uri.parse(url), headers: headers);
+    print(response.body);
+  }
 }

@@ -28,8 +28,11 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     var userProvider = Provider.of<UserProvider>(context);
 
+    // TODO: not enabled
     var nameController = TextEditingController(text: "");
     var emailController = TextEditingController(text: "");
+
+    // TODO: enabled
     var alamatController =
         TextEditingController(text: userProvider.user.alamat);
     var skillController = TextEditingController(text: userProvider.user.skill);

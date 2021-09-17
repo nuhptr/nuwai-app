@@ -80,4 +80,14 @@ class UserProvider with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> logout(String? token) async {
+    try {
+      await UserServices().logout(token: token);
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 }

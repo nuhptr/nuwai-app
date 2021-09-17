@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/pages/not_found_page.dart';
 import 'package:nuwai_app/provider/job_provider.dart';
 import 'package:nuwai_app/provider/user_provider.dart';
 import 'package:nuwai_app/provider/work_provider.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
             "/profile": (context) => ProfilePage(),
             "/edit": (context) => EditProfile(),
             "/success": (context) => SuccessPage(),
+            "/notfound": (context) => NotFound(),
           },
         ),
       ),

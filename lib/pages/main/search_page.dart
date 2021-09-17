@@ -85,33 +85,35 @@ class _SearchPageState extends State<SearchPage> {
       body: FutureBuilder<List<JobModel>?>(
         future: jobProvider.searchJobs(searchResult!),
         builder: (context, snapshot) {
-          return isSearch! && snapshot.connectionState == ConnectionState.done
-              ? ListView(
-                  physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.only(top: 145),
-                  children: snapshot.data!
-                      .map((job) => CardJobPerorangan(
-                            job: job,
-                            ontap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DetailPage(job)));
-                            },
-                          ))
-                      .toList(),
-                )
-              : Center(
-                  child: Container(
-                    width: 200.w,
-                    height: 200.w,
-                    child: Lottie.asset(
-                      'assets/lottie/search.json',
-                      repeat: true,
-                      animate: true,
-                    ),
-                  ),
-                );
+          if (isSearch! && snapshot.connectionState == ConnectionState.done) {
+            return ListView(
+              physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.only(top: 145),
+              children: snapshot.data!
+                  .map((job) => CardJobPerorangan(
+                        job: job,
+                        ontap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailPage(job)));
+                        },
+                      ))
+                  .toList(),
+            );
+          } else {
+            return Center(
+              child: Container(
+                width: 200.w,
+                height: 200.w,
+                child: Lottie.asset(
+                  'assets/lottie/search.json',
+                  repeat: true,
+                  animate: true,
+                ),
+              ),
+            );
+          }
         },
       ),
     );
