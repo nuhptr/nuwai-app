@@ -20,6 +20,12 @@ class _SearchPageState extends State<SearchPage> {
   bool? isSearch = false;
 
   @override
+  void dispose() {
+    super.dispose();
+    searchController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var jobProvider = Provider.of<JobProvider>(context);
 
@@ -55,7 +61,7 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               ),
               SizedBox(
-                width: 5,
+                width: 5.w,
               ),
               IconButton(
                 iconSize: 20,
@@ -67,7 +73,7 @@ class _SearchPageState extends State<SearchPage> {
                     searchResult = searchController.text;
                   });
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.send,
                   color: Colors.orange,
                 ),

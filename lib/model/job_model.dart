@@ -1,4 +1,18 @@
 class JobModel {
+  int? id;
+  String? namaPekerjaan;
+  String? deskripsi;
+  String? namaPerusahaan;
+  num? gaji;
+  String? logoPerusahaanPath;
+  String? fotoLowongan;
+  String? tentangPembukaLowongan;
+  DateTime? tenggangWaktuPekerjaan;
+  String? lokasiPekerjaan;
+  String? kategori;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  
   JobModel({
     this.id,
     this.namaPekerjaan,
@@ -14,20 +28,6 @@ class JobModel {
     this.createdAt,
     this.updatedAt,
   });
-
-  int? id;
-  String? namaPekerjaan;
-  String? deskripsi;
-  String? namaPerusahaan;
-  num? gaji;
-  String? logoPerusahaanPath;
-  String? fotoLowongan;
-  String? tentangPembukaLowongan;
-  DateTime? tenggangWaktuPekerjaan;
-  String? lokasiPekerjaan;
-  String? kategori;
-  DateTime? createdAt;
-  DateTime? updatedAt;
 
   JobModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

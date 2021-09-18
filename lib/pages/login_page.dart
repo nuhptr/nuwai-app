@@ -24,6 +24,13 @@ class _LoginPageState extends State<LoginPage> {
   bool? isEmailValid = false;
 
   @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var pageProvider = Provider.of<PageProvider>(context);
     var userProvider = Provider.of<UserProvider>(context);

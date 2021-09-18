@@ -23,6 +23,15 @@ class _RegisterPageState extends State<RegisterPage> {
   bool? isLoading = false;
 
   @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+    confirmPasswordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var pageProvider = Provider.of<PageProvider>(context);
     var userProvider = Provider.of<UserProvider>(context);
@@ -123,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: 'Masukan Nama Lengkap',
                     hintStyle: poppinsLight.copyWith(
                       color: Colors.white38,
-                      fontSize: 14..sp,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ),

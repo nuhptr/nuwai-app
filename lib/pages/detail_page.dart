@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuwai_app/provider/job_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '/provider/user_provider.dart';
 import '/model/job_model.dart';
@@ -9,9 +10,9 @@ import '/provider/work_provider.dart';
 import '/theme.dart';
 
 class DetailPage extends StatefulWidget {
-  DetailPage(this.jobModel);
-
   final JobModel? jobModel;
+
+  DetailPage(this.jobModel);
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -56,7 +57,7 @@ class _DetailPageState extends State<DetailPage> {
               ),
               content: SingleChildScrollView(
                 child: isLoading!
-                    ? CircularProgressIndicator()
+                    ? const CircularProgressIndicator()
                     : ListBody(
                         children: [
                           Text(
@@ -72,12 +73,12 @@ class _DetailPageState extends State<DetailPage> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Batal'),
+                  child: const Text('Batal'),
                 ),
                 TextButton(
                   // TODO: Jika tombol ditekan panggil function handleSubmit
                   onPressed: handleSubmit,
-                  child: Text('Iya'),
+                  child: const Text('Iya'),
                 )
               ],
             );
@@ -87,7 +88,7 @@ class _DetailPageState extends State<DetailPage> {
     Widget header() {
       return Container(
         width: double.infinity,
-        height: 370,
+        height: 370.h,
         decoration: BoxDecoration(
             image: DecorationImage(
           image: NetworkImage(
@@ -116,7 +117,7 @@ class _DetailPageState extends State<DetailPage> {
                 },
                 child: Image.asset(
                   "assets/icon_arrow_left.png",
-                  width: 13,
+                  width: 13.w,
                 )),
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
@@ -126,8 +127,8 @@ class _DetailPageState extends State<DetailPage> {
                 widget.jobModel!.logoPerusahaanPath == null
                     ? 'https://images.template.net/wp-content/uploads/2017/04/Logo-Design1.jpg?width=584'
                     : widget.jobModel!.logoPerusahaanPath!,
-                width: 50,
-                height: 40,
+                width: 50.w,
+                height: 40.h,
                 fit: BoxFit.cover,
               ),
             )
@@ -146,7 +147,7 @@ class _DetailPageState extends State<DetailPage> {
         child: ListView(
           children: [
             SizedBox(
-              height: 300,
+              height: 300.h,
             ),
             Container(
               width: MediaQuery.of(context).size.width,
@@ -169,17 +170,17 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               Image.asset(
                                 "assets/icon_company.png",
-                                width: 28,
+                                width: 28.w,
                               ),
                               SizedBox(
-                                width: 12,
+                                width: 12.w,
                               ),
                               Text(
                                 widget.jobModel!.namaPerusahaan!,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: poppinsMedium.copyWith(
-                                    fontSize: 14, color: yellowColor),
+                                    fontSize: 14.sp, color: yellowColor),
                               )
                             ],
                           ),
@@ -189,14 +190,14 @@ class _DetailPageState extends State<DetailPage> {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: poppinsMedium.copyWith(
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             color: grayColor,
                           ),
                         )
                       ],
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 15.h,
                     ),
                     Row(
                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -207,18 +208,22 @@ class _DetailPageState extends State<DetailPage> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: poppinsSemiBold.copyWith(
-                                fontSize: 30, color: orangeColor, height: 1.25),
+                                fontSize: 30.sp,
+                                color: orangeColor,
+                                height: 1.25),
                           ),
                         ),
                         Text(
                           "tersedia sampai",
                           style: poppinsLight.copyWith(
-                              fontSize: 15, color: grayColor),
+                            fontSize: 15.sp,
+                            color: grayColor,
+                          ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       children: [
@@ -231,7 +236,7 @@ class _DetailPageState extends State<DetailPage> {
                                 .format(widget.jobModel!.gaji!),
                             style: poppinsRegular.copyWith(
                               color: orangeColor,
-                              fontSize: 15,
+                              fontSize: 15.sp,
                             ),
                           ),
                         ),
@@ -241,13 +246,13 @@ class _DetailPageState extends State<DetailPage> {
                                     widget.jobModel!.tenggangWaktuPekerjaan!)
                                 .toString(),
                             style: poppinsSemiBold.copyWith(
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               color: grayColor,
                             ))
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 30.h,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,12 +260,12 @@ class _DetailPageState extends State<DetailPage> {
                         Text(
                           "Deskripsi Pekerjaan",
                           style: poppinsMedium.copyWith(
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             color: orangeColor,
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.h,
                         ),
                         Text(
                           // TODO: non null
@@ -270,17 +275,17 @@ class _DetailPageState extends State<DetailPage> {
                           textAlign: TextAlign.justify,
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 40.h,
                         ),
                         Text(
                           "Tentang Perusahaan",
                           style: poppinsMedium.copyWith(
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             color: orangeColor,
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.h,
                         ),
                         Text(
                           widget.jobModel!.tentangPembukaLowongan == null
@@ -291,12 +296,12 @@ class _DetailPageState extends State<DetailPage> {
                           textAlign: TextAlign.justify,
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 30.h,
                         ),
                         Center(
                           child: Container(
-                            width: 150,
-                            height: 50,
+                            width: 150.w,
+                            height: 50.h,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
@@ -312,15 +317,15 @@ class _DetailPageState extends State<DetailPage> {
                                   Text(
                                     "Lamar",
                                     style: poppinsMedium.copyWith(
-                                      fontSize: 16,
+                                      fontSize: 16.sp,
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 15,
+                                    width: 15.w,
                                   ),
                                   Image.asset(
                                     "assets/icon_arrow_right_white.png",
-                                    width: 8,
+                                    width: 8.w,
                                   )
                                 ],
                               ),
@@ -328,7 +333,7 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 30.h,
                         ),
                       ],
                     ),

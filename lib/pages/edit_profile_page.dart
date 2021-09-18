@@ -24,13 +24,21 @@ class _EditProfileState extends State<EditProfile> {
   bool? isLoading = false;
   String? imageFile;
 
+  // TODO: not enabled
+  var nameController = TextEditingController(text: "");
+  var emailController = TextEditingController(text: "");
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    nameController.dispose();
+    emailController.dispose(
+  }
+
   @override
   Widget build(BuildContext context) {
     var userProvider = Provider.of<UserProvider>(context);
-
-    // TODO: not enabled
-    var nameController = TextEditingController(text: "");
-    var emailController = TextEditingController(text: "");
 
     // TODO: enabled
     var alamatController =

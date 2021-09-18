@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                     image: DecorationImage(
                   image: userProvider.user.photoProfile != null
                       ? NetworkImage(userProvider.user.photoProfile!)
-                      : NetworkImage(
+                      : const NetworkImage(
                           'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80'),
                   fit: BoxFit.cover,
                 )),
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 2,
+              height: 2.h,
             ),
             Text(
               "Pekerjaan yang berbasis corporate",
@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
 
             return Padding(
               padding: EdgeInsets.only(top: 20, bottom: 30),
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(),
               ),
             );
@@ -201,7 +201,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 2,
+              height: 2.h,
             ),
             Text(
               "Pekerjaan yang berbasis personal",
@@ -241,7 +241,7 @@ class _HomePageState extends State<HomePage> {
 
             return Padding(
               padding: EdgeInsets.only(top: 30, bottom: 30),
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(),
               ),
             );

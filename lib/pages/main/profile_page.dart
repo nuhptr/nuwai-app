@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
                 image: DecorationImage(
                   image: userProvider.user.photoProfile != null
                       ? NetworkImage(userProvider.user.photoProfile!)
-                      : NetworkImage(
+                      : const NetworkImage(
                           'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80'),
                   fit: BoxFit.cover,
                 )),
@@ -100,21 +100,21 @@ class ProfilePage extends StatelessWidget {
               ),
               ContentProfile(
                 text: "Edit Profile",
-                icon: Icon(Icons.arrow_right_rounded),
+                icon: const Icon(Icons.arrow_right_rounded),
                 ontap: () {
                   Navigator.pushNamed(context, "/edit");
                 },
               ),
               ContentProfile(
                 text: "Cara Membuka Lowongan",
-                icon: Icon(Icons.arrow_right_rounded),
+                icon: const Icon(Icons.arrow_right_rounded),
                 ontap: () {
                   Navigator.pushNamed(context, "/guide");
                 },
               ),
               ContentProfile(
                 text: "Rating App",
-                icon: Icon(Icons.arrow_right_rounded),
+                icon: const Icon(Icons.arrow_right_rounded),
                 ontap: () {
                   // TODO: Launcher URL to playstore if the app ready
                   Navigator.pushNamed(
@@ -125,7 +125,7 @@ class ProfilePage extends StatelessWidget {
               ),
               ContentProfile(
                 text: "Log Out",
-                icon: Icon(Icons.arrow_right_rounded),
+                icon: const Icon(Icons.arrow_right_rounded),
                 // TODO: destroy token and log out
                 ontap: destroyPrefToken,
               ),

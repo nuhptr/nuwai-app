@@ -1,4 +1,21 @@
 class UserModel {
+  int? id;
+  String? name;
+  String? email;
+  double? lamaTerakhirBekerja;
+  String? tempatTerakhirBekerja;
+  String? posisiTerakhirBekerja;
+  String? prestasi;
+  String? skill;
+  String? pendidikan;
+  String? kewarganegaraan;
+  String? alamat;
+  String? roles;
+  String? photoProfile;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? token;
+
   UserModel({
     this.id,
     this.name,
@@ -17,23 +34,6 @@ class UserModel {
     this.updatedAt,
     this.token,
   });
-
-  int? id;
-  String? name;
-  String? email;
-  double? lamaTerakhirBekerja;
-  String? tempatTerakhirBekerja;
-  String? posisiTerakhirBekerja;
-  String? prestasi;
-  String? skill;
-  String? pendidikan;
-  String? kewarganegaraan;
-  String? alamat;
-  String? roles;
-  String? photoProfile;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  String? token;
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

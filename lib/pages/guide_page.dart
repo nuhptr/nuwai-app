@@ -25,7 +25,7 @@ class GuidePage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushNamed(context, '/main');
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_back_ios,
                       color: grayColor,
                       size: 23,
