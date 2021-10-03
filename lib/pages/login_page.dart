@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/provider/job_provider.dart';
+import 'package:nuwai_app/shared_preference.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '/properties.dart';
 import '/provider/page_provider.dart';
@@ -8,6 +13,7 @@ import '/provider/user_provider.dart';
 import '/widget/loading_button.dart';
 
 import '/theme.dart';
+import 'main/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -31,13 +37,59 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getJobs();
+    checkPrefPage();
+  }
+
+  getJobs() async {
+    await Provider.of<JobProvider>(context, listen: false)
+        .getJobByCategory('Perorangan');
+    await Provider.of<JobProvider>(context, listen: false)
+        .getJobByCategory('Perusahaan');
+  }
+
+  // TODO: conditional pref to started or main screen
+  checkPrefPage() async {
+    final pref = await SharedPreferences.getInstance();
+
+    if (pref.getString('token') != null) {
+      startMainScreen();
+    } else {
+      startLoginScreen();
+    }
+  }
+
+  startMainScreen() async {
+    var duration = const Duration(seconds: 3);
+    return Timer(duration, () {
+      // TODO: pindah ke main screen
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => MainPage()),
+        (route) => false,
+      );
+    });
+  }
+
+  startLoginScreen() async {
+    return
+        // TODO: pindah ke login screen
+        Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+      (route) => false,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     var pageProvider = Provider.of<PageProvider>(context);
     var userProvider = Provider.of<UserProvider>(context);
 
     handleSignIn() async {
-      // var pref = await SharedPreferences.getInstance();
-
       setState(() {
         isLoading = true;
       });
@@ -46,8 +98,9 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text,
         password: passwordController.text,
       )) {
-        // TODO: set preference from user
-        // pref.setString('token', userProvider.user.token!);
+        // TODO: set preference from user (kalo udah selesai json response aktifin)
+        var pref = JsonSharedPreference();
+        pref.saveJson('token', userProvider.user.token);
 
         Navigator.pushNamedAndRemoveUntil(
           context,
@@ -86,8 +139,8 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: Text(
               "Login",
-              style: poppinsMedium.copyWith(
-                fontSize: 24.sp,
+              style: poppinsRegular.copyWith(
+                fontSize: 20.sp,
                 color: yellowColor,
               ),
             ),
@@ -101,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: Text(
               "NUWAI",
-              style: poppinsBold.copyWith(fontSize: 40.sp, color: yellowColor),
+              style: poppinsBold.copyWith(fontSize: 38.sp, color: yellowColor),
             ),
           )
         ],
@@ -111,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
     Widget? emailInput() {
       return Container(
         margin: EdgeInsets.only(
-          top: 35,
+          top: 30,
           left: defaultMargin,
           right: defaultMargin,
         ),
@@ -121,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               'Email',
               style: poppinsLight.copyWith(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 color: grayColor,
               ),
             ),
@@ -170,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               'Password',
               style: poppinsLight.copyWith(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 color: grayColor,
               ),
             ),
@@ -255,7 +308,7 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: handleSignIn,
           child: Text(
             "Masuk",
-            style: poppinsMedium.copyWith(fontSize: 18.sp),
+            style: poppinsRegular.copyWith(fontSize: 16.sp),
           ),
         ),
       );

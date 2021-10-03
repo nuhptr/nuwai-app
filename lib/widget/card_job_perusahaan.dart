@@ -63,7 +63,7 @@ class CardJobPerusahaan extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: poppinsSemiBold.copyWith(
-                    fontSize: 16.sp, color: orangeColor),
+                    fontSize: 14.sp, color: orangeColor),
               ),
             ),
             Text(
@@ -72,7 +72,7 @@ class CardJobPerusahaan extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              style: poppinsLight.copyWith(fontSize: 14.sp, color: grayColor),
+              style: poppinsLight.copyWith(fontSize: 12.sp, color: grayColor),
             )
           ],
         ),

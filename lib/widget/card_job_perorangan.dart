@@ -46,7 +46,7 @@ class CardJobPerorangan extends StatelessWidget {
                     Text(
                       job!.namaPekerjaan!,
                       style: poppinsMedium.copyWith(
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         color: orangeColor,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -58,7 +58,7 @@ class CardJobPerorangan extends StatelessWidget {
                     Text(
                       job!.lokasiPekerjaan!,
                       style: poppinsLight.copyWith(
-                        fontSize: 13.sp,
+                        fontSize: 12.sp,
                         color: grayColor,
                       ),
                       overflow: TextOverflow.ellipsis,

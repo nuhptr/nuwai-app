@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:nuwai_app/model/job_model.dart';
+import 'package:nuwai_app/shared_preference.dart';
 
 class JobServices {
   String baseUrl = 'http://192.168.43.108:8000/api';
@@ -15,6 +16,10 @@ class JobServices {
     print(response.body);
 
     if (response.statusCode == 200) {
+      // TODO: save json response
+      var pref = JsonSharedPreference();
+      pref.saveJson("job", response);
+
       List data = jsonDecode(response.body)['data']['data'];
       List<JobModel> job = [];
 

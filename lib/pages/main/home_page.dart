@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/shared_preference.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '/model/job_model.dart';
 import '/pages/detail_page.dart';
@@ -21,14 +21,23 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // loginStatus();
+    loginStatus();
   }
 
   loginStatus() async {
-    var pref = await SharedPreferences.getInstance();
-    if (pref.getString('token') == null) {
+    var pref = JsonSharedPreference();
+    var read = pref.readJson('token');
+    if (read == null) {
       Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
     }
+  }
+
+  refreshList() async {
+    await Future.delayed(Duration(seconds: 2));
+    await Provider.of<JobProvider>(context, listen: false)
+        .getJobByCategory('Perorangan');
+    await Provider.of<JobProvider>(context, listen: false)
+        .getJobByCategory('Perusahaan');
   }
 
   @override
@@ -53,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                     userProvider.user.name!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: poppinsSemiBold.copyWith(fontSize: 20.sp),
+                    style: poppinsSemiBold.copyWith(fontSize: 16.sp),
                   ),
                   SizedBox(
                     height: 2,
@@ -63,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: poppinsRegular.copyWith(
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       color: Colors.black54,
                     ),
                   )
@@ -73,8 +82,8 @@ class _HomePageState extends State<HomePage> {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                width: 55.w,
-                height: 55.h,
+                width: 50.w,
+                height: 50.h,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                   image: userProvider.user.photoProfile != null
@@ -93,15 +102,14 @@ class _HomePageState extends State<HomePage> {
     Widget decorationImage() {
       return Container(
         margin: EdgeInsets.only(
-          top: 40,
+          top: 25,
           left: defaultMargin,
           right: defaultMargin,
         ),
         child: Image.asset(
           "assets/home_image.png",
           fit: BoxFit.cover,
-          width: double.infinity,
-          height: 160.h,
+          height: 163.h,
         ),
       );
     }
@@ -109,7 +117,7 @@ class _HomePageState extends State<HomePage> {
     Widget categoryPerusahaan() {
       return Container(
         margin: EdgeInsets.only(
-          top: 20,
+          top: 5,
           left: defaultMargin,
           right: defaultMargin,
         ),
@@ -119,7 +127,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               "Perusahaan",
               style: poppinsMedium.copyWith(
-                fontSize: 20.sp,
+                fontSize: 16.sp,
                 color: blackGrayColor,
               ),
             ),
@@ -196,7 +204,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               "Perorangan",
               style: poppinsMedium.copyWith(
-                fontSize: 20.sp,
+                fontSize: 16.sp,
                 color: blackGrayColor,
               ),
             ),
@@ -251,16 +259,21 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            header(),
-            decorationImage(),
-            categoryPerusahaan(),
-            listPekerjaan(),
-            categoryPerorangan(),
-            listPekerjaanPerorangan(),
-          ],
+        child: RefreshIndicator(
+          onRefresh: refreshList(),
+          backgroundColor: orangeColor,
+          color: Colors.white,
+          child: ListView(
+            physics: BouncingScrollPhysics(),
+            children: [
+              header(),
+              decorationImage(),
+              categoryPerusahaan(),
+              listPekerjaan(),
+              categoryPerorangan(),
+              listPekerjaanPerorangan(),
+            ],
+          ),
         ),
       ),
     );

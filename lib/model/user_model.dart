@@ -48,7 +48,7 @@ class UserModel {
     kewarganegaraan = json['kewarganegaraan'];
     alamat = json['alamat'];
     roles = json['roles'];
-    photoProfile = json['profile_photo_url'];
+    photoProfile = json['profile_photo_path'];
     // TODO: biasakan parse jika bukan string
     createdAt = DateTime.parse(json['created_at']);
     updatedAt = DateTime.parse(json['updated_at']);
@@ -69,7 +69,7 @@ class UserModel {
       'kewarganegaraan': kewarganegaraan,
       'alamat': alamat,
       'roles': roles,
-      'profile_photo_url': photoProfile,
+      'profile_photo_path': photoProfile,
       'created_at': createdAt,
       'updated_at': updatedAt,
       'token': token,

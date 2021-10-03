@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nuwai_app/shared_preference.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '/provider/user_provider.dart';
 import '/theme.dart';
@@ -12,10 +12,10 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var userProvider = Provider.of<UserProvider>(context);
 
-    // TODO: function destroy token api
-    destroyPrefToken() async {
-      var pref = await SharedPreferences.getInstance();
-      pref.clear();
+    // TODO: function destroy pref token api
+    destroyPrefToken() {
+      var pref = JsonSharedPreference();
+      pref.removeSharedPrefApp();
 
       userProvider.logout(userProvider.user.token);
       Navigator.pushNamedAndRemoveUntil(
@@ -31,8 +31,8 @@ class ProfilePage extends StatelessWidget {
           alignment: Alignment.center,
           child: Container(
             margin: EdgeInsets.only(top: 40),
-            width: 140.w,
-            height: 140.h,
+            width: 120.w,
+            height: 120.h,
             // margin: ,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -54,7 +54,7 @@ class ProfilePage extends StatelessWidget {
         child: Text(
           userProvider.user.name!,
           style: poppinsMedium.copyWith(
-            fontSize: 24.sp,
+            fontSize: 20.sp,
             color: blackGrayColor,
           ),
           overflow: TextOverflow.ellipsis,
@@ -66,7 +66,7 @@ class ProfilePage extends StatelessWidget {
 
     Widget skill() {
       return Container(
-        margin: EdgeInsets.only(top: 2),
+        margin: EdgeInsets.only(top: 3),
         child: Text(
           userProvider.user.skill != null
               ? userProvider.user.skill!

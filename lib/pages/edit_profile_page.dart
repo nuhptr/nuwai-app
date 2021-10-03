@@ -2,9 +2,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:nuwai_app/properties.dart';
+// import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
+import '/properties.dart';
 import '/provider/user_provider.dart';
 import '/theme.dart';
 import '/widget/text_field_editprofile.dart';
@@ -22,7 +23,7 @@ class _EditProfileState extends State<EditProfile> {
   String? valPendidikan;
 
   bool? isLoading = false;
-  String? imageFile;
+  XFile? imageFile;
 
   // TODO: not enabled
   var nameController = TextEditingController(text: "");
@@ -33,7 +34,16 @@ class _EditProfileState extends State<EditProfile> {
     // TODO: implement dispose
     super.dispose();
     nameController.dispose();
-    emailController.dispose(
+    emailController.dispose();
+  }
+
+  // TODO: get image from gallery
+  Future getImageFromGallery() async {
+    final image = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, imageQuality: 50);
+    setState(() {
+      imageFile = image!;
+    });
   }
 
   @override
@@ -51,17 +61,6 @@ class _EditProfileState extends State<EditProfile> {
     var lamaTerakhirBekerjaController = TextEditingController();
     var tempatTerakhirBekerjaController =
         TextEditingController(text: userProvider.user.tempatTerakhirBekerja);
-
-    // TODO: get image from gallery
-    getImageFromGallery() async {
-      var image = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-        imageQuality: 50,
-      );
-      setState(() {
-        imageFile = image!.path;
-      });
-    }
 
     Widget header() {
       return Container(
@@ -108,7 +107,7 @@ class _EditProfileState extends State<EditProfile> {
                       pendidikan: valPendidikan,
                       kewarganegaraan: valWarga,
                       alamat: alamatController.text,
-                      photoProfile: imageFile!,
+                      photoProfile: imageFile!.path,
                       userToken: userProvider.user.token,
                     );
 
@@ -146,7 +145,7 @@ class _EditProfileState extends State<EditProfile> {
                   image: DecorationImage(
                     image: imageFile == null
                         ? AssetImage('assets/icon_upload.png')
-                        : FileImage(File(imageFile!)) as ImageProvider,
+                        : FileImage(File(imageFile!.path)) as ImageProvider,
                     fit: BoxFit.cover,
                   )),
               child: Align(

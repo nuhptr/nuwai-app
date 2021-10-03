@@ -179,8 +179,8 @@ class _DetailPageState extends State<DetailPage> {
                                 widget.jobModel!.namaPerusahaan!,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                style: poppinsMedium.copyWith(
-                                    fontSize: 14.sp, color: yellowColor),
+                                style: poppinsRegular.copyWith(
+                                    fontSize: 14.sp, color: grayColor),
                               )
                             ],
                           ),
@@ -191,7 +191,7 @@ class _DetailPageState extends State<DetailPage> {
                           maxLines: 1,
                           style: poppinsMedium.copyWith(
                             fontSize: 14.sp,
-                            color: grayColor,
+                            color: orangeColor,
                           ),
                         )
                       ],
@@ -208,22 +208,22 @@ class _DetailPageState extends State<DetailPage> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: poppinsSemiBold.copyWith(
-                                fontSize: 30.sp,
+                                fontSize: 28.sp,
                                 color: orangeColor,
                                 height: 1.25),
                           ),
                         ),
                         Text(
-                          "tersedia sampai",
-                          style: poppinsLight.copyWith(
-                            fontSize: 15.sp,
+                          "Tersedia Sampai",
+                          style: poppinsMedium.copyWith(
+                            fontSize: 14.sp,
                             color: grayColor,
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10.h,
+                      height: 8.h,
                     ),
                     Row(
                       children: [
@@ -236,7 +236,7 @@ class _DetailPageState extends State<DetailPage> {
                                 .format(widget.jobModel!.gaji!),
                             style: poppinsRegular.copyWith(
                               color: orangeColor,
-                              fontSize: 15.sp,
+                              fontSize: 14.sp,
                             ),
                           ),
                         ),
@@ -245,7 +245,7 @@ class _DetailPageState extends State<DetailPage> {
                                 .format(
                                     widget.jobModel!.tenggangWaktuPekerjaan!)
                                 .toString(),
-                            style: poppinsSemiBold.copyWith(
+                            style: poppinsRegular.copyWith(
                               fontSize: 14.sp,
                               color: grayColor,
                             ))
@@ -271,11 +271,11 @@ class _DetailPageState extends State<DetailPage> {
                           // TODO: non null
                           widget.jobModel!.deskripsi!,
                           style: poppinsRegular.copyWith(
-                              color: blackGrayColor, height: 1.5),
+                              color: grayColor, height: 1.5),
                           textAlign: TextAlign.justify,
                         ),
                         SizedBox(
-                          height: 40.h,
+                          height: 20.h,
                         ),
                         Text(
                           "Tentang Perusahaan",
@@ -292,7 +292,7 @@ class _DetailPageState extends State<DetailPage> {
                               ? 'Tidak Ada Tentang Perusahaan'
                               : widget.jobModel!.tentangPembukaLowongan!,
                           style: poppinsRegular.copyWith(
-                              color: blackGrayColor, height: 1.5),
+                              color: grayColor, height: 1.5),
                           textAlign: TextAlign.justify,
                         ),
                         SizedBox(
@@ -300,8 +300,8 @@ class _DetailPageState extends State<DetailPage> {
                         ),
                         Center(
                           child: Container(
-                            width: 150.w,
-                            height: 50.h,
+                            width: 140.w,
+                            height: 40.h,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
@@ -325,7 +325,7 @@ class _DetailPageState extends State<DetailPage> {
                                   ),
                                   Image.asset(
                                     "assets/icon_arrow_right_white.png",
-                                    width: 8.w,
+                                    width: 6.w,
                                   )
                                 ],
                               ),
