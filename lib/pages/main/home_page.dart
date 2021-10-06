@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/shared_preference.dart';
 import 'package:provider/provider.dart';
 
 import '/model/job_model.dart';
@@ -17,22 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    loginStatus();
-  }
-
-  loginStatus() async {
-    var pref = JsonSharedPreference();
-    var read = pref.readJson('token');
-    if (read == null) {
-      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
-    }
-  }
-
-  refreshList() async {
+  Future<void> refreshList() async {
     await Future.delayed(Duration(seconds: 2));
     await Provider.of<JobProvider>(context, listen: false)
         .getJobByCategory('Perorangan');
@@ -260,8 +244,8 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: RefreshIndicator(
-          onRefresh: refreshList(),
-          backgroundColor: orangeColor,
+          onRefresh: () => refreshList(),
+          backgroundColor: Colors.orange.shade300,
           color: Colors.white,
           child: ListView(
             physics: BouncingScrollPhysics(),

@@ -1,19 +1,14 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/provider/job_provider.dart';
-import 'package:nuwai_app/shared_preference.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '/provider/job_provider.dart';
 import '/properties.dart';
 import '/provider/page_provider.dart';
 import '/provider/user_provider.dart';
 import '/widget/loading_button.dart';
-
 import '/theme.dart';
-import 'main/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -41,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement initState
     super.initState();
     getJobs();
-    checkPrefPage();
+    // checkUserPref();
   }
 
   getJobs() async {
@@ -51,37 +46,11 @@ class _LoginPageState extends State<LoginPage> {
         .getJobByCategory('Perusahaan');
   }
 
-  // TODO: conditional pref to started or main screen
-  checkPrefPage() async {
+  checkUserPref() async {
     final pref = await SharedPreferences.getInstance();
-
     if (pref.getString('token') != null) {
-      startMainScreen();
-    } else {
-      startLoginScreen();
+      Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
     }
-  }
-
-  startMainScreen() async {
-    var duration = const Duration(seconds: 3);
-    return Timer(duration, () {
-      // TODO: pindah ke main screen
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => MainPage()),
-        (route) => false,
-      );
-    });
-  }
-
-  startLoginScreen() async {
-    return
-        // TODO: pindah ke login screen
-        Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
-      (route) => false,
-    );
   }
 
   @override
@@ -99,8 +68,8 @@ class _LoginPageState extends State<LoginPage> {
         password: passwordController.text,
       )) {
         // TODO: set preference from user (kalo udah selesai json response aktifin)
-        var pref = JsonSharedPreference();
-        pref.saveJson('token', userProvider.user.token);
+        // var pref = JsonSharedPreference();
+        // pref.save('token', userProvider.user.token);
 
         Navigator.pushNamedAndRemoveUntil(
           context,

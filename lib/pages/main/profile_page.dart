@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nuwai_app/shared_preference.dart';
 import 'package:provider/provider.dart';
 
 import '/provider/user_provider.dart';
@@ -12,11 +11,8 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var userProvider = Provider.of<UserProvider>(context);
 
-    // TODO: function destroy pref token api
     destroyPrefToken() {
-      var pref = JsonSharedPreference();
-      pref.removeSharedPrefApp();
-
+      // TODO: function destroy token api
       userProvider.logout(userProvider.user.token);
       Navigator.pushNamedAndRemoveUntil(
         context,
