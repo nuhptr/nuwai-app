@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuwai_app/provider/job_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '/provider/job_provider.dart';
 import '/provider/user_provider.dart';
 import '/model/job_model.dart';
 import '/provider/work_provider.dart';
@@ -175,12 +175,22 @@ class _DetailPageState extends State<DetailPage> {
                               SizedBox(
                                 width: 12.w,
                               ),
-                              Text(
-                                widget.jobModel!.namaPerusahaan!,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: poppinsRegular.copyWith(
-                                    fontSize: 14.sp, color: grayColor),
+                              Expanded(
+                                child: widget.jobModel!.namaPerusahaan != null
+                                    ? Text(
+                                        widget.jobModel!.namaPerusahaan!,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                        style: poppinsRegular.copyWith(
+                                            fontSize: 14.sp,
+                                            color: blackGrayColor),
+                                      )
+                                    : Text(
+                                        'Nama perusahaan tidak tersedia',
+                                        style: poppinsRegular.copyWith(
+                                            fontSize: 14.sp,
+                                            color: blackGrayColor),
+                                      ),
                               )
                             ],
                           ),
@@ -208,7 +218,7 @@ class _DetailPageState extends State<DetailPage> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: poppinsSemiBold.copyWith(
-                                fontSize: 28.sp,
+                                fontSize: 24.sp,
                                 color: orangeColor,
                                 height: 1.25),
                           ),
@@ -228,17 +238,25 @@ class _DetailPageState extends State<DetailPage> {
                     Row(
                       children: [
                         Expanded(
-                          child: Text(
-                            NumberFormat.currency(
-                                    locale: "id_ID",
-                                    decimalDigits: 0,
-                                    symbol: "IDR ")
-                                .format(widget.jobModel!.gaji!),
-                            style: poppinsRegular.copyWith(
-                              color: orangeColor,
-                              fontSize: 14.sp,
-                            ),
-                          ),
+                          child: widget.jobModel!.gaji != null
+                              ? Text(
+                                  NumberFormat.currency(
+                                          locale: "id_ID",
+                                          decimalDigits: 0,
+                                          symbol: "IDR ")
+                                      .format(widget.jobModel!.gaji!),
+                                  style: poppinsRegular.copyWith(
+                                    color: orangeColor,
+                                    fontSize: 14.sp,
+                                  ),
+                                )
+                              : Text(
+                                  'Gaji tidak tersedia',
+                                  style: poppinsRegular.copyWith(
+                                    color: grayColor,
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
                         ),
                         Text(
                             DateFormat("dd/MM/y")
@@ -271,7 +289,7 @@ class _DetailPageState extends State<DetailPage> {
                           // TODO: non null
                           widget.jobModel!.deskripsi!,
                           style: poppinsRegular.copyWith(
-                              color: grayColor, height: 1.5),
+                              color: blackGrayColor, height: 1.5),
                           textAlign: TextAlign.justify,
                         ),
                         SizedBox(
@@ -292,7 +310,7 @@ class _DetailPageState extends State<DetailPage> {
                               ? 'Tidak Ada Tentang Perusahaan'
                               : widget.jobModel!.tentangPembukaLowongan!,
                           style: poppinsRegular.copyWith(
-                              color: grayColor, height: 1.5),
+                              color: blackGrayColor, height: 1.5),
                           textAlign: TextAlign.justify,
                         ),
                         SizedBox(

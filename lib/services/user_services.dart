@@ -95,7 +95,7 @@ class UserServices {
       'pendidikan': pendidikan,
       "kewarganegaraan": kewarganegaraan,
       'alamat': alamat,
-      'profile_photo_url': photoProfile!,
+      'profile_photo_path': photoProfile ?? '',
     });
 
     var response = await http.put(

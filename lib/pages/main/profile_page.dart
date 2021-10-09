@@ -16,7 +16,7 @@ class ProfilePage extends StatelessWidget {
       userProvider.logout(userProvider.user.token);
       Navigator.pushNamedAndRemoveUntil(
         context,
-        '/login',
+        '/',
         (route) => false,
       );
     }

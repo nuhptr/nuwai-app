@@ -69,7 +69,7 @@ class UserProvider with ChangeNotifier {
         pendidikan: pendidikan,
         kewarganegaraan: kewarganegaraan,
         alamat: alamat,
-        photoProfile: photoProfile,
+        photoProfile: photoProfile ?? '',
         userToken: userToken!,
       );
 

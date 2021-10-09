@@ -16,18 +16,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<void> refreshList() async {
-    await Future.delayed(Duration(seconds: 2));
-    await Provider.of<JobProvider>(context, listen: false)
-        .getJobByCategory('Perorangan');
-    await Provider.of<JobProvider>(context, listen: false)
-        .getJobByCategory('Perusahaan');
-  }
-
   @override
   Widget build(BuildContext context) {
     var userProvider = Provider.of<UserProvider>(context);
     var jobProvider = Provider.of<JobProvider>(context);
+
+    Future<void> refreshList() async {
+      await Future.delayed(Duration(seconds: 2));
+      await Provider.of<JobProvider>(context, listen: false)
+          .getJobByCategory('Perorangan');
+      await Provider.of<JobProvider>(context, listen: false)
+          .getJobByCategory('Perusahaan');
+      Provider.of<UserProvider>(context, listen: false).user;
+    }
 
     Widget header() {
       return Container(
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                                         ));
                                   },
                                 ))
-                            .take(4)
+                            .take(5)
                             .toList(),
                       )
                     ],
@@ -225,7 +226,7 @@ class _HomePageState extends State<HomePage> {
                                       builder: (context) => DetailPage(job)));
                             },
                           ))
-                      .take(4)
+                      .take(3)
                       .toList(),
                 ),
               );

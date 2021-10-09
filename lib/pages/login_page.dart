@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '/provider/job_provider.dart';
 import '/properties.dart';
@@ -36,7 +35,6 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement initState
     super.initState();
     getJobs();
-    // checkUserPref();
   }
 
   getJobs() async {
@@ -44,13 +42,6 @@ class _LoginPageState extends State<LoginPage> {
         .getJobByCategory('Perorangan');
     await Provider.of<JobProvider>(context, listen: false)
         .getJobByCategory('Perusahaan');
-  }
-
-  checkUserPref() async {
-    final pref = await SharedPreferences.getInstance();
-    if (pref.getString('token') != null) {
-      Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
-    }
   }
 
   @override

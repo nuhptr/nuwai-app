@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import '/properties.dart';
@@ -29,14 +28,6 @@ class _EditProfileState extends State<EditProfile> {
   var nameController = TextEditingController(text: "");
   var emailController = TextEditingController(text: "");
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    nameController.dispose();
-    emailController.dispose();
-  }
-
   // TODO: get image from gallery
   Future getImageFromGallery() async {
     final image = await ImagePicker()
@@ -58,7 +49,8 @@ class _EditProfileState extends State<EditProfile> {
         TextEditingController(text: userProvider.user.prestasi);
     var posisiTerakhirController =
         TextEditingController(text: userProvider.user.posisiTerakhirBekerja);
-    var lamaTerakhirBekerjaController = TextEditingController();
+    var lamaTerakhirBekerjaController = TextEditingController(
+        text: userProvider.user.lamaTerakhirBekerja.toString());
     var tempatTerakhirBekerjaController =
         TextEditingController(text: userProvider.user.tempatTerakhirBekerja);
 

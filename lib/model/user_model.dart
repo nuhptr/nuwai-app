@@ -69,7 +69,7 @@ class UserModel {
       'kewarganegaraan': kewarganegaraan,
       'alamat': alamat,
       'roles': roles,
-      'profile_photo_url': photoProfile,
+      'profile_photo_path': photoProfile,
       'created_at': createdAt,
       'updated_at': updatedAt,
       'token': token,
