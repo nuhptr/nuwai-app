@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nuwai_app/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'home_page.dart';
-import 'profile_page.dart';
-import 'search_page.dart';
+import '/provider/job_provider.dart';
+import '/theme.dart';
+import '/pages/main/home_page.dart';
+import '/pages/main/profile_page.dart';
+import '/pages/main/search_page.dart';
 import '/provider/page_provider.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,10 +15,18 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    getJobs();
+  }
+
+  getJobs() async {
+    await Provider.of<JobProvider>(context, listen: false)
+        .getJobByCategory('Perorangan');
+    await Provider.of<JobProvider>(context, listen: false)
+        .getJobByCategory('Perusahaan');
+  }
 
   @override
   Widget build(BuildContext context) {

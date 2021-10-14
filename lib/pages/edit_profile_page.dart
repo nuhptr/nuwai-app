@@ -25,8 +25,8 @@ class _EditProfileState extends State<EditProfile> {
   XFile? imageFile;
 
   // TODO: not enabled
-  var nameController = TextEditingController(text: "");
-  var emailController = TextEditingController(text: "");
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
 
   // TODO: get image from gallery
   Future getImageFromGallery() async {
@@ -51,8 +51,7 @@ class _EditProfileState extends State<EditProfile> {
         TextEditingController(text: userProvider.user.prestasi);
     var posisiTerakhirController =
         TextEditingController(text: userProvider.user.posisiTerakhirBekerja);
-    var lamaTerakhirBekerjaController = TextEditingController(
-        text: userProvider.user.lamaTerakhirBekerja.toString());
+    var lamaTerakhirBekerjaController = TextEditingController();
     var tempatTerakhirBekerjaController =
         TextEditingController(text: userProvider.user.tempatTerakhirBekerja);
 
@@ -89,6 +88,8 @@ class _EditProfileState extends State<EditProfile> {
                   } else if (lamaTerakhirBekerjaController.text.trim() == '') {
                     showError(
                         'masukan lama terakhir bekerja sekali lagi', context);
+                  } else if (imageFile == null) {
+                    showError('Update Foto Profile Juga ya...', context);
                   } else {
                     await userProvider.updateProfile(
                       lamaTerakhirBekerja:

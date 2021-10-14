@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '/provider/job_provider.dart';
 import '/properties.dart';
 import '/provider/page_provider.dart';
 import '/provider/user_provider.dart';
@@ -28,20 +27,6 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getJobs();
-  }
-
-  getJobs() async {
-    await Provider.of<JobProvider>(context, listen: false)
-        .getJobByCategory('Perorangan');
-    await Provider.of<JobProvider>(context, listen: false)
-        .getJobByCategory('Perusahaan');
   }
 
   @override

@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                     image: DecorationImage(
                   image: userProvider.user.photoProfile != null
                       ? NetworkImage(userProvider.user.photoProfile!)
-                      : const NetworkImage(
+                      : NetworkImage(
                           'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80'),
                   fit: BoxFit.cover,
                 )),
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
         child: Image.asset(
           "assets/home_image.png",
           fit: BoxFit.cover,
-          height: 163.h,
+          height: 175.h,
         ),
       );
     }
