@@ -70,7 +70,6 @@ class UserServices {
 
   // TODO: user melakukan update profile
   Future<UserModel> updateProfile({
-    num? lamaTerakhirBekerja,
     String? tempatTerakhirBekerja,
     String? posisiTerakhirBekerja,
     String? prestasi,
@@ -83,11 +82,26 @@ class UserServices {
   }) async {
     var url = '$baseUrl/user';
     var headers = {
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
       'Authorization': userToken!,
     };
+
+    uploadFile(String? filename) async {
+      var uri = Uri.parse(url);
+      var request = http.MultipartRequest('POST', uri);
+      request.headers.addAll({'Authorization': userToken});
+
+      request.files.add(await http.MultipartFile.fromPath('file', filename!));
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        return print('Image Uploaded');
+      } else {
+        return print('image nothing');
+      }
+    }
+
     var body = jsonEncode({
-      'lama_terakhir_bekerja': lamaTerakhirBekerja,
       'tempat_terakhir_bekerja': tempatTerakhirBekerja,
       'posisi_terakhir_bekerja': posisiTerakhirBekerja,
       'prestasi': prestasi,
@@ -95,10 +109,10 @@ class UserServices {
       'pendidikan': pendidikan,
       "kewarganegaraan": kewarganegaraan,
       'alamat': alamat,
-      'profile_photo_path': photoProfile ?? '',
+      'file': uploadFile(photoProfile),
     });
 
-    var response = await http.put(
+    var response = await http.post(
       Uri.parse(url),
       headers: headers,
       body: body,

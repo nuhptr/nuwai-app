@@ -23,11 +23,13 @@ class _HomePageState extends State<HomePage> {
 
     Future<void> refreshList() async {
       await Future.delayed(Duration(seconds: 2));
-      await Provider.of<JobProvider>(context, listen: false)
-          .getJobByCategory('Perorangan');
-      await Provider.of<JobProvider>(context, listen: false)
-          .getJobByCategory('Perusahaan');
-      Provider.of<UserProvider>(context, listen: false).user;
+      setState(() {
+        Provider.of<UserProvider>(context, listen: false).user;
+        Provider.of<JobProvider>(context, listen: false)
+            .getJobByCategory('Perorangan');
+        Provider.of<JobProvider>(context, listen: false)
+            .getJobByCategory('Perusahaan');
+      });
     }
 
     Widget header() {
@@ -64,20 +66,15 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Container(
-                width: 50.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                  image: userProvider.user.photoProfile != null
-                      ? NetworkImage(userProvider.user.photoProfile!)
-                      : NetworkImage(
-                          'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80'),
-                  fit: BoxFit.cover,
-                )),
-              ),
+            Container(
+              width: 45.w,
+              height: 45.h,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(userProvider.user.photoProfile!),
+                    fit: BoxFit.cover,
+                  )),
             )
           ],
         ),
@@ -94,7 +91,7 @@ class _HomePageState extends State<HomePage> {
         child: Image.asset(
           "assets/home_image.png",
           fit: BoxFit.cover,
-          height: 175.h,
+          height: 162.h,
         ),
       );
     }
@@ -244,20 +241,26 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: () => refreshList(),
-          backgroundColor: Colors.orange.shade300,
-          color: Colors.white,
-          child: ListView(
-            physics: BouncingScrollPhysics(),
-            children: [
-              header(),
-              decorationImage(),
-              categoryPerusahaan(),
-              listPekerjaan(),
-              categoryPerorangan(),
-              listPekerjaanPerorangan(),
-            ],
+        child: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (OverscrollIndicatorNotification? overscroll) {
+            overscroll!.disallowGlow();
+            return true;
+          },
+          child: RefreshIndicator(
+            onRefresh: () => refreshList(),
+            edgeOffset: 1,
+            backgroundColor: Colors.white,
+            color: Colors.orange[400],
+            child: ListView(
+              children: [
+                header(),
+                decorationImage(),
+                categoryPerusahaan(),
+                listPekerjaan(),
+                categoryPerorangan(),
+                listPekerjaanPerorangan(),
+              ],
+            ),
           ),
         ),
       ),

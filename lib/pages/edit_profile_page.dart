@@ -35,7 +35,11 @@ class _EditProfileState extends State<EditProfile> {
       imageQuality: 50,
     );
     setState(() {
-      imageFile = image!;
+      if (image != null) {
+        imageFile = image;
+      } else {
+        print('No image selected');
+      }
     });
   }
 
@@ -51,7 +55,6 @@ class _EditProfileState extends State<EditProfile> {
         TextEditingController(text: userProvider.user.prestasi);
     var posisiTerakhirController =
         TextEditingController(text: userProvider.user.posisiTerakhirBekerja);
-    var lamaTerakhirBekerjaController = TextEditingController();
     var tempatTerakhirBekerjaController =
         TextEditingController(text: userProvider.user.tempatTerakhirBekerja);
 
@@ -85,15 +88,8 @@ class _EditProfileState extends State<EditProfile> {
                       valWarga!.trim() == '' &&
                       valPendidikan!.trim() == '') {
                     showError('Isi Field Yang tidak ada Optional', context);
-                  } else if (lamaTerakhirBekerjaController.text.trim() == '') {
-                    showError(
-                        'masukan lama terakhir bekerja sekali lagi', context);
-                  } else if (imageFile == null) {
-                    showError('Update Foto Profile Juga ya...', context);
                   } else {
                     await userProvider.updateProfile(
-                      lamaTerakhirBekerja:
-                          num.parse(lamaTerakhirBekerjaController.text),
                       tempatTerakhirBekerja:
                           tempatTerakhirBekerjaController.text,
                       posisiTerakhirBekerja: posisiTerakhirController.text,
@@ -102,7 +98,7 @@ class _EditProfileState extends State<EditProfile> {
                       pendidikan: valPendidikan,
                       kewarganegaraan: valWarga,
                       alamat: alamatController.text,
-                      photoProfile: imageFile!.path,
+                      photoProfile: imageFile != null ? imageFile!.path : "",
                       userToken: userProvider.user.token,
                     );
 
@@ -164,9 +160,7 @@ class _EditProfileState extends State<EditProfile> {
         top: 30,
         name: "Nama",
         enabled: false,
-        hintText: userProvider.user.name != null
-            ? userProvider.user.name
-            : "Masukan namamu",
+        hintText: userProvider.user.name ?? "Masukan namamu",
         textEditingController: nameController,
         inputType: TextInputType.name,
       );
@@ -176,9 +170,7 @@ class _EditProfileState extends State<EditProfile> {
       return TextFieldWidget(
         name: "Email",
         enabled: false,
-        hintText: userProvider.user.email != null
-            ? userProvider.user.email
-            : "Masukan Email",
+        hintText: userProvider.user.email,
         textEditingController: emailController,
         inputType: TextInputType.emailAddress,
       );
@@ -187,9 +179,7 @@ class _EditProfileState extends State<EditProfile> {
     Widget address() {
       return TextFieldWidget(
         name: "Alamat",
-        hintText: userProvider.user.alamat != null
-            ? userProvider.user.alamat
-            : "Masukan Alamat",
+        hintText: userProvider.user.alamat ?? "Masukan Alamat",
         textEditingController: alamatController,
         inputType: TextInputType.text,
       );
@@ -229,9 +219,8 @@ class _EditProfileState extends State<EditProfile> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          userProvider.user.kewarganegaraan != null
-                              ? userProvider.user.kewarganegaraan!
-                              : "pilih kewarganegaraan",
+                          userProvider.user.kewarganegaraan ??
+                              "pilih kewarganegaraan",
                           style: poppinsRegular.copyWith(
                             color: Colors.white,
                             fontSize: 14.sp,
@@ -310,9 +299,7 @@ class _EditProfileState extends State<EditProfile> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          userProvider.user.pendidikan != null
-                              ? userProvider.user.pendidikan!
-                              : "pilih pendidikan",
+                          userProvider.user.pendidikan ?? "pilih pendidikan",
                           style: poppinsRegular.copyWith(
                             color: Colors.white,
                             fontSize: 14.sp,
@@ -358,9 +345,7 @@ class _EditProfileState extends State<EditProfile> {
     Widget skill() {
       return TextFieldWidget(
         name: "Keahlian",
-        hintText: userProvider.user.skill != null
-            ? userProvider.user.skill!
-            : "Masukan Keahlianmu",
+        hintText: userProvider.user.skill ?? "Masukan Keahlianmu",
         textEditingController: skillController,
       );
     }
@@ -368,9 +353,7 @@ class _EditProfileState extends State<EditProfile> {
     Widget prestasi() {
       return TextFieldWidget(
         name: "Prestasi",
-        hintText: userProvider.user.prestasi != null
-            ? userProvider.user.prestasi!
-            : "Prestasi yang pernah dicapai",
+        hintText: userProvider.user.prestasi ?? "Prestasi yang pernah dicapai",
         textEditingController: prestasiController,
       );
     }
@@ -378,29 +361,17 @@ class _EditProfileState extends State<EditProfile> {
     Widget posisiTerakhir() {
       return TextFieldWidget(
         name: "Posisi Terakhir",
-        hintText: userProvider.user.posisiTerakhirBekerja != null
-            ? userProvider.user.posisiTerakhirBekerja!
-            : "Posisi terakhirmu (optional)",
+        hintText: userProvider.user.posisiTerakhirBekerja ??
+            "Posisi terakhirmu (optional)",
         textEditingController: posisiTerakhirController,
-      );
-    }
-
-    Widget lamaTerakhirBekerja() {
-      return TextFieldWidget(
-        name: "Lama Terakhir Bekerja",
-        hintText: userProvider.user.lamaTerakhirBekerja != null
-            ? userProvider.user.lamaTerakhirBekerja!.toString()
-            : "Masukan durasi dalam tahun (ex: 2.5)",
-        textEditingController: lamaTerakhirBekerjaController,
       );
     }
 
     Widget tempatTerakhirBekerja() {
       return TextFieldWidget(
         name: "Tempat Terakhir Bekerja",
-        hintText: userProvider.user.tempatTerakhirBekerja != null
-            ? userProvider.user.tempatTerakhirBekerja!
-            : "Masukan Tempat terakhir bekerja (optional)",
+        hintText: userProvider.user.tempatTerakhirBekerja ??
+            "Masukan Tempat terakhir bekerja (optional)",
         textEditingController: tempatTerakhirBekerjaController,
       );
     }
@@ -428,7 +399,6 @@ class _EditProfileState extends State<EditProfile> {
                 skill(),
                 prestasi(),
                 posisiTerakhir(),
-                lamaTerakhirBekerja(),
                 tempatTerakhirBekerja(),
               ],
             ),

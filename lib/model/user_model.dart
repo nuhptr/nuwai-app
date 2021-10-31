@@ -2,7 +2,7 @@ class UserModel {
   int? id;
   String? name;
   String? email;
-  double? lamaTerakhirBekerja;
+  int? lamaTerakhirBekerja;
   String? tempatTerakhirBekerja;
   String? posisiTerakhirBekerja;
   String? prestasi;
@@ -55,7 +55,7 @@ class UserModel {
     token = json['token'];
   }
 
-  Map<String, dynamic> toJson() {
+  Map<dynamic, dynamic> toJson() {
     return {
       'id': id,
       'name': name,

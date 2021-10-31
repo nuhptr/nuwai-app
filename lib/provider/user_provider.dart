@@ -7,7 +7,7 @@ class UserProvider with ChangeNotifier {
   UserModel? _user;
 
   UserModel get user => _user!;
-  set user(UserModel user) {
+  set user(UserModel? user) {
     _user = user;
     notifyListeners();
   }
@@ -48,7 +48,7 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<bool> updateProfile({
-    num? lamaTerakhirBekerja,
+    int? lamaTerakhirBekerja,
     String? tempatTerakhirBekerja,
     String? posisiTerakhirBekerja,
     String? prestasi,
@@ -61,7 +61,6 @@ class UserProvider with ChangeNotifier {
   }) async {
     try {
       UserModel user = await UserServices().updateProfile(
-        lamaTerakhirBekerja: lamaTerakhirBekerja,
         tempatTerakhirBekerja: tempatTerakhirBekerja,
         posisiTerakhirBekerja: posisiTerakhirBekerja,
         prestasi: prestasi,
@@ -69,7 +68,7 @@ class UserProvider with ChangeNotifier {
         pendidikan: pendidikan,
         kewarganegaraan: kewarganegaraan,
         alamat: alamat,
-        photoProfile: photoProfile ?? '',
+        photoProfile: photoProfile,
         userToken: userToken!,
       );
 

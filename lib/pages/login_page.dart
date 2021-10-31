@@ -288,7 +288,7 @@ class _LoginPageState extends State<LoginPage> {
     Widget? footer() {
       return Container(
         width: double.infinity,
-        height: 190.h,
+        height: 185.h,
         decoration: BoxDecoration(
             image: DecorationImage(
           image: AssetImage("assets/register_image.png"),
@@ -300,26 +300,32 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              header()!,
-              emailInput()!,
-              passwordInput()!,
-              isLoading!
-                  ? LoadingButton(
-                      marginLeft: defaultMargin,
-                      marginRight: defaultMargin,
-                      marginTop: 40,
-                      height: 45,
-                      width: 155,
-                    )
-                  : buttonLogin()!,
-              registerText()!,
-              footer()!,
-            ],
+        child: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (OverscrollIndicatorNotification? overscroll) {
+            overscroll!.disallowGlow();
+            return true;
+          },
+          child: SingleChildScrollView(
+            // physics: BouncingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                header()!,
+                emailInput()!,
+                passwordInput()!,
+                isLoading!
+                    ? LoadingButton(
+                        marginLeft: defaultMargin,
+                        marginRight: defaultMargin,
+                        marginTop: 40,
+                        height: 45,
+                        width: 155,
+                      )
+                    : buttonLogin()!,
+                registerText()!,
+                footer()!,
+              ],
+            ),
           ),
         ),
       ),
