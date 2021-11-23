@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '/model/work_model.dart';
 
 class WorkServices {
-  String baseUrl = 'http://192.168.43.108:8000/api';
+  String baseUrl = 'https://nulungguwai.com/api';
 
   // TODO: Post the id of jobs with users id
   Future<WorkModel> submitJobs({int? idPekerjaan, String? userToken}) async {

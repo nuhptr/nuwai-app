@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '/model/user_model.dart';
 
 class UserServices {
-  String baseUrl = 'http://192.168.43.108:8000/api';
+  String baseUrl = 'https://nulungguwai.com/api';
 
   // TODO: user melakukan register
   Future<UserModel> register({

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:nuwai_app/model/job_model.dart';
 
 class JobServices {
-  String baseUrl = 'http://192.168.43.108:8000/api';
+  String baseUrl = 'https://nulungguwai.com/api';
 
   // TODO: get job by category
   Future<List<JobModel>> getJobByCategory(String category) async {

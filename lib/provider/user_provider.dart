@@ -48,7 +48,6 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<bool> updateProfile({
-    int? lamaTerakhirBekerja,
     String? tempatTerakhirBekerja,
     String? posisiTerakhirBekerja,
     String? prestasi,

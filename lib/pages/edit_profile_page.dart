@@ -98,7 +98,7 @@ class _EditProfileState extends State<EditProfile> {
                       pendidikan: valPendidikan,
                       kewarganegaraan: valWarga,
                       alamat: alamatController.text,
-                      photoProfile: imageFile != null ? imageFile!.path : "",
+                      photoProfile: imageFile!.path,
                       userToken: userProvider.user.token,
                     );
 
