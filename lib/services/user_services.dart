@@ -82,7 +82,7 @@ class UserServices {
   }) async {
     var url = '$baseUrl/user';
     var headers = {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
       'Authorization': userToken!,
     };
 
@@ -95,9 +95,9 @@ class UserServices {
       var response = await request.send();
 
       if (response.statusCode == 200) {
-        return print('Image Uploaded');
+        print('Image Uploaded');
       } else {
-        return print('image nothing');
+        print('image nothing');
       }
     }
 

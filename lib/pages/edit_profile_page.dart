@@ -58,67 +58,54 @@ class _EditProfileState extends State<EditProfile> {
     var tempatTerakhirBekerjaController =
         TextEditingController(text: userProvider.user.tempatTerakhirBekerja);
 
-    Widget header() {
-      return Container(
-          margin: EdgeInsets.only(
-            top: 50,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, "/main");
-                },
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  size: 24,
-                ),
-              ),
-              GestureDetector(
-                onTap: () async {
-                  // TODO: save data ke database lewat API, efek loading
-                  setState(() {
-                    isLoading = true;
-                  });
+    header() {
+      return AppBar(
+        backgroundColor: orangeColor,
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back_ios_new_rounded),
+          onTap: () {
+            Navigator.pushNamed(context, "/main");
+          },
+        ),
+        title: Text(
+          "Edit Profil",
+          style: poppinsMedium.copyWith(fontSize: 20.sp),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              setState(() {
+                isLoading = true;
+              });
 
-                  if (alamatController.text.trim() == '' &&
-                      skillController.text.trim() == '' &&
-                      prestasiController.text.trim() == '' &&
-                      valWarga!.trim() == '' &&
-                      valPendidikan!.trim() == '') {
-                    showError('Isi Field Yang tidak ada Optional', context);
-                  } else {
-                    await userProvider.updateProfile(
-                      tempatTerakhirBekerja:
-                          tempatTerakhirBekerjaController.text,
-                      posisiTerakhirBekerja: posisiTerakhirController.text,
-                      prestasi: prestasiController.text,
-                      skill: skillController.text,
-                      pendidikan: valPendidikan,
-                      kewarganegaraan: valWarga,
-                      alamat: alamatController.text,
-                      photoProfile: imageFile!.path,
-                      userToken: userProvider.user.token,
-                    );
+              if (alamatController.text.trim() == "" ||
+                  skillController.text.trim() == "" ||
+                  prestasiController.text.trim() == "" ||
+                  valWarga == "" ||
+                  valPendidikan == "") {
+                showError("Field masih ada yang kosong!", context);
+              } else if (imageFile == null) {
+                showError("Masukan Foto Profile", context);
+              } else {
+                await userProvider.updateProfile(
+                  tempatTerakhirBekerja: tempatTerakhirBekerjaController.text,
+                  posisiTerakhirBekerja: posisiTerakhirController.text,
+                  prestasi: prestasiController.text,
+                  skill: skillController.text,
+                  pendidikan: valPendidikan,
+                  kewarganegaraan: valWarga,
+                  alamat: alamatController.text,
+                  photoProfile: imageFile!.path,
+                  userToken: userProvider.user.token,
+                );
 
-                    showSuccess('Updated Profile', context);
-                  }
-
-                  setState(() {
-                    isLoading = false;
-                  });
-                },
-                child: isLoading!
-                    ? CircularProgressIndicator()
-                    : Icon(
-                        Icons.check,
-                        size: 28,
-                        color: orangeColor,
-                      ),
-              )
-            ],
-          ));
+                showSuccess("Profil Terupdate", context);
+              }
+            },
+            icon: Icon(Icons.check),
+          )
+        ],
+      );
     }
 
     Widget fotoProfileEdited() {
@@ -135,7 +122,7 @@ class _EditProfileState extends State<EditProfile> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: imageFile == null
-                        ? AssetImage('assets/icon_upload.png')
+                        ? NetworkImage(userProvider.user.photoProfile!)
                         : FileImage(File(imageFile!.path)) as ImageProvider,
                     fit: BoxFit.cover,
                   )),
@@ -382,6 +369,7 @@ class _EditProfileState extends State<EditProfile> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
+        appBar: header(),
         body: SafeArea(
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
@@ -389,7 +377,6 @@ class _EditProfileState extends State<EditProfile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                header(),
                 fotoProfileEdited(),
                 namaLengkap(),
                 email(),

@@ -29,6 +29,13 @@ class _MainPageState extends State<MainPage> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    getJobs();
+  }
+
+  @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
 

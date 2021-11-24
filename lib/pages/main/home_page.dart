@@ -24,11 +24,11 @@ class _HomePageState extends State<HomePage> {
     Future<void> refreshList() async {
       await Future.delayed(Duration(seconds: 2));
       setState(() {
-        Provider.of<UserProvider>(context, listen: false).user;
         Provider.of<JobProvider>(context, listen: false)
             .getJobByCategory('Perorangan');
         Provider.of<JobProvider>(context, listen: false)
             .getJobByCategory('Perusahaan');
+        Provider.of<UserProvider>(context, listen: false).user;
       });
     }
 
@@ -148,6 +148,7 @@ class _HomePageState extends State<HomePage> {
                             .map((job) => CardJobPerusahaan(
                                   job: job,
                                   ontap: () {
+                                    print(job.id);
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -217,6 +218,7 @@ class _HomePageState extends State<HomePage> {
                       .map((job) => CardJobPerorangan(
                             job: job,
                             ontap: () {
+                              // print(job.id);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

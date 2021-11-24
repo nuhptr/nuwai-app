@@ -2,7 +2,6 @@ class UserModel {
   int? id;
   String? name;
   String? email;
-  int? lamaTerakhirBekerja;
   String? tempatTerakhirBekerja;
   String? posisiTerakhirBekerja;
   String? prestasi;
@@ -20,7 +19,6 @@ class UserModel {
     this.id,
     this.name,
     this.email,
-    this.lamaTerakhirBekerja,
     this.tempatTerakhirBekerja,
     this.posisiTerakhirBekerja,
     this.prestasi,
@@ -39,7 +37,6 @@ class UserModel {
     id = json['id'];
     name = json['name'];
     email = json['email'];
-    lamaTerakhirBekerja = json['lama_terakhir_bekerja'];
     tempatTerakhirBekerja = json['tempat_terakhir_bekerja'];
     posisiTerakhirBekerja = json['posisi_terakhir_bekerja'];
     prestasi = json['prestasi'];
@@ -60,7 +57,6 @@ class UserModel {
       'id': id,
       'name': name,
       'email': email,
-      'lama_terakhir_bekerja': lamaTerakhirBekerja,
       'tempat_terakhir_bekerja': tempatTerakhirBekerja,
       'posisi_terakhir_bekerja': posisiTerakhirBekerja,
       'prestasi': prestasi,

@@ -72,6 +72,7 @@ class UserProvider with ChangeNotifier {
       );
 
       _user = user;
+      print(_user);
       return true;
     } catch (e) {
       print(e);

@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '/provider/job_provider.dart';
 import '/provider/user_provider.dart';
 import '/model/job_model.dart';
 import '/provider/work_provider.dart';
@@ -24,19 +23,19 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     WorkProvider workProvider = Provider.of<WorkProvider>(context);
-    JobProvider jobProvider = Provider.of<JobProvider>(context);
     UserProvider userProvider = Provider.of<UserProvider>(context);
 
-    handleSubmit() async {
+    Future handleSubmit() async {
       setState(() {
         isLoading = true;
       });
 
       // TODO: handle submit
       if (await workProvider.submitLamaran(
-        idPekerjaan: jobProvider.jobs[0].id,
+        idPekerjaan: widget.jobModel!.id,
         userToken: userProvider.user.token,
       )) {
+        print(widget.jobModel!.id);
         Navigator.pushNamed(context, '/success');
       }
 
