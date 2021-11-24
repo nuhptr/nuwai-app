@@ -86,20 +86,20 @@ class UserServices {
       'Authorization': userToken!,
     };
 
-    uploadFile(String? filename) async {
-      var uri = Uri.parse(url);
-      var request = http.MultipartRequest('POST', uri);
-      request.headers.addAll({'Authorization': userToken});
+    // uploadFile(String? filename) async {
+    //   var uri = Uri.parse(url);
+    //   var request = http.MultipartRequest('POST', uri);
+    //   request.headers.addAll({'Authorization': userToken});
 
-      request.files.add(await http.MultipartFile.fromPath('file', filename!));
-      var response = await request.send();
+    //   request.files.add(await http.MultipartFile.fromPath('file', filename!));
+    //   var response = await request.send();
 
-      if (response.statusCode == 200) {
-        print('Image Uploaded');
-      } else {
-        print('image nothing');
-      }
-    }
+    //   if (response.statusCode == 200) {
+    //     print('Image Uploaded');
+    //   } else {
+    //     print('image nothing');
+    //   }
+    // }
 
     var body = jsonEncode({
       'tempat_terakhir_bekerja': tempatTerakhirBekerja,
@@ -109,7 +109,7 @@ class UserServices {
       'pendidikan': pendidikan,
       "kewarganegaraan": kewarganegaraan,
       'alamat': alamat,
-      'file': uploadFile(photoProfile),
+      'file': photoProfile,
     });
 
     var response = await http.post(
@@ -117,7 +117,7 @@ class UserServices {
       headers: headers,
       body: body,
     );
-    print(response.body);
+    print("Post Data User : " + response.body);
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];

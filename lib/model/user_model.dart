@@ -9,7 +9,6 @@ class UserModel {
   String? pendidikan;
   String? kewarganegaraan;
   String? alamat;
-  String? roles;
   String? photoProfile;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -26,7 +25,6 @@ class UserModel {
     this.pendidikan,
     this.kewarganegaraan,
     this.alamat,
-    this.roles,
     this.photoProfile,
     this.createdAt,
     this.updatedAt,
@@ -44,7 +42,6 @@ class UserModel {
     pendidikan = json['pendidikan'];
     kewarganegaraan = json['kewarganegaraan'];
     alamat = json['alamat'];
-    roles = json['roles'];
     photoProfile = json['profile_photo_url'];
     // TODO: biasakan parse jika bukan string
     createdAt = DateTime.parse(json['created_at']);
@@ -64,7 +61,6 @@ class UserModel {
       'pendidikan': pendidikan,
       'kewarganegaraan': kewarganegaraan,
       'alamat': alamat,
-      'roles': roles,
       'profile_photo_path': photoProfile,
       'created_at': createdAt,
       'updated_at': updatedAt,
