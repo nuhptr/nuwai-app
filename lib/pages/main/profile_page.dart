@@ -60,24 +60,6 @@ class ProfilePage extends StatelessWidget {
       );
     }
 
-    Widget skill() {
-      return Container(
-        margin: EdgeInsets.only(top: 3),
-        child: Text(
-          userProvider.user.skill != null
-              ? userProvider.user.skill!
-              : "Belum Ada Skill",
-          textAlign: TextAlign.center,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: poppinsRegular.copyWith(
-            fontSize: 16.sp,
-            color: grayColor,
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -89,7 +71,6 @@ class ProfilePage extends StatelessWidget {
             children: [
               header(),
               name(),
-              skill(),
               Container(
                 margin: EdgeInsets.only(top: 18, bottom: 30),
                 child: Divider(color: orangeColor, thickness: 1),

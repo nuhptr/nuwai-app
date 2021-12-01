@@ -70,12 +70,7 @@ class UserServices {
 
   // TODO: user melakukan update profile
   Future<UserModel> updateProfile({
-    String? tempatTerakhirBekerja,
-    String? posisiTerakhirBekerja,
-    String? prestasi,
-    String? skill,
-    String? pendidikan,
-    String? kewarganegaraan,
+    String? cvPath,
     String? alamat,
     String? photoProfile,
     String? userToken,
@@ -86,30 +81,40 @@ class UserServices {
       'Authorization': userToken!,
     };
 
-    // uploadFile(String? filename) async {
-    //   var uri = Uri.parse(url);
-    //   var request = http.MultipartRequest('POST', uri);
-    //   request.headers.addAll({'Authorization': userToken});
+    uploadFile(String? filename) async {
+      var uri = Uri.parse(url);
+      var request = http.MultipartRequest('POST', uri);
+      request.headers.addAll({'Authorization': userToken});
 
-    //   request.files.add(await http.MultipartFile.fromPath('file', filename!));
-    //   var response = await request.send();
+      request.files.add(await http.MultipartFile.fromPath('file', filename!));
+      var response = await request.send();
 
-    //   if (response.statusCode == 200) {
-    //     print('Image Uploaded');
-    //   } else {
-    //     print('image nothing');
-    //   }
-    // }
+      if (response.statusCode == 200) {
+        print('Image Uploaded');
+      } else {
+        print('image nothing');
+      }
+    }
+
+    uploadFileCv(String? filename) async {
+      var uri = Uri.parse(url);
+      var request = http.MultipartRequest('POST', uri);
+      request.headers.addAll({'Authorization': userToken});
+
+      request.files.add(await http.MultipartFile.fromPath('cv_path', filename!));
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        print('Image Uploaded');
+      } else {
+        print('image nothing');
+      }
+    }
 
     var body = jsonEncode({
-      'tempat_terakhir_bekerja': tempatTerakhirBekerja,
-      'posisi_terakhir_bekerja': posisiTerakhirBekerja,
-      'prestasi': prestasi,
-      'skill': skill,
-      'pendidikan': pendidikan,
-      "kewarganegaraan": kewarganegaraan,
+      'cv_path': uploadFileCv(cvPath),
       'alamat': alamat,
-      'file': photoProfile,
+      'file': uploadFile(photoProfile),
     });
 
     var response = await http.post(

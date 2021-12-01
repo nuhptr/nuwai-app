@@ -48,24 +48,14 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<bool> updateProfile({
-    String? tempatTerakhirBekerja,
-    String? posisiTerakhirBekerja,
-    String? prestasi,
-    String? skill,
-    String? pendidikan,
-    String? kewarganegaraan,
+    String? cvPath,
     String? alamat,
     String? photoProfile,
     String? userToken,
   }) async {
     try {
       UserModel user = await UserServices().updateProfile(
-        tempatTerakhirBekerja: tempatTerakhirBekerja,
-        posisiTerakhirBekerja: posisiTerakhirBekerja,
-        prestasi: prestasi,
-        skill: skill,
-        pendidikan: pendidikan,
-        kewarganegaraan: kewarganegaraan,
+        cvPath: cvPath,
         alamat: alamat,
         photoProfile: photoProfile,
         userToken: userToken!,
