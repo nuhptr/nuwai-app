@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 import '/model/job_model.dart';
 import '/pages/detail_page.dart';
@@ -20,6 +21,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var userProvider = Provider.of<UserProvider>(context);
     var jobProvider = Provider.of<JobProvider>(context);
+
+    List? imageSlider = [
+      "https://images.unsplash.com/photo-1501250987900-211872d97eaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      "https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+      "https://images.unsplash.com/photo-1629905679177-4c4e2623654f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=918&q=80",
+    ];
 
     Future<void> refreshList() async {
       await Future.delayed(Duration(seconds: 2));
@@ -88,11 +95,22 @@ class _HomePageState extends State<HomePage> {
           left: defaultMargin,
           right: defaultMargin,
         ),
-        child: Image.asset(
-          "assets/home_image.png",
-          fit: BoxFit.cover,
-          height: 162.h,
-        ),
+        child: CarouselSlider(
+            options: CarouselOptions(
+              autoPlay: true,
+              enableInfiniteScroll: true,
+              reverse: true,
+            ),
+            items: imageSlider
+                .map((item) => Container(
+                    margin: EdgeInsets.only(left: 40),
+                    child: Center(
+                      child: Image.network(
+                        item,
+                        fit: BoxFit.cover,
+                      ),
+                    )))
+                .toList()),
       );
     }
 

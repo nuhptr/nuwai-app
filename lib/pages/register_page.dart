@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '/properties.dart';
 import '/provider/page_provider.dart';
@@ -37,8 +36,6 @@ class _RegisterPageState extends State<RegisterPage> {
     var userProvider = Provider.of<UserProvider>(context);
 
     handleSignUp() async {
-      var pref = await SharedPreferences.getInstance();
-
       setState(() {
         isLoading = true;
       });
@@ -60,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
 
         // TODO: set preference from token user
-        pref.setString('token', userProvider.user.token!);
+
         Navigator.pushNamedAndRemoveUntil(
           context,
           '/main',
