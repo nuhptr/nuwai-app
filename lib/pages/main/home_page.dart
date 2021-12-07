@@ -23,9 +23,9 @@ class _HomePageState extends State<HomePage> {
     var jobProvider = Provider.of<JobProvider>(context);
 
     List? imageSlider = [
-      "https://images.unsplash.com/photo-1501250987900-211872d97eaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      "https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
-      "https://images.unsplash.com/photo-1629905679177-4c4e2623654f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=918&q=80",
+      "https://image.freepik.com/free-vector/agenda-job-organization-schedule_107791-1848.jpg",
+      "https://img.freepik.com/free-vector/businessman-planning-events-deadlines-agenda-calendar-schedule-organization-process-web-template_74855-8953.jpg?size=338&ext=jpg",
+      "https://image.freepik.com/free-vector/businessman-planning-events-deadlines-agenda_74855-6908.jpg"
     ];
 
     Future<void> refreshList() async {
@@ -91,25 +91,29 @@ class _HomePageState extends State<HomePage> {
     Widget decorationImage() {
       return Container(
         margin: EdgeInsets.only(
-          top: 25,
-          left: defaultMargin,
-          right: defaultMargin,
+          top: 10,
+          bottom: 5,
         ),
+        width: double.infinity,
         child: CarouselSlider(
             options: CarouselOptions(
               autoPlay: true,
               enableInfiniteScroll: true,
-              reverse: true,
+              pauseAutoPlayOnTouch: true,
+              enlargeCenterPage: true,
+              viewportFraction: 0.8,
             ),
             items: imageSlider
-                .map((item) => Container(
-                    margin: EdgeInsets.only(left: 40),
-                    child: Center(
-                      child: Image.network(
-                        item,
-                        fit: BoxFit.cover,
-                      ),
-                    )))
+                .map((item) => Center(
+                      child: Container(
+                          width: double.infinity,
+                          height: 160.h,
+                          margin: EdgeInsets.only(left: 5, right: 5),
+                          child: Image.network(
+                            item,
+                            fit: BoxFit.contain,
+                          )),
+                    ))
                 .toList()),
       );
     }

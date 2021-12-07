@@ -158,7 +158,7 @@ class _EditProfileState extends State<EditProfile> {
 
     Widget address() {
       return TextFieldWidget(
-        name: "Alamat",
+        name: "Alamat Lengkap",
         hintText: userProvider.user.alamat ?? "Masukan Alamat",
         textEditingController: alamatController,
         inputType: TextInputType.text,
