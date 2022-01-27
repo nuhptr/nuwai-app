@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
               enableInfiniteScroll: true,
               pauseAutoPlayOnTouch: true,
               enlargeCenterPage: true,
-              viewportFraction: 0.8,
+              viewportFraction: 0.95,
             ),
             items: imageSlider
                 .map((item) => Center(
@@ -267,7 +267,7 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (OverscrollIndicatorNotification? overscroll) {
-            overscroll!.disallowGlow();
+            overscroll!.disallowIndicator();
             return true;
           },
           child: RefreshIndicator(

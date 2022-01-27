@@ -302,7 +302,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (OverscrollIndicatorNotification? overscroll) {
-            overscroll!.disallowGlow();
+            overscroll!.disallowIndicator();
             return true;
           },
           child: SingleChildScrollView(

@@ -99,6 +99,7 @@ class _DetailPageState extends State<DetailPage> {
         )),
       );
     }
+    
 
     Widget logo() {
       return Container(
@@ -140,7 +141,7 @@ class _DetailPageState extends State<DetailPage> {
       // TODO: lost the glowing light overscroll
       return NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (OverscrollIndicatorNotification overscroll) {
-          overscroll.disallowGlow();
+          overscroll.disallowIndicator();
           return true;
         },
         child: ListView(
